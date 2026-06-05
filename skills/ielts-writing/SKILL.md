@@ -4,7 +4,7 @@ description: |
   雅思写作批改教练。四维评分 + 句子级标注 + 改写对比 + 审题检查。
   触发方式：/ielts-writing、「批改作文」「帮我看看这篇」「审题」「写作练习」
 metadata:
-  version: 1.0.0
+  version: 3.0.0-alpha
 ---
 
 # IELTS Writing — 雅思写作批改教练
@@ -237,6 +237,72 @@ metadata:
 - AI 评分普遍偏高 0.5 分。提醒用户：实际考试分数可能比 AI 评分低 0.5
 - 建议同时用 2-3 个工具交叉验证（UpScore.ai / LexiBot / Engnovate）
 - 模板文 = 自动锁死 6 分以下
+
+---
+
+## v3.0 存档输出
+
+批改完成后，将结果以 YAML frontmatter + Markdown 格式写入本地存档。
+
+### 写入路径
+
+`~/.ielts/writing/{YYYY-MM-DD}-{task1|task2|letter}.md`
+
+### 存档格式
+
+```yaml
+---
+type: "writing"
+taskType: "task1" | "task2" | "letter"
+topic: "作文题目"
+wordCount: 285
+bandScore:
+  tr: 6.5
+  cc: 6.0
+  lr: 6.5
+  gra: 6.0
+  overall: 6.5
+errors:
+  - category: "task_response" | "coherence" | "lexical" | "grammar" | "spelling"
+    severity: "major" | "minor"
+    location: "paragraph 2"
+    description: "论点不够充分，未完全展开"
+  - category: "grammar"
+    severity: "major"
+    location: "paragraph 1 sentence 3"
+    description: "主谓不一致"
+rewritten: true
+createdAt: "2026-06-01T10:00:00.000Z"
+---
+原文：...（用户原始作文）
+改写版：...（改写后的版本）
+```
+
+### 存档时机
+
+每次批改完成后自动存档。**不询问用户是否存档**，直接写入。
+
+### 错误分类
+
+| Category | Description |
+|----------|-------------|
+| task_response | 未完全回应任务 / 论点不清晰 |
+| coherence | 段落衔接 / 逻辑跳跃 |
+| lexical | 用词不当 / 重复 |
+| grammar | 时态 / 主谓一致 / 句式 |
+| spelling | 拼写错误 |
+
+### 读档（可选）
+
+批改前检查 `~/.ielts/writing/` 最近 3 篇同类型记录，给出对比趋势：
+
+```
+📈 Task 2 趋势（最近 3 篇）
+TR:  6.0 → 6.0 → 6.5
+CC:  5.5 → 6.0 → 6.0
+LR:  6.0 → 6.5 → 6.5
+GRA: 5.5 → 5.5 → 6.0
+```
 
 ---
 
