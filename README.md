@@ -43,20 +43,20 @@
 
 ```bash
 # Mac / Linux
-cp -r ielts ielts-writing ielts-reading ielts-speaking ~/.claude/skills/
+cp -r skills/ielts skills/ielts-writing skills/ielts-reading skills/ielts-speaking skills/ielts-listening skills/ielts-vocab ~/.claude/skills/
 ```
 
 ```powershell
 # Windows PowerShell
-Copy-Item -Recurse ielts, ielts-writing, ielts-reading, ielts-speaking $env:USERPROFILE\.claude\skills\
+Copy-Item -Recurse skills\ielts, skills\ielts-writing, skills\ielts-reading, skills\ielts-speaking, skills\ielts-listening, skills\ielts-vocab $env:USERPROFILE\.claude\skills\
 ```
 
 ### 方法二：克隆
 
 ```bash
-git clone https://github.com/YANZHANLIN/ielts-claude-skills.git
+git clone https://github.com/autism-ip/ielts-claude-skills.git
 cd ielts-claude-skills
-cp -r ielts ielts-writing ielts-reading ielts-speaking ~/.claude/skills/
+cp -r skills/ielts skills/ielts-writing skills/ielts-reading skills/ielts-speaking skills/ielts-listening skills/ielts-vocab ~/.claude/skills/
 ```
 
 装完之后重启 Claude Code，输入 `/ielts` 就能用。
@@ -113,23 +113,25 @@ AI：
 
 ```
 ielts-claude-skills/
-├── ielts/SKILL.md              # 路由教练
-├── ielts-writing/SKILL.md      # 写作批改
-├── ielts-reading/SKILL.md      # 阅读分析
-├── ielts-speaking/SKILL.md     # 口语素材
+├── skills/
+│   ├── ielts/SKILL.md          # 路由教练
+│   ├── ielts-writing/SKILL.md  # 写作批改
+│   ├── ielts-reading/SKILL.md  # 阅读分析
+│   └── ielts-speaking/SKILL.md # 口语素材
+├── packages/
+│   ├── schemas/                # Zod 数据模型
+│   ├── cli/                    # CLI 工具
+│   └── dashboard/              # React Dashboard
 ├── docs/                       # v3.0 架构文档
-│   ├── ARCHITECTURE.md         # 系统架构
-│   ├── ROADMAP.md              # 实施路线图
-│   ├── DATA_MODEL.md           # 数据模型
-│   ├── SKILL_SPEC.md           # 技能规格
-│   └── DASHBOARD_SPEC.md       # Dashboard 规格
-├── README.md                   # 你正在看
-└── LICENSE                     # MIT
+├── pnpm-workspace.yaml
+├── tsconfig.base.json
+├── README.md
+└── LICENSE
 ```
 
 每个 skill 就是一个文件夹 + 一个 `SKILL.md`。Claude Code 通过 `name` 字段识别和触发。
 
-> v3.0 架构文档见 [`docs/`](./docs/) 目录。
+> 注：v1.0 的 `ielts/` 等路径通过符号链接指向 `skills/`，保持向后兼容。
 
 ---
 
