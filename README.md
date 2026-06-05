@@ -43,7 +43,7 @@
 
 ```bash
 # Mac / Linux
-cp -r ielts ielts-writing ielts-reading ielts-speaking ~/.claude/skills/
+cp -r skills/ielts skills/ielts-writing skills/ielts-reading skills/ielts-speaking ~/.claude/skills/
 ```
 
 ```powershell
@@ -113,15 +113,25 @@ AI：
 
 ```
 ielts-claude-skills/
-├── ielts/SKILL.md              # 路由教练
-├── ielts-writing/SKILL.md      # 写作批改
-├── ielts-reading/SKILL.md      # 阅读分析
-├── ielts-speaking/SKILL.md     # 口语素材
-├── README.md                   # 你正在看
-└── LICENSE                     # MIT
+├── skills/
+│   ├── ielts/SKILL.md          # 路由教练
+│   ├── ielts-writing/SKILL.md  # 写作批改
+│   ├── ielts-reading/SKILL.md  # 阅读分析
+│   └── ielts-speaking/SKILL.md # 口语素材
+├── packages/
+│   ├── schemas/                # Zod 数据模型
+│   ├── cli/                    # CLI 工具
+│   └── dashboard/              # React Dashboard
+├── docs/                       # v3.0 架构文档
+├── pnpm-workspace.yaml
+├── tsconfig.base.json
+├── README.md
+└── LICENSE
 ```
 
 每个 skill 就是一个文件夹 + 一个 `SKILL.md`。Claude Code 通过 `name` 字段识别和触发。
+
+> 注：v1.0 的 `ielts/` 等路径通过符号链接指向 `skills/`，保持向后兼容。
 
 ---
 
