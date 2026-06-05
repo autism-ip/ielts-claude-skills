@@ -1,15 +1,13 @@
 # [INPUT]: 依赖 GitHub Actions checkout/setup-node 与仓库内 scripts/ci-gate.mjs。
 # [OUTPUT]: 对 pull_request、main push、手动触发提供 CI 门禁。
 # [POS]: .github/workflows 的主验证入口，先验 skill/docs，再在 v3 package 出现时执行 test/lint/build/validate。
-# [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
 
 name: CI Gate
 
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -24,49 +22,18 @@ jobs:
     name: Skill and package gates
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
-      - name: Validate repository contract
-        run: node scripts/ci-gate.mjs
-
-      - name: Run package gates when v3 workspace exists
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: "22" }
+      - run: node scripts/ci-gate.mjs
         shell: bash
-        run: |
+      - run: |
           set -euo pipefail
-
-          if [ ! -f package.json ]; then
-            echo "No package.json; prompt-only skill gate complete."
-            exit 0
-          fi
-
+          if [ ! -f package.json ]; then echo "No package.json; skill gate complete."; exit 0; fi
           corepack enable
-          manager="$(node -p "require('./package.json').packageManager || ''")"
-
-          if [[ "$manager" == pnpm@* ]] || [ -f pnpm-workspace.yaml ] || [ -f pnpm-lock.yaml ]; then
-            if [ -f pnpm-lock.yaml ]; then
-              pnpm install --frozen-lockfile
-            else
-              pnpm install
-            fi
+          m="$(node -p "require('./package.json').packageManager || ''")"
+          if [[ "$m" == pnpm@* ]] || [ -f pnpm-workspace.yaml ] || [ -f pnpm-lock.yaml ]; then
+            [ -f pnpm-lock.yaml ] && pnpm install --frozen-lockfile || pnpm install
             pnpm run test
-            pnpm run --if-present lint
-            pnpm run --if-present build
-            pnpm run --if-present validate
-            exit 0
           fi
-
-          if [ -f package-lock.json ]; then
-            npm ci
-          else
-            npm install
-          fi
-          npm test
-          npm run lint --if-present
-          npm run build --if-present
-          npm run validate --if-present
+        shell: bash

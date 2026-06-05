@@ -4,7 +4,7 @@ description: |
   雅思口语素材工厂。话题分组 + 万能故事生成 + Part 3 追问预测 + 高分表达。
   触发方式：/ielts-speaking、「口语素材」「话题分组」「万能故事」「Part 2 准备」
 metadata:
-  version: 1.0.0
+  version: 3.0.0-alpha
 ---
 
 # IELTS Speaking — 雅思口语素材工厂
@@ -54,9 +54,10 @@ metadata:
 
 | 模式 | 触发 | 做什么 |
 |------|------|--------|
-| **话题分组** | 用户给了题库（或说"帮我分组"） | 50 个话题分成 5 组 + 每组一个万能故事 |
-| **故事生成** | 用户说"帮我准备某个话题" | 生成完整的 Part 2 回答 + Part 3 预测 |
-| **表达升级** | 用户给了自己的回答 | 升级词汇和句型，保持口语自然感 |
+| **话题分组** | 用户给了题库 | 50 话题分 5 组 + 每组万能故事 |
+| **故事生成** | 用户说"帮我准备话题" | Part 2 回答 + Part 3 预测 |
+| **Part 1 练习** | `/ielts-speaking part1` | 15 高频话题 + D-R-E 模板 |
+| **表达升级** | 用户给了自己的回答 | 升级词汇句型，保持口语自然感 |
 
 ---
 
@@ -192,6 +193,53 @@ And explain {解释要求}
 3. **录音回听** — 找卡壳的地方
 4. **去 Gemini Live / ChatGPT Voice 模拟考**
 5. **影子跟读** — 每天 15 分钟跟读 TED
+
+---
+
+## v3.0 存档输出
+
+### 写入路径
+
+- `~/.ielts/speaking/topic_groups.md` — 话题分组和覆盖范围
+- `~/.ielts/speaking/stories/{story-name}.md` — 每个故事的完整脚本
+
+### 存档格式
+
+```yaml
+# topic_groups.md
+---
+type: "speaking-topic-group"
+lastUpdated: "2026-06-01T10:00:00.000Z"
+groups:
+  - name: "旅行/地点"
+    stories: ["香港旅行"]
+    part2Count: 12
+    part3Count: 15
+  - name: "人物"
+    stories: ["我的导师"]
+    part2Count: 10
+    part3Count: 12
+---
+```
+
+```yaml
+# stories/香港旅行.md
+---
+type: "speaking-story"
+name: "一次难忘的香港旅行"
+applicableTopics:
+  - "a city you visited"
+  - "a happy experience"
+  - "something you did with friends"
+part2Length: 235
+lastPracticed: "2026-06-01T10:00:00.000Z"
+---
+[故事脚本]
+```
+
+### 存档时机
+
+生成新故事或更新分组后自动保存。
 
 ---
 
