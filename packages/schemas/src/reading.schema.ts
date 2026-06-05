@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BandScoreSchema } from './profile.schema';
+import { BandScoreSchema } from './profile.schema.js';
 
 export const ReadingQuestionType = z.enum([
   'tfng', 'matching-headings', 'gap-fill', 'heading', 'true-false',

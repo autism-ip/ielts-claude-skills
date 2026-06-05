@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BandScoreSchema } from './profile.schema';
+import { BandScoreSchema } from './profile.schema.js';
 
 export const WritingTaskType = z.enum(['task1', 'task2', 'letter']);
 

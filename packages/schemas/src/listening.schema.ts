@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BandScoreSchema } from './profile.schema';
+import { BandScoreSchema } from './profile.schema.js';
 
 export const ListeningSection = z.union([z.literal(1), z.literal(2), z.literal(3), z.literal(4)]);
 
