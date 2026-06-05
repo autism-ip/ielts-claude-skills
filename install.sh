@@ -25,6 +25,7 @@ done
 
 cd "$TMP_DIR"
 $PM install --frozen-lockfile 2>/dev/null || $PM install 2>/dev/null
-$PM link --global 2>/dev/null && echo "  ✓ ielts CLI"
+(cd packages/cli && $PM build 2>/dev/null || true)
+(cd packages/cli && $PM link --global 2>/dev/null) && echo "  ✓ ielts CLI"
 
 echo "==> Done! Restart Claude Code and type /ielts."

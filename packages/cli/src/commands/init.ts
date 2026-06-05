@@ -19,7 +19,7 @@ export function initCommand(): void {
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
     target: { overall: 0, writing: 0, reading: 0, listening: 0, speaking: 0 },
-    examDate: '',
+    examDate: null,
     timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     preferences: { dailyGoal: 60, focusAreas: [] },
   };

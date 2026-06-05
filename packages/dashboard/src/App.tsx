@@ -14,10 +14,14 @@ function App() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('/stats.json')
-      .then(r => r.json())
-      .then(setStats)
-      .catch(() => setError('No stats.json found. Run `ielts snapshot` first.'));
+    const load = async () => {
+      try {
+        const r = await fetch('/stats.json');
+        if (r.ok) { setStats(await r.json()); return; }
+      } catch { /* try next */ }
+      setError('No stats.json found. Run `ielts snapshot` then copy to packages/dashboard/public/.');
+    };
+    load();
   }, []);
 
   if (error) return <div style={{ padding: 40, fontFamily: 'monospace' }}>{error}</div>;

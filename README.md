@@ -43,20 +43,20 @@
 
 ```bash
 # Mac / Linux
-cp -r skills/ielts skills/ielts-writing skills/ielts-reading skills/ielts-speaking ~/.claude/skills/
+cp -r skills/ielts skills/ielts-writing skills/ielts-reading skills/ielts-speaking skills/ielts-listening skills/ielts-vocab ~/.claude/skills/
 ```
 
 ```powershell
 # Windows PowerShell
-Copy-Item -Recurse ielts, ielts-writing, ielts-reading, ielts-speaking $env:USERPROFILE\.claude\skills\
+Copy-Item -Recurse skills\ielts, skills\ielts-writing, skills\ielts-reading, skills\ielts-speaking, skills\ielts-listening, skills\ielts-vocab $env:USERPROFILE\.claude\skills\
 ```
 
 ### 方法二：克隆
 
 ```bash
-git clone https://github.com/YANZHANLIN/ielts-claude-skills.git
+git clone https://github.com/autism-ip/ielts-claude-skills.git
 cd ielts-claude-skills
-cp -r ielts ielts-writing ielts-reading ielts-speaking ~/.claude/skills/
+cp -r skills/ielts skills/ielts-writing skills/ielts-reading skills/ielts-speaking skills/ielts-listening skills/ielts-vocab ~/.claude/skills/
 ```
 
 装完之后重启 Claude Code，输入 `/ielts` 就能用。

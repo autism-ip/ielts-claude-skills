@@ -33,6 +33,8 @@ export const ReadingRecordSchema = z.object({
   errors: z.array(ReadingErrorSchema).default([]),
   createdAt: z.string().datetime(),
   synonymsExtracted: z.array(SynonymSchema).default([]),
+}).refine(r => r.correctCount <= r.totalQuestions, {
+  message: 'correctCount must not exceed totalQuestions',
 });
 
 export type ReadingRecord = z.infer<typeof ReadingRecordSchema>;

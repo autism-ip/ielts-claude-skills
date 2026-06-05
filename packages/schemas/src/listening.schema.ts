@@ -22,6 +22,8 @@ export const ListeningRecordSchema = z.object({
   bandEstimate: BandScoreSchema,
   errors: z.array(ListeningErrorSchema).default([]),
   createdAt: z.string().datetime(),
+}).refine(r => r.correctCount <= r.totalQuestions, {
+  message: 'correctCount must not exceed totalQuestions',
 });
 
 export type ListeningRecord = z.infer<typeof ListeningRecordSchema>;
