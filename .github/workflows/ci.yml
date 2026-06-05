@@ -1,14 +1,39 @@
-name: CI
+# [INPUT]: 依赖 GitHub Actions checkout/setup-node 与仓库内 scripts/ci-gate.mjs。
+# [OUTPUT]: 对 pull_request、main push、手动触发提供 CI 门禁。
+# [POS]: .github/workflows 的主验证入口，先验 skill/docs，再在 v3 package 出现时执行 test/lint/build/validate。
+
+name: CI Gate
+
 on:
-  push: { branches: [main] }
-  pull_request: { branches: [main] }
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  test:
+  gate:
+    name: Skill and package gates
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
-        with: { node-version: 22, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm --filter @ielcts/schemas test
+        with: { node-version: "22" }
+      - run: node scripts/ci-gate.mjs
+        shell: bash
+      - run: |
+          set -euo pipefail
+          if [ ! -f package.json ]; then echo "No package.json; skill gate complete."; exit 0; fi
+          corepack enable
+          m="$(node -p "require('./package.json').packageManager || ''")"
+          if [[ "$m" == pnpm@* ]] || [ -f pnpm-workspace.yaml ] || [ -f pnpm-lock.yaml ]; then
+            [ -f pnpm-lock.yaml ] && pnpm install --frozen-lockfile || pnpm install
+            pnpm run test
+          fi
+        shell: bash
