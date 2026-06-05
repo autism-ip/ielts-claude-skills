@@ -5,6 +5,7 @@ import { profileCommand } from './commands/profile.js';
 import { lsCommand } from './commands/ls.js';
 import { snapshotCommand } from './commands/snapshot.js';
 import { backupCommand } from './commands/backup.js';
+import { restoreCommand } from './commands/restore.js';
 
 const program = new Command();
 
@@ -39,5 +40,11 @@ program
   .argument('<dest>', 'Destination path')
   .description('Backup ~/.ielts/ to destination')
   .action(backupCommand);
+
+program
+  .command('restore')
+  .argument('<src>', 'Source backup path')
+  .description('Restore ~/.ielts/ from backup')
+  .action(restoreCommand);
 
 program.parse();
