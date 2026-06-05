@@ -4,7 +4,7 @@ description: |
   雅思阅读精读教练。同义替换提取 + T/F/NG 逻辑拆解 + 段落结构分析 + 错题诊断。
   触发方式：/ielts-reading、「分析阅读」「这道为什么错」「同义替换」「阅读训练」
 metadata:
-  version: 1.0.0
+  version: 3.0.0-alpha
 ---
 
 # IELTS Reading — 雅思阅读精读教练
@@ -217,6 +217,85 @@ metadata:
 | Passage 3 | 25 分钟 |
 
 **超时怎么办：** 剩余题目全部猜（答错不扣分），25-33% 概率对。
+
+---
+
+## v3.0 存档输出
+
+分析完成后，将结果以 YAML frontmatter 格式写入本地存档。
+
+### 写入路径
+
+`~/.ielts/reading/{YYYY-MM-DD}-{passage-slug}.md`
+
+### 存档格式
+
+```yaml
+---
+type: "reading"
+passageTitle: "文章标题"
+questionTypes: ["tfng", "matching-headings"]
+totalQuestions: 13
+correctCount: 10
+bandEstimate: 6.5
+errors:
+  - questionNumber: 5
+    type: "tfng"
+    userAnswer: "FALSE"
+    correctAnswer: "NOT GIVEN"
+    errorCategory: "tfng_logic"
+  - questionNumber: 8
+    type: "matching-headings"
+    userAnswer: "iv"
+    correctAnswer: "vi"
+    errorCategory: "matching"
+createdAt: "2026-06-01T10:00:00.000Z"
+synonymsExtracted:
+  - source: "rapidly"
+    match: "at a fast pace"
+    context: "The telegraph developed rapidly in the 19th century"
+---
+```
+
+### 存档时机
+
+每次分析完成后自动存档。同时将新提取的同义替换追加到 `~/.ielts/reading/synonyms.md`。
+
+### 错误分类
+
+| Category | Description |
+|----------|-------------|
+| tfng_logic | T/F/NG 逻辑混淆 |
+| matching | 匹配题定位错误 |
+| gap_fill | 填空词语法/语义错 |
+| heading | 段落主旨判断错 |
+| true_false | 是非题事实混淆 |
+| time_pressure | 时间不足导致失误 |
+
+### 累积同义替换库
+
+每次分析后将新同义替换以表格形式追加到 `~/.ielts/reading/synonyms.md`：
+
+```markdown
+## 2026-06-01 — The History of Telegraph
+
+| 题目用词 | 原文用词 | 出处 |
+|---------|---------|------|
+| significant | substantial | Q3 |
+| gather | accumulate | Q8 |
+```
+
+### 读档（可选）
+
+分析前检查 `~/.ielts/reading/` 最近记录，给出累积统计数据：
+
+```
+📊 阅读统计（共 X 篇）
+平均正确率: 10.2/13
+预估均分: 6.5
+高频错因: T/F/NG 逻辑 (6次), Matching (4次)
+累积同义替换: 42 对
+```
 
 ---
 
