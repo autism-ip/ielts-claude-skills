@@ -117,11 +117,19 @@ ielts-claude-skills/
 ├── ielts-writing/SKILL.md      # 写作批改
 ├── ielts-reading/SKILL.md      # 阅读分析
 ├── ielts-speaking/SKILL.md     # 口语素材
+├── docs/                       # v3.0 架构文档
+│   ├── ARCHITECTURE.md         # 系统架构
+│   ├── ROADMAP.md              # 实施路线图
+│   ├── DATA_MODEL.md           # 数据模型
+│   ├── SKILL_SPEC.md           # 技能规格
+│   └── DASHBOARD_SPEC.md       # Dashboard 规格
 ├── README.md                   # 你正在看
 └── LICENSE                     # MIT
 ```
 
 每个 skill 就是一个文件夹 + 一个 `SKILL.md`。Claude Code 通过 `name` 字段识别和触发。
+
+> v3.0 架构文档见 [`docs/`](./docs/) 目录。
 
 ---
 
