@@ -17,6 +17,7 @@ program
 program
   .command('init')
   .description('Initialize ~/.ielts/ directory structure')
+  .option('-f, --fixtures', 'Install fixture dataset for testing')
   .action(initCommand);
 
 program
