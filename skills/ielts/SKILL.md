@@ -31,6 +31,16 @@ metadata:
 
 ### Step 1：快速摸底（3个问题）
 
+读取 `~/.ielts/stats.json` 检查 `plan` 字段：
+- 如果 `plan.total > 0`，展示今日计划面板：
+  ```
+  📋 今日计划: N 个任务, X 已完成, Y 已跳过
+  重点: 写作 / 阅读 / ...
+  运行 ielts plan today 查看详情
+  ```
+  然后问：「继续按计划练，还是想做点别的？」
+- 没有今日计划则进入摸底流程：
+
 依次问：
 
 1. **「你的目标分数是多少？考试时间是什么时候？」**
@@ -47,6 +57,7 @@ metadata:
 | A | `/ielts-writing` | 写作批改 / 审题 / 改写 |
 | B | `/ielts-reading` | 阅读精读训练 |
 | C | `/ielts-speaking` | 口语素材生成 |
+| D | `ielts plan today` | 查看/更新今日自适应计划 |
 
 智能识别：
 - 用户没选直接丢了一篇作文 → 直接进 `/ielts-writing`
