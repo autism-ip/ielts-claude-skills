@@ -1,5 +1,5 @@
 {
-  "name": "@ielcts/schemas",
+  "name": "@ielts/schemas",
   "version": "3.0.0-alpha",
   "private": true,
   "type": "module",

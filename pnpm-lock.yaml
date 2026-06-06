@@ -10,7 +10,7 @@ importers:
 
   packages/cli:
     dependencies:
-      '@ielcts/schemas':
+      '@ielts/schemas':
         specifier: workspace:*
         version: link:../schemas
       commander:
