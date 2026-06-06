@@ -4,17 +4,24 @@ import { join } from 'node:path';
 const STATE = join(homedir(), '.ielts', 'sync', 'feishu.json');
 export class SyncState {
     entries = new Map();
-    constructor() { this.load(); }
+    statePath;
+    constructor(statePath) { this.statePath = statePath ?? STATE; this.load(); }
     load() {
         try {
-            for (const e of JSON.parse(readFileSync(STATE, 'utf-8')))
+            for (const e of JSON.parse(readFileSync(this.statePath, 'utf-8')))
                 this.entries.set(e.localId, e);
         }
-        catch { /* first use */ }
+        catch (err) {
+            if (err?.code === 'ENOENT') { /* first use */ }
+            else {
+                console.warn('[SyncState] corrupted state file:', this.statePath);
+            }
+        }
     }
+    saveDirPath() { return join(this.statePath, '..'); }
     save() {
-        mkdirSync(join(homedir(), '.ielts', 'sync'), { recursive: true });
-        writeFileSync(STATE, JSON.stringify([...this.entries.values()], null, 2));
+        mkdirSync(this.saveDirPath(), { recursive: true });
+        writeFileSync(this.statePath, JSON.stringify([...this.entries.values()], null, 2));
     }
     set(localId, hash, remoteId) {
         const ex = this.entries.get(localId);

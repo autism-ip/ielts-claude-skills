@@ -20,8 +20,10 @@ export interface SyncDiff {
 }
 export declare class SyncState {
     private entries;
-    constructor();
+    private statePath;
+    constructor(statePath?: string);
     private load;
+    private saveDirPath;
     private save;
     set(localId: string, hash: string, remoteId?: string): void;
     setBatch(items: {

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
@@ -9,15 +9,20 @@ const STATE = join(homedir(), '.ielts', 'sync', 'feishu.json');
 
 export class SyncState {
   private entries: Map<string, SyncEntry> = new Map();
-  constructor() { this.load(); }
+  private statePath: string;
+  constructor(statePath?: string) { this.statePath = statePath ?? STATE; this.load(); }
 
   private load(): void {
-    try { for (const e of JSON.parse(readFileSync(STATE, 'utf-8'))) this.entries.set(e.localId, e); }
-    catch { /* first use */ }
+    try {
+      for (const e of JSON.parse(readFileSync(this.statePath, 'utf-8'))) this.entries.set(e.localId, e);
+    } catch (err: any) {
+      if (err?.code === 'ENOENT') { /* first use */ } else { console.warn('[SyncState] corrupted state file:', this.statePath); }
+    }
   }
+  private saveDirPath(): string { return join(this.statePath, '..'); }
   private save(): void {
-    mkdirSync(join(homedir(), '.ielts', 'sync'), { recursive: true });
-    writeFileSync(STATE, JSON.stringify([...this.entries.values()], null, 2));
+    mkdirSync(this.saveDirPath(), { recursive: true });
+    writeFileSync(this.statePath, JSON.stringify([...this.entries.values()], null, 2));
   }
 
   set(localId: string, hash: string, remoteId?: string): void {
