@@ -12,7 +12,7 @@ import { join } from 'node:path';
 const BASE = join(homedir(), '.ielts');
 
 /* ── 辅助：写 frontmatter .md 文件 ── */
-function writeFm(path: string, data: Record<string, unknown>): void {
+function writeFm(path: string, data: Record<string, unknown>, body?: string): void {
   const lines = ['---'];
   const walk = (obj: Record<string, unknown>, indent = 0) => {
     for (const [k, v] of Object.entries(obj)) {
@@ -38,6 +38,7 @@ function writeFm(path: string, data: Record<string, unknown>): void {
   };
   walk(data);
   lines.push('---');
+  if (body) lines.push('', body);
   writeFileSync(path, lines.join('\n') + '\n');
 }
 
@@ -125,6 +126,7 @@ function makeReadingFixtures(): Record<string, unknown>[] {
       questionTypes: ['tfng', 'matching-headings', 'gap-fill'],
       errors: [
         { questionNumber: 3, type: 'tfng', userAnswer: 'FALSE', correctAnswer: 'NOT GIVEN', errorCategory: 'tfng_logic' },
+        { questionNumber: 5, type: 'tfng', userAnswer: 'NOT GIVEN', correctAnswer: 'TRUE', errorCategory: 'tfng_logic' },
         { questionNumber: 7, type: 'tfng', userAnswer: 'TRUE', correctAnswer: 'FALSE', errorCategory: 'tfng_logic' },
         { questionNumber: 10, type: 'matching-headings', userAnswer: 'iv', correctAnswer: 'vi', errorCategory: 'matching' },
         { questionNumber: 12, type: 'gap-fill', userAnswer: 'tradition', correctAnswer: 'heritage', errorCategory: 'gap_fill' },
@@ -142,6 +144,7 @@ function makeReadingFixtures(): Record<string, unknown>[] {
       errors: [
         { questionNumber: 2, type: 'heading', userAnswer: 'iii', correctAnswer: 'v', errorCategory: 'heading' },
         { questionNumber: 8, type: 'true-false', userAnswer: 'TRUE', correctAnswer: 'FALSE', errorCategory: 'true_false' },
+        { questionNumber: 11, type: 'gap-fill', userAnswer: 'revenue', correctAnswer: 'income', errorCategory: 'gap_fill' },
         { questionNumber: 13, type: 'gap-fill', userAnswer: 'infrastructure', correctAnswer: 'transportation', errorCategory: 'gap_fill' },
       ],
       synonymsExtracted: [
@@ -315,7 +318,7 @@ function makeStats(): Record<string, unknown> {
     },
     speaking: { totalPractices: 2, topicsCovered: 4 },
     vocab: { wordsReviewed: 55, retentionRate: 0.75 },
-    combined: { overallBand: 6.0, daysUntilExam: 83 },
+    combined: { overallBand: 6.0, daysUntilExam: 81 },
   };
 }
 
@@ -332,11 +335,36 @@ export function installFixtures(): void {
   writeJson(join(BASE, 'profile.json'), makeProfile());
   writeJson(join(BASE, 'stats.json'), makeStats());
 
-  makeWritingFixtures().forEach((rec, i) => writeFm(join(BASE, 'writing', `essay-${i + 1}.md`), rec));
-  makeReadingFixtures().forEach((rec, i) => writeFm(join(BASE, 'reading', `passage-${i + 1}.md`), rec));
-  makeListeningFixtures().forEach((rec, i) => writeFm(join(BASE, 'listening', `section-${i + 1}.md`), rec));
+  /* Writing: date-based filenames with body content */
+  makeWritingFixtures().forEach((rec) => {
+    const date = (rec.createdAt as string).slice(0, 10);
+    const slug = rec.taskType as string;
+    writeFm(join(BASE, 'writing', `${date}-${slug}.md`), rec,
+      `This is a sample IELTS Writing Task ${slug === 'task1' ? 1 : slug === 'task2' ? 2 : 'General Training Letter'} essay on the topic: "${rec.topic}".\n\n[Full essay text omitted for fixture brevity.]`);
+  });
+
+  /* Reading: date-based filenames */
+  makeReadingFixtures().forEach((rec) => {
+    const date = (rec.createdAt as string).slice(0, 10);
+    const slug = (rec.passageTitle as string).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    writeFm(join(BASE, 'reading', `${date}-${slug}.md`), rec);
+  });
+
+  /* Listening: date-based filenames */
+  makeListeningFixtures().forEach((rec) => {
+    const date = (rec.createdAt as string).slice(0, 10);
+    writeFm(join(BASE, 'listening', `${date}-section-${rec.section}.md`), rec);
+  });
+
+  /* Speaking: clean root dir + write topic groups + stories with body */
+  try { rmSync(join(BASE, 'speaking', 'topic_groups.md'), { force: true }); } catch { /* ok */ }
+  try { rmSync(join(BASE, 'speaking', 'topic-groups.md'), { force: true }); } catch { /* ok */ }
   writeFm(join(BASE, 'speaking', 'topic_groups.md'), makeSpeakingFixtures());
-  makeSpeakingStories().forEach(rec => writeFm(join(BASE, 'speaking', 'stories', `${rec.name}.md`), rec));
+  makeSpeakingStories().forEach(rec => {
+    const body = `I once decided to learn programming on my own. At first, it felt overwhelming — there were so many concepts to grasp. But I started with small projects, like building a simple calculator, and gradually moved to more complex applications. The key was consistency: I practiced for at least an hour every day. After six months, I could build a basic website. This experience taught me that any skill can be mastered with patience and persistent effort.`;
+    writeFm(join(BASE, 'speaking', 'stories', `${rec.name}.md`), rec, body);
+  });
+
   writeFm(join(BASE, 'vocab', 'wordlist.md'), makeVocabFixtures());
   writeFm(join(BASE, 'vocab', 'review_log.md'), makeVocabReviewLog());
 
