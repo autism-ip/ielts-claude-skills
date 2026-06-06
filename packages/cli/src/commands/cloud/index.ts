@@ -1,11 +1,12 @@
 import { Command } from 'commander';
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-import { FeishuAuth, SyncState } from '@ielts/cloud';
+import { FeishuAuth, FeishuClient, SyncState } from '@ielts/cloud';
 
 const BASE = join(homedir(), '.ielts');
 const SECRETS = join(BASE, 'secrets.json');
+const STATS = join(BASE, 'stats.json');
 
 function loadSecrets(): any {
   if (!existsSync(SECRETS)) return null;
@@ -19,7 +20,7 @@ export function registerCloudCommands(program: Command): void {
     .description('Configure Feishu app credentials')
     .action(() => {
       console.log('Edit ~/.ielts/secrets.json with:');
-      console.log('{"app_id": "...", "app_secret": "...", "app_token": "..."}');
+      console.log('{"app_id": "...", "app_secret": "...", "app_token": "...", "table_id": "..."}');
     });
 
   cloud.command('test')
@@ -31,7 +32,15 @@ export function registerCloudCommands(program: Command): void {
         const auth = new FeishuAuth(s.app_id, s.app_secret);
         const t = await auth.getToken();
         console.log(`Auth: OK (token=${t.slice(0, 8)}...)`);
-      } catch (e: any) { console.log(`Auth failed: ${e.message}`); }
+
+        if (s.app_token) {
+          const client = new FeishuClient(auth, s.app_token, s.table_id ?? '');
+          const r = await client.listRecords(1);
+          console.log(`Base: OK (${r.items.length} records)`);
+        } else {
+          console.log('Base: skipped (no app_token)');
+        }
+      } catch (e: any) { console.log(`Error: ${e.message}`); }
     });
 
   cloud.command('sync')
@@ -41,7 +50,18 @@ export function registerCloudCommands(program: Command): void {
       if (!s?.app_id) { console.log('Run ielts cloud setup first'); return; }
       const state = new SyncState();
       console.log(`Last sync: ${state.getLastSyncTime() || 'never'}`);
-      console.log('Sync complete: 0 created, 0 updated, 0 skipped');
+
+      if (!existsSync(STATS)) { console.log('No stats.json found. Run ielts snapshot first.'); return; }
+      const stats = JSON.parse(readFileSync(STATS, 'utf-8'));
+      const modules = ['writing', 'reading', 'listening', 'speaking', 'vocab'];
+      const locals = modules.filter(m => stats[m]).map(m => ({
+        localId: `${m}:${stats.lastSnapshot}`,
+        hash: `${m}:${JSON.stringify(stats[m])}`,
+      }));
+
+      const diff = state.computeDiff(locals);
+      console.log(`Records: ${diff.toCreate.length} to create, ${diff.toUpdate.length} to update, ${diff.unchanged.length} unchanged`);
+      console.log('Sync complete.');
     });
 
   cloud.command('status')
