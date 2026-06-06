@@ -5,7 +5,7 @@
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
@@ -227,26 +227,26 @@ function makeSpeakingFixtures(): Record<string, unknown> {
   };
 }
 
-function makeSpeakingStories(): Record<string, string> {
-  return {
-    'learning-to-code': JSON.stringify({
+function makeSpeakingStories(): Record<string, unknown>[] {
+  return [
+    {
       type: 'speaking-story', name: 'learning-to-code',
       applicableTopics: ['skill', 'learning', 'challenge', 'achievement', 'technology'],
       part2Length: 115, lastPracticed: '2026-05-28T09:00:00.000Z',
-    }, null, 2),
-    'backpacking-in-japan': JSON.stringify({
+    },
+    {
       type: 'speaking-story', name: 'backpacking-in-japan',
       applicableTopics: ['travel', 'culture', 'food', 'memorable experience', 'adventure'],
       part2Length: 130, lastPracticed: '2026-05-20T14:00:00.000Z',
-    }, null, 2),
-  };
+    },
+  ];
 }
 
 /* ── 夹具：Vocab ── */
 function makeVocabFixtures(): Record<string, unknown> {
   return {
     type: 'vocab-wordlist',
-    tiers: { band6: 8, band7: 4, band8: 2 },
+    tiers: { band6: 5, band7: 2, band8: 1 },
     entries: [
       { word: 'significant', tier: 'B6', definition: 'important or large enough to be noticed', example: 'There has been a significant increase in sales this quarter.' },
       { word: 'consequently', tier: 'B6', definition: 'as a result', example: 'The company failed to innovate; consequently, it lost market share.' },
@@ -277,12 +277,12 @@ function makeVocabReviewLog(): Record<string, unknown> {
 function makeStats(): Record<string, unknown> {
   return {
     version: '3.0.0',
-    lastSnapshot: '2026-06-01T12:00:00.000Z',
+    lastSnapshot: '2026-06-03T12:00:00.000Z',
     writing: {
       totalEssays: 5,
       averageScores: { tr: 6.3, cc: 6.2, lr: 6.3, gra: 5.9, overall: 6.2 },
       topErrors: [
-        { category: 'grammar', count: 4 },
+        { category: 'grammar', count: 3 },
         { category: 'coherence', count: 3 },
         { category: 'task_response', count: 2 },
         { category: 'lexical', count: 2 },
@@ -295,7 +295,7 @@ function makeStats(): Record<string, unknown> {
       averageBand: 6.0,
       topErrors: [
         { category: 'tfng_logic', count: 5 },
-        { category: 'gap_fill', count: 3 },
+        { category: 'gap_fill', count: 4 },
         { category: 'matching', count: 2 },
         { category: 'heading', count: 1 },
         { category: 'true_false', count: 1 },
@@ -306,7 +306,7 @@ function makeStats(): Record<string, unknown> {
       averageCorrect: 6.5,
       averageBand: 5.8,
       topErrors: [
-        { category: 'inference', count: 4 },
+        { category: 'inference', count: 5 },
         { category: 'distraction', count: 3 },
         { category: 'spelling', count: 3 },
         { category: 'number', count: 2 },
@@ -314,16 +314,19 @@ function makeStats(): Record<string, unknown> {
       ],
     },
     speaking: { totalPractices: 2, topicsCovered: 4 },
-    vocab: { wordsReviewed: 24, retentionRate: 0.65 },
+    vocab: { wordsReviewed: 55, retentionRate: 0.75 },
     combined: { overallBand: 6.0, daysUntilExam: 83 },
   };
 }
 
 /* ── 主入口 ── */
 export function installFixtures(): void {
+  /* 清理旧记录，确保幂等性 */
   const dirs = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];
   for (const dir of dirs) {
-    mkdirSync(join(BASE, dir), { recursive: true });
+    const p = join(BASE, dir);
+    try { rmSync(p, { recursive: true, force: true }); } catch { /* 不存在 */ }
+    mkdirSync(p, { recursive: true });
   }
 
   writeJson(join(BASE, 'profile.json'), makeProfile());
@@ -332,28 +335,21 @@ export function installFixtures(): void {
   makeWritingFixtures().forEach((rec, i) => writeFm(join(BASE, 'writing', `essay-${i + 1}.md`), rec));
   makeReadingFixtures().forEach((rec, i) => writeFm(join(BASE, 'reading', `passage-${i + 1}.md`), rec));
   makeListeningFixtures().forEach((rec, i) => writeFm(join(BASE, 'listening', `section-${i + 1}.md`), rec));
-  writeFm(join(BASE, 'speaking', 'topic-groups.md'), makeSpeakingFixtures());
-
-  for (const [name, content] of Object.entries(makeSpeakingStories())) {
-    writeFileSync(join(BASE, 'speaking', 'stories', `${name}.md`), content + '\n');
-  }
-
-  writeJson(join(BASE, 'vocab', 'wordlist.json'), makeVocabFixtures());
-  writeJson(join(BASE, 'vocab', 'review-log.json'), makeVocabReviewLog());
+  writeFm(join(BASE, 'speaking', 'topic_groups.md'), makeSpeakingFixtures());
+  makeSpeakingStories().forEach(rec => writeFm(join(BASE, 'speaking', 'stories', `${rec.name}.md`), rec));
+  writeFm(join(BASE, 'vocab', 'wordlist.md'), makeVocabFixtures());
+  writeFm(join(BASE, 'vocab', 'review_log.md'), makeVocabReviewLog());
 
   const w = makeWritingFixtures();
   const r = makeReadingFixtures();
   const l = makeListeningFixtures();
   const s = makeSpeakingStories();
-  const v = makeVocabFixtures();
-
-  const vEntries = v.entries as Array<Record<string, unknown>>;
 
   console.log(`Installed fixture dataset to ~/.ielts/`);
   console.log(`  Writing: ${w.length} essays`);
   console.log(`  Reading: ${r.length} passages`);
   console.log(`  Listening: ${l.length} sections`);
-  console.log(`  Speaking: ${Object.keys(s).length} stories, 2 topic groups`);
-  console.log(`  Vocab: ${vEntries.length} words`);
+  console.log(`  Speaking: ${s.length} stories, 2 topic groups`);
+  console.log(`  Vocab: 8 words`);
   console.log(`  Profile: target 7.0, exam 2026-08-23`);
 }
