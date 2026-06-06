@@ -6,6 +6,7 @@ import { lsCommand } from './commands/ls.js';
 import { snapshotCommand } from './commands/snapshot.js';
 import { backupCommand } from './commands/backup.js';
 import { restoreCommand } from './commands/restore.js';
+import { doctorCommand } from './commands/doctor.js';
 
 const program = new Command();
 
@@ -47,5 +48,10 @@ program
   .argument('<src>', 'Source backup path')
   .description('Restore ~/.ielts/ from backup')
   .action(restoreCommand);
+
+program
+  .command('doctor')
+  .description('Diagnose installation health')
+  .action(doctorCommand);
 
 program.parse();
