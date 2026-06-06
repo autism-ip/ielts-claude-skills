@@ -8,19 +8,6 @@ importers:
 
   .: {}
 
-  packages/adaptive:
-    dependencies:
-      '@ielts/schemas':
-        specifier: workspace:*
-        version: link:../schemas
-    devDependencies:
-      typescript:
-        specifier: ^5.5.0
-        version: 5.9.3
-      vitest:
-        specifier: ^2.0.0
-        version: 2.1.9(@types/node@22.19.19)
-
   packages/cli:
     dependencies:
       '@ielts/schemas':
@@ -29,6 +16,22 @@ importers:
       commander:
         specifier: ^12.0.0
         version: 12.1.0
+    devDependencies:
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.19
+      typescript:
+        specifier: ^5.5.0
+        version: 5.9.3
+      vitest:
+        specifier: ^2.0.0
+        version: 2.1.9(@types/node@22.19.19)
+
+  packages/cloud:
+    dependencies:
+      '@ielts/schemas':
+        specifier: workspace:*
+        version: link:../schemas
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
