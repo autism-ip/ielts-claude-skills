@@ -235,12 +235,12 @@ function makeSpeakingStories(): Record<string, unknown>[] {
     {
       type: 'speaking-story', name: 'learning-to-code',
       applicableTopics: ['skill', 'learning', 'challenge', 'achievement', 'technology'],
-      part2Length: 115, lastPracticed: '2026-05-28T09:00:00.000Z',
+      part2Length: 77, lastPracticed: '2026-05-28T09:00:00.000Z',
     },
     {
       type: 'speaking-story', name: 'backpacking-in-japan',
       applicableTopics: ['travel', 'culture', 'food', 'memorable experience', 'adventure'],
-      part2Length: 130, lastPracticed: '2026-05-20T14:00:00.000Z',
+      part2Length: 75, lastPracticed: '2026-05-20T14:00:00.000Z',
     },
   ];
 }
@@ -297,8 +297,8 @@ function makeStats(): Record<string, unknown> {
       averageCorrect: 8.3,
       averageBand: 6.0,
       topErrors: [
-        { category: 'tfng_logic', count: 5 },
-        { category: 'gap_fill', count: 4 },
+        { category: 'tfng_logic', count: 6 },
+        { category: 'gap_fill', count: 5 },
         { category: 'matching', count: 2 },
         { category: 'heading', count: 1 },
         { category: 'true_false', count: 1 },
@@ -309,7 +309,7 @@ function makeStats(): Record<string, unknown> {
       averageCorrect: 6.5,
       averageBand: 5.8,
       topErrors: [
-        { category: 'inference', count: 5 },
+        { category: 'inference', count: 4 },
         { category: 'distraction', count: 3 },
         { category: 'spelling', count: 3 },
         { category: 'number', count: 2 },
@@ -356,12 +356,14 @@ export function installFixtures(): void {
     writeFm(join(BASE, 'listening', `${date}-section-${rec.section}.md`), rec);
   });
 
-  /* Speaking: clean root dir + write topic groups + stories with body */
-  try { rmSync(join(BASE, 'speaking', 'topic_groups.md'), { force: true }); } catch { /* ok */ }
-  try { rmSync(join(BASE, 'speaking', 'topic-groups.md'), { force: true }); } catch { /* ok */ }
+  /* Speaking: clean entire dir + write topic groups + stories with body */
+  try { rmSync(join(BASE, 'speaking'), { recursive: true, force: true }); } catch { /* 不存在 */ }
+  mkdirSync(join(BASE, 'speaking/stories'), { recursive: true });
   writeFm(join(BASE, 'speaking', 'topic_groups.md'), makeSpeakingFixtures());
   makeSpeakingStories().forEach(rec => {
-    const body = `I once decided to learn programming on my own. At first, it felt overwhelming — there were so many concepts to grasp. But I started with small projects, like building a simple calculator, and gradually moved to more complex applications. The key was consistency: I practiced for at least an hour every day. After six months, I could build a basic website. This experience taught me that any skill can be mastered with patience and persistent effort.`;
+    const body = rec.name === 'backpacking-in-japan'
+      ? 'A few years ago, I went backpacking in Japan for three weeks. I visited Tokyo, Kyoto, and Osaka. The cultural differences were fascinating — from the quiet politeness on trains to the bustling energy of Shibuya crossing. I tried local foods like takoyaki and okonomiyaki, and stayed in traditional ryokans. This trip taught me that stepping out of your comfort zone is the best way to grow.'
+      : 'I once decided to learn programming on my own. At first, it felt overwhelming — there were so many concepts to grasp. But I started with small projects, like building a simple calculator, and gradually moved to more complex applications. The key was consistency: I practiced for at least an hour every day. After six months, I could build a basic website. This experience taught me that any skill can be mastered with patience and persistent effort.';
     writeFm(join(BASE, 'speaking', 'stories', `${rec.name}.md`), rec, body);
   });
 
