@@ -53,11 +53,11 @@ function checkCLIBuild(): Result {
 }
 
 function checkIeltsDir(): Result {
-  if (!existsSync(BASE)) {
-    return { status: 'fail', message: '~/.ielts/ not found', hint: 'Run: ielts init (or ielts init --fixtures for test data)' };
-  }
-  try { accessSync(BASE, constants.W_OK); } catch {
-    return { status: 'fail', message: '~/.ielts/ not writable', hint: 'Fix permissions: chmod -R u+w ~/.ielts' };
+  let st;
+  try { st = statSync(BASE); } catch { return { status: 'fail', message: '~/.ielts/ not found', hint: 'Run: ielts init (or ielts init --fixtures for test data)' }; }
+  if (!st.isDirectory()) return { status: 'fail', message: '~/.ielts/ is not a directory', hint: 'Remove the file and re-run ielts init' };
+  try { accessSync(BASE, constants.W_OK | constants.X_OK); } catch {
+    return { status: 'fail', message: '~/.ielts/ not accessible', hint: 'Fix permissions: chmod -R u+w ~/.ielts' };
   }
   return { status: 'pass', message: '~/.ielts/ exists and writable' };
 }
@@ -81,6 +81,7 @@ function checkStats(): Result {
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
     StatsSchema.parse(data);
+    if (!data.lastSnapshot) return { status: 'warn', message: 'stats.json has no snapshot data', hint: 'Run: ielts snapshot' };
     return { status: 'pass', message: 'stats.json valid' };
   } catch (e: any) {
     const msg = e?.message || 'invalid';
@@ -113,7 +114,7 @@ function checkSkills(): Result {
     }
   }
   if (fail === 0) return { status: 'pass', message: `All ${pass}/8 skills installed` };
-  return { status: 'warn', message: `${pass}/8 skills OK, ${fail} missing: ${missing.join(', ')}`, hint: 'Copy skills/ to ~/.claude/skills/' };
+  return { status: 'warn', message: `${pass}/8 skills OK, ${fail} missing: ${missing.join(', ')}`, hint: `Copy skills/ to ${SKILLS_DIR}/` };
 }
 
 function checkFeishu(): Result {
