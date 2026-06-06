@@ -1,13 +1,18 @@
 import { mkdirSync, writeFileSync, existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
+import { installFixtures } from '../fixtures.js';
 
 const IELTS_DIR = join(homedir(), '.ielts');
 const DIRS = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];
 
-export function initCommand(): void {
-  if (existsSync(IELTS_DIR)) {
+export function initCommand(options: { fixtures?: boolean }): void {
+  if (existsSync(IELTS_DIR) && !options.fixtures) {
     console.log('~/.ielts/ already exists. Skipping init.');
+    return;
+  }
+  if (options.fixtures) {
+    installFixtures();
     return;
   }
   mkdirSync(IELTS_DIR, { recursive: true });
