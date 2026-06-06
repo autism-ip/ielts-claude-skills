@@ -12,6 +12,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@ielts/adaptive": "workspace:*",
     "@ielts/schemas": "workspace:*",
     "commander": "^12.0.0"
   },
