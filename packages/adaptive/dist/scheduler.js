@@ -21,7 +21,9 @@ export function planToday(stats, profile) {
         if (score.score < threshold && tasks.length >= 1)
             break;
         const interventions = getInterventions(undefined, score.module);
-        const picked = interventions[Math.floor(Math.random() * interventions.length)];
+        const errorTags = (stats[score.module]?.topErrors || []).map((e) => e.category);
+        const matched = interventions.filter(i => errorTags.includes(i.errorTag));
+        const picked = (matched.length > 0 ? matched : interventions)[0];
         if (!picked)
             continue;
         if (totalMin + picked.duration > dailyGoal && tasks.length > 0)

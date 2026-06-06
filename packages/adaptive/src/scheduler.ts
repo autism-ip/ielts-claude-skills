@@ -25,7 +25,9 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
   for (const score of scores) {
     if (score.score < threshold && tasks.length >= 1) break;
     const interventions = getInterventions(undefined, score.module);
-    const picked = interventions[Math.floor(Math.random() * interventions.length)];
+    const errorTags = (stats[score.module]?.topErrors || []).map((e: any) => e.category);
+    const matched = interventions.filter(i => errorTags.includes(i.errorTag));
+    const picked = (matched.length > 0 ? matched : interventions)[0];
     if (!picked) continue;
     if (totalMin + picked.duration > dailyGoal && tasks.length > 0) break;
     tasks.push({ id: nextId(score.module), module: score.module, taskType: picked.taskType, priorityScore: score.score, reason: score.reasons[0] || '', estimatedMinutes: picked.duration, status: 'todo' });
