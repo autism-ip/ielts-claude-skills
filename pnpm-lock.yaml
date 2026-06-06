@@ -8,11 +8,14 @@ importers:
 
   .: {}
 
-  packages/adaptive:
+  packages/cli:
     dependencies:
       '@ielts/schemas':
         specifier: workspace:*
         version: link:../schemas
+      commander:
+        specifier: ^12.0.0
+        version: 12.1.0
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
@@ -24,17 +27,11 @@ importers:
         specifier: ^2.0.0
         version: 2.1.9(@types/node@22.19.19)
 
-  packages/cli:
+  packages/cloud:
     dependencies:
-      '@ielts/adaptive':
-        specifier: workspace:*
-        version: link:../adaptive
       '@ielts/schemas':
         specifier: workspace:*
         version: link:../schemas
-      commander:
-        specifier: ^12.0.0
-        version: 12.1.0
     devDependencies:
       '@types/node':
         specifier: ^22.0.0
