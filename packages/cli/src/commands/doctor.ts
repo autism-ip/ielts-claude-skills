@@ -57,7 +57,7 @@ function checkIeltsDir(): Result {
   try { st = statSync(BASE); } catch { return { status: 'fail', message: '~/.ielts/ not found', hint: 'Run: ielts init (or ielts init --fixtures for test data)' }; }
   if (!st.isDirectory()) return { status: 'fail', message: '~/.ielts/ is not a directory', hint: 'Remove the file and re-run ielts init' };
   try { accessSync(BASE, constants.W_OK | constants.X_OK); } catch {
-    return { status: 'fail', message: '~/.ielts/ not accessible', hint: 'Fix permissions: chmod -R u+w ~/.ielts' };
+    return { status: 'fail', message: '~/.ielts/ not accessible', hint: 'Fix permissions: chmod -R u+rwx ~/.ielts' };
   }
   return { status: 'pass', message: '~/.ielts/ exists and writable' };
 }
@@ -99,10 +99,14 @@ function checkStats(): Result {
 }
 
 function checkModuleDirs(): Result {
-  const missing = MODULE_DIRS.filter(d => {
+  const missing: string[] = [];
+  for (const d of MODULE_DIRS) {
     const fp = join(BASE, d);
-    try { return !statSync(fp).isDirectory(); } catch { return true; }
-  });
+    try {
+      if (!statSync(fp).isDirectory()) { missing.push(d); continue; }
+      accessSync(fp, constants.R_OK);
+    } catch { missing.push(d); }
+  }
   if (missing.length === 0) return { status: 'pass', message: `All ${MODULE_DIRS.length} module dirs present` };
   return { status: 'warn', message: `Missing dirs: ${missing.join(', ')}`, hint: 'Run: ielts init (or ielts init --fixtures for test data)' };
 }
@@ -131,7 +135,7 @@ function checkFeishu(): Result {
   if (!existsSync(p)) return { status: 'pass', message: 'Feishu not configured (optional)' };
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
-    if (data.app_id && data.app_secret) return { status: 'pass', message: 'Feishu configured (secrets OK)' };
+    if (typeof data.app_id === 'string' && data.app_id.trim() && typeof data.app_secret === 'string' && data.app_secret.trim()) return { status: 'pass', message: 'Feishu configured (secrets OK)' };
     return { status: 'warn', message: 'Feishu secrets incomplete', hint: 'Run: ielts cloud setup (available in v3.2+)' };
   } catch {
     return { status: 'warn', message: 'Feishu secrets.json malformed', hint: 'Remove ~/.ielts/secrets.json and re-run ielts cloud setup' };
