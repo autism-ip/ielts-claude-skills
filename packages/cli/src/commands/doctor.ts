@@ -68,6 +68,13 @@ function checkProfile(): Result {
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
     ProfileSchema.parse(data);
+    if (!data.preferences || typeof data.target?.overall !== 'number') {
+      return { status: 'fail', message: 'profile.json missing required fields', hint: 'Fix or delete ~/.ielts/profile.json and re-run ielts init' };
+    }
+    if (data.examDate) {
+      const d = new Date(data.examDate);
+      if (isNaN(d.getTime())) return { status: 'warn', message: `profile.json: invalid examDate "${data.examDate}"`, hint: 'Set examDate to a valid YYYY-MM-DD or null' };
+    }
     return { status: 'pass', message: 'profile.json valid' };
   } catch (e: any) {
     const msg = e?.message || 'validation failed';
@@ -81,7 +88,9 @@ function checkStats(): Result {
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
     StatsSchema.parse(data);
-    if (!data.lastSnapshot) return { status: 'warn', message: 'stats.json has no snapshot data', hint: 'Run: ielts snapshot' };
+    if (!data.lastSnapshot || typeof data.combined?.overallBand !== 'number') {
+      return { status: 'warn', message: 'stats.json has no snapshot data', hint: 'Run: ielts snapshot' };
+    }
     return { status: 'pass', message: 'stats.json valid' };
   } catch (e: any) {
     const msg = e?.message || 'invalid';
@@ -161,6 +170,8 @@ export function doctorCommand(): void {
 
   const total = results.length;
   console.log(`\n  ${passed}/${total} passed, ${warned} warnings, ${failed} failures`);
-  if (failed > 0) console.log('\n  ❌ Some checks failed — see hints above');
-  process.exit(failed > 0 ? 1 : 0);
+  if (failed > 0) {
+    console.log('\n  ❌ Some checks failed — see hints above');
+    process.exitCode = 1;
+  }
 }
