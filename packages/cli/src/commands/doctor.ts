@@ -56,7 +56,7 @@ function checkIeltsDir(): Result {
   let st;
   try { st = statSync(BASE); } catch { return { status: 'fail', message: '~/.ielts/ not found', hint: 'Run: ielts init (or ielts init --fixtures for test data)' }; }
   if (!st.isDirectory()) return { status: 'fail', message: '~/.ielts/ is not a directory', hint: 'Remove the file and re-run ielts init' };
-  try { accessSync(BASE, constants.W_OK | constants.X_OK); } catch {
+  try { accessSync(BASE, constants.R_OK | constants.W_OK | constants.X_OK); } catch {
     return { status: 'fail', message: '~/.ielts/ not accessible', hint: 'Fix permissions: chmod -R u+rwx ~/.ielts' };
   }
   return { status: 'pass', message: '~/.ielts/ exists and writable' };
@@ -68,7 +68,7 @@ function checkProfile(): Result {
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
     ProfileSchema.parse(data);
-    if (!data.preferences || typeof data.target?.overall !== 'number') {
+    if (typeof data.target?.overall !== 'number' || typeof data.preferences?.dailyGoal !== 'number') {
       return { status: 'fail', message: 'profile.json missing required fields', hint: 'Fix or delete ~/.ielts/profile.json and re-run ielts init' };
     }
     if (data.examDate) {
