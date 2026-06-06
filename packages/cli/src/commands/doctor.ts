@@ -8,12 +8,14 @@
 import { existsSync, readFileSync, accessSync, constants, statSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { execSync } from 'node:child_process';
+import { ProfileSchema, StatsSchema } from '@ielts/schemas';
 
 const BASE = join(homedir(), '.ielts');
-const SKILLS_DIR = join(homedir(), '.claude', 'skills');
+const SKILLS_DIR = process.env.SKILLS_DIR || join(homedir(), '.claude', 'skills');
 const REQUIRED_SKILLS = ['ielts', 'ielts-writing', 'ielts-reading', 'ielts-speaking', 'ielts-listening', 'ielts-vocab', 'ielts-diagnose', 'ielts-dashboard'];
-const MODULE_DIRS = ['writing', 'reading', 'listening', 'speaking', 'vocab', 'diagnosis'];
+const MODULE_DIRS = ['writing', 'reading', 'listening', 'speaking', 'speaking/stories', 'vocab', 'diagnosis'];
 
 type Result = { status: 'pass' | 'warn' | 'fail'; message: string; hint?: string };
 
@@ -24,7 +26,7 @@ function check(condition: boolean, passMsg: string, failMsg: string, hint?: stri
 function checkNodeVersion(): Result {
   const v = process.versions.node;
   const major = parseInt(v.split('.')[0], 10);
-  return check(major >= 18, `Node.js ${v} (>= 18)`, `Node.js ${v} (< 18)`, `Install Node.js >= 18: https://nodejs.org`);
+  return check(major >= 20, `Node.js ${v} (>= 20)`, `Node.js ${v} (< 20)`, `Install Node.js >= 20: https://nodejs.org`);
 }
 
 function checkPnpm(): Result {
@@ -32,13 +34,19 @@ function checkPnpm(): Result {
     const out = execSync('pnpm --version', { encoding: 'utf-8', timeout: 5000 }).trim();
     return { status: 'pass', message: `pnpm ${out}` };
   } catch {
-    return { status: 'warn', message: 'pnpm not found in PATH', hint: 'Install pnpm: npm install -g pnpm' };
+    /* 如果没有 pnpm 但有 npm，只给 warn 而非 fail */
+    try {
+      execSync('npm --version', { encoding: 'utf-8', timeout: 3000 });
+      return { status: 'warn', message: 'pnpm not found (npm available)', hint: 'Install pnpm: npm install -g pnpm' };
+    } catch {
+      return { status: 'warn', message: 'pnpm not found in PATH', hint: 'Install pnpm: npm install -g pnpm' };
+    }
   }
 }
 
 function checkCLIBuild(): Result {
   const distUrl = new URL('../index.js', import.meta.url);
-  const distPath = distUrl.pathname;
+  const distPath = fileURLToPath(distUrl);
   if (!existsSync(distPath)) return { status: 'fail', message: 'CLI dist not built', hint: 'Run: pnpm build' };
   const built = statSync(distPath).mtime;
   return { status: 'pass', message: `CLI built (${built.toISOString().slice(0, 10)})` };
@@ -46,7 +54,7 @@ function checkCLIBuild(): Result {
 
 function checkIeltsDir(): Result {
   if (!existsSync(BASE)) {
-    return { status: 'fail', message: '~/.ielts/ not found', hint: 'Run: ielts init' };
+    return { status: 'fail', message: '~/.ielts/ not found', hint: 'Run: ielts init (or ielts init --fixtures for test data)' };
   }
   try { accessSync(BASE, constants.W_OK); } catch {
     return { status: 'fail', message: '~/.ielts/ not writable', hint: 'Fix permissions: chmod -R u+w ~/.ielts' };
@@ -56,13 +64,14 @@ function checkIeltsDir(): Result {
 
 function checkProfile(): Result {
   const p = join(BASE, 'profile.json');
-  if (!existsSync(p)) return { status: 'fail', message: 'profile.json missing', hint: 'Run: ielts init' };
+  if (!existsSync(p)) return { status: 'fail', message: 'profile.json missing', hint: 'Run: ielts init (or ielts init --fixtures for test data)' };
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
-    const hasTarget = data.target && typeof data.target.overall === 'number';
-    return check(hasTarget, 'profile.json valid', 'profile.json missing required fields', 'Fix or delete ~/.ielts/profile.json and re-run ielts init');
-  } catch {
-    return { status: 'fail', message: 'profile.json invalid JSON', hint: 'Fix or delete ~/.ielts/profile.json' };
+    ProfileSchema.parse(data);
+    return { status: 'pass', message: 'profile.json valid' };
+  } catch (e: any) {
+    const msg = e?.message || 'validation failed';
+    return { status: 'fail', message: `profile.json: ${msg}`, hint: 'Fix or delete ~/.ielts/profile.json and re-run ielts init' };
   }
 }
 
@@ -70,26 +79,36 @@ function checkStats(): Result {
   const p = join(BASE, 'stats.json');
   if (!existsSync(p)) return { status: 'warn', message: 'stats.json missing', hint: 'Run: ielts snapshot' };
   try {
-    JSON.parse(readFileSync(p, 'utf-8'));
+    const data = JSON.parse(readFileSync(p, 'utf-8'));
+    StatsSchema.parse(data);
     return { status: 'pass', message: 'stats.json valid' };
-  } catch {
-    return { status: 'warn', message: 'stats.json invalid JSON', hint: 'Run: ielts snapshot' };
+  } catch (e: any) {
+    const msg = e?.message || 'invalid';
+    return { status: 'warn', message: `stats.json: ${msg}`, hint: 'Run: ielts snapshot' };
   }
 }
 
 function checkModuleDirs(): Result {
-  const missing = MODULE_DIRS.filter(d => !existsSync(join(BASE, d)));
+  const missing = MODULE_DIRS.filter(d => {
+    const fp = join(BASE, d);
+    try { return !statSync(fp).isDirectory(); } catch { return true; }
+  });
   if (missing.length === 0) return { status: 'pass', message: `All ${MODULE_DIRS.length} module dirs present` };
-  return { status: 'warn', message: `Missing dirs: ${missing.join(', ')}`, hint: 'Run: ielts init' };
+  return { status: 'warn', message: `Missing dirs: ${missing.join(', ')}`, hint: 'Run: ielts init (or ielts init --fixtures for test data)' };
 }
 
 function checkSkills(): Result {
   let pass = 0, fail = 0, missing: string[] = [];
   for (const skill of REQUIRED_SKILLS) {
     const skillPath = join(SKILLS_DIR, skill);
-    if (existsSync(skillPath)) {
-      pass++;
-    } else {
+    try {
+      const st = statSync(skillPath);
+      if (st.isDirectory() && existsSync(join(skillPath, 'SKILL.md'))) {
+        pass++;
+      } else {
+        fail++; missing.push(skill);
+      }
+    } catch {
       fail++; missing.push(skill);
     }
   }
@@ -103,7 +122,7 @@ function checkFeishu(): Result {
   try {
     const data = JSON.parse(readFileSync(p, 'utf-8'));
     if (data.app_id && data.app_secret) return { status: 'pass', message: 'Feishu configured (secrets OK)' };
-    return { status: 'warn', message: 'Feishu secrets incomplete', hint: 'Run: ielts cloud setup' };
+    return { status: 'warn', message: 'Feishu secrets incomplete', hint: 'Run: ielts cloud setup (available in v3.2+)' };
   } catch {
     return { status: 'warn', message: 'Feishu secrets.json malformed', hint: 'Remove ~/.ielts/secrets.json and re-run ielts cloud setup' };
   }
