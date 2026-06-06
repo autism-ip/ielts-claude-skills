@@ -33,7 +33,7 @@ metadata:
 
 ## 启动模式
 
-运行 `pnpm --filter @ielcts/dashboard dev`。
+运行 `pnpm --filter @ielts/dashboard dev`。
 
 Dashboard 页面：
 - / 概览页：四科分数卡片、雷达图
