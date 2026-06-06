@@ -8,6 +8,6 @@ const INTERVENTIONS = [];
 export function getInterventions(errorTag) {
     if (errorTag)
         return INTERVENTIONS.filter(i => i.errorTag === errorTag);
-    return INTERVENTIONS;
+    return [...INTERVENTIONS];
 }
 //# sourceMappingURL=interventions.js.map

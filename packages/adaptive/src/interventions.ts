@@ -17,5 +17,5 @@ const INTERVENTIONS: Intervention[] = [];
 
 export function getInterventions(errorTag?: string): Intervention[] {
   if (errorTag) return INTERVENTIONS.filter(i => i.errorTag === errorTag);
-  return INTERVENTIONS;
+  return [...INTERVENTIONS];
 }

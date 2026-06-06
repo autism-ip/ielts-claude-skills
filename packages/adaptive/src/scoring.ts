@@ -32,7 +32,7 @@ export function computePriority(module: string, stats: Record<string, any>, prof
   for (const f of DEFAULT_FACTORS) {
     const s = f.score(stats, profile) * f.weight;
     total += s;
-    reasons.push(`${f.name}: ${s.toFixed(1)}`);
+    reasons.push(f.reason(stats, profile));
   }
   return { module, score: Math.min(100, Math.max(0, total)), reasons };
 }
