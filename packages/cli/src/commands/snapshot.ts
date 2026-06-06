@@ -10,24 +10,77 @@ function parseFm(content: string): Record<string, any> {
   const m = content.match(/^---\n([\s\S]*?)\n---/);
   if (!m) return {};
   const r: Record<string, any> = {};
-  let currentKey = '';
-  for (const line of m[1].split('\n')) {
-    const indent = line.search(/\S/);
-    if (indent === 0) {
-      const [k, ...rest] = line.split(':');
-      if (k && rest.length) {
-        currentKey = k.trim();
-        r[currentKey] = isNaN(Number(rest.join(':').trim())) ? rest.join(':').trim() : Number(rest.join(':').trim());
-      } else if (k && !rest.length) {
-        currentKey = k.trim();
-        r[currentKey] = {};
+  const stack: { obj: any; indent: number }[] = [{ obj: r, indent: -1 }];
+  const lines = m[1].split('\n');
+
+  /* 预扫描：标记哪些 key 是数组 */
+  const arrayKeys = new Set<string>();
+  for (let i = 0; i < lines.length; i++) {
+    const t = lines[i].trim();
+    if (!t || t.includes(':')) continue;
+    if (t.startsWith('- ') || t === '-') {
+      for (let j = i - 1; j >= 0; j--) {
+        if (lines[j].trim().includes(':')) {
+          const ci = lines[j].indexOf(':');
+          const k = lines[j].slice(0, ci).trimEnd();
+          const kl = lines[j].length - lines[j].trimStart().length;
+          const tl = lines[i].length - lines[i].trimStart().length;
+          if (tl > kl || tl === kl + 2) {
+            arrayKeys.add(k);
+          }
+          break;
+        }
       }
-    } else if (indent > 0 && currentKey && typeof r[currentKey] === 'object' && !Array.isArray(r[currentKey])) {
-      const [k, ...rest] = line.trim().split(':');
-      if (k && rest.length) r[currentKey][k.trim()] = isNaN(Number(rest.join(':').trim())) ? rest.join(':').trim() : Number(rest.join(':').trim());
+    }
+  }
+
+  for (const raw of lines) {
+    const trimmed = raw.trimEnd();
+    const content = raw.trim();
+    if (!content) continue;
+    const indent = raw.length - raw.trimStart().length;
+
+    while (stack.length > 1 && stack[stack.length - 1].indent >= indent) {
+      stack.pop();
+    }
+
+    if (content.startsWith('- ') || content === '-') {
+      const val = content.replace(/^- */, '');
+      const parent = stack[stack.length - 1].obj;
+      if (!Array.isArray(parent)) continue;
+      if (!val) {
+        const obj: Record<string, any> = {};
+        parent.push(obj);
+        stack.push({ obj, indent });
+      } else {
+        parent.push(parseValue(val));
+      }
+      continue;
+    }
+
+    const colonIdx = content.indexOf(':');
+    if (colonIdx === -1) continue;
+    const k = content.slice(0, colonIdx).trimEnd();
+    const v = content.slice(colonIdx + 1).trim();
+    const target = stack[stack.length - 1].obj;
+
+    if (v === '') {
+      target[k] = arrayKeys.has(k) ? [] : {};
+      stack.push({ obj: target[k], indent });
+    } else {
+      target[k] = parseValue(v);
     }
   }
   return r;
+}
+
+function parseValue(v: string): any {
+  if (v === 'true') return true;
+  if (v === 'false') return false;
+  const stripped = v.replace(/^"|"$/g, '');
+  const num = Number(stripped);
+  if (!isNaN(num) && stripped !== '') return num;
+  return stripped;
 }
 
 function fmRecords(dir: string): Record<string, any>[] {
