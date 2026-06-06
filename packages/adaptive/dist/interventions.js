@@ -98,7 +98,7 @@ export function getInterventions(errorTag, module) {
         result = result.filter(i => i.errorTag === errorTag);
     if (module)
         result = result.filter(i => i.module === module);
-    return result;
+    return [...result];
 }
 export function getAllModules() {
     return [...new Set(CATALOG.map(i => i.module))];

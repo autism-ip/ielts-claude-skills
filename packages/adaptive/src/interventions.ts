@@ -111,7 +111,7 @@ export function getInterventions(errorTag?: string, module?: string): Interventi
   let result = CATALOG;
   if (errorTag) result = result.filter(i => i.errorTag === errorTag);
   if (module) result = result.filter(i => i.module === module);
-  return result;
+  return [...result];
 }
 
 export function getAllModules(): string[] {
