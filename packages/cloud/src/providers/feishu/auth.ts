@@ -4,14 +4,22 @@ const AUTH_URL = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/i
 
 export class FeishuAuth {
   private token: { value: string; expiresAt: number } | null = null;
+  private pending: Promise<{ tenant_access_token: string; expire: number }> | null = null;
 
   constructor(private appId: string, private appSecret: string) {}
 
   async getToken(): Promise<string> {
     if (this.token && Date.now() < this.token.expiresAt - 300000) return this.token.value;
-    const { tenant_access_token, expire } = await this.requestToken();
-    this.token = { value: tenant_access_token, expiresAt: Date.now() + expire * 1000 };
-    return this.token.value;
+    if (!this.pending) {
+      this.pending = this.requestToken();
+    }
+    try {
+      const { tenant_access_token, expire } = await this.pending;
+      this.token = { value: tenant_access_token, expiresAt: Date.now() + expire * 1000 };
+      return this.token.value;
+    } finally {
+      this.pending = null;
+    }
   }
 
   private requestToken(): Promise<{ tenant_access_token: string; expire: number }> {

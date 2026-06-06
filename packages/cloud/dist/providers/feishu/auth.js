@@ -4,6 +4,7 @@ export class FeishuAuth {
     appId;
     appSecret;
     token = null;
+    pending = null;
     constructor(appId, appSecret) {
         this.appId = appId;
         this.appSecret = appSecret;
@@ -11,9 +12,17 @@ export class FeishuAuth {
     async getToken() {
         if (this.token && Date.now() < this.token.expiresAt - 300000)
             return this.token.value;
-        const { tenant_access_token, expire } = await this.requestToken();
-        this.token = { value: tenant_access_token, expiresAt: Date.now() + expire * 1000 };
-        return this.token.value;
+        if (!this.pending) {
+            this.pending = this.requestToken();
+        }
+        try {
+            const { tenant_access_token, expire } = await this.pending;
+            this.token = { value: tenant_access_token, expiresAt: Date.now() + expire * 1000 };
+            return this.token.value;
+        }
+        finally {
+            this.pending = null;
+        }
     }
     requestToken() {
         return new Promise((resolve, reject) => {
