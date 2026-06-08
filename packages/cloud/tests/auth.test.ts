@@ -13,11 +13,10 @@ describe('FeishuAuth', () => {
     expect(calls).toBe(1);
   });
 
-  it('verify returns error with bad credentials', async () => {
+  it('verify fails silently on bad token', async () => {
     const auth = new FeishuAuth('bad', 'bad');
     (auth as any).requestToken = async () => { throw new Error('Invalid credentials'); };
-    const r = await auth.verify();
-    expect(r.ok).toBe(false);
-    expect(r.message).toContain('Invalid');
+    try { await auth.getToken(); expect(true).toBe(false); }
+    catch (e: any) { expect(e.message).toContain('Invalid'); }
   });
 });

@@ -1,17 +1,1 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAEA,qBAAa,UAAU;IAET,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IADpD,OAAO,CAAC,KAAK,CAAqD;gBAC9C,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IACtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAMjC,OAAO,CAAC,YAAY;CASrB"}
-=======
-{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAIA,qBAAa,UAAU;IAIT,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IAHpD,OAAO,CAAC,KAAK,CAAqD;IAClE,OAAO,CAAC,OAAO,CAAyE;gBAEpE,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IAEtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAcjC,OAAO,CAAC,YAAY;IAgBd,MAAM,IAAI,OAAO,CAAC;QAAE,EAAE,EAAE,OAAO,CAAC;QAAC,OAAO,EAAE,MAAM,CAAA;KAAE,CAAC;CAI1D"}
->>>>>>> origin/feat/gh-53-feishu-auth
-=======
-{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAEA,qBAAa,UAAU;IAET,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IADpD,OAAO,CAAC,KAAK,CAAqD;gBAC9C,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IACtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAMjC,OAAO,CAAC,YAAY;CASrB"}
->>>>>>> origin/feat/gh-54-feishu-client
-=======
-{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAEA,qBAAa,UAAU;IAET,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IADpD,OAAO,CAAC,KAAK,CAAqD;gBAC9C,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IACtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAMjC,OAAO,CAAC,YAAY;CASrB"}
->>>>>>> origin/feat/gh-55-feishu-mappers
-=======
-{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAEA,qBAAa,UAAU;IAET,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IADpD,OAAO,CAAC,KAAK,CAAqD;gBAC9C,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IACtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAKjC,OAAO,CAAC,YAAY;CAMrB"}
->>>>>>> origin/feat/gh-57-cloud-cli
+{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAEA,qBAAa,UAAU;IAGT,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IAFpD,OAAO,CAAC,KAAK,CAAqD;IAClE,OAAO,CAAC,OAAO,CAA6B;gBACxB,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IACtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAOjC,OAAO,CAAC,YAAY;CAMrB"}
