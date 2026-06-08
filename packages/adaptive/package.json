@@ -6,6 +6,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
 <<<<<<< HEAD
+<<<<<<< HEAD
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
@@ -23,4 +24,9 @@
   "dependencies": { "@ielts/schemas": "workspace:*" },
   "devDependencies": { "typescript": "^5.5.0", "vitest": "^2.0.0" }
 >>>>>>> origin/feat/gh-48-intervention-library
+=======
+  "scripts": { "build": "tsc -p tsconfig.build.json", "test": "vitest run", "typecheck": "tsc --noEmit" },
+  "dependencies": { "@ielts/schemas": "workspace:*" },
+  "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.5.0", "vitest": "^2.0.0" }
+>>>>>>> origin/feat/gh-49-plan-cli
 }

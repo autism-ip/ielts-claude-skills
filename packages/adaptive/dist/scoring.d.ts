@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 stats.json 和 profile.json 的数据结构
  * [OUTPUT]: 对外提供 PriorityFactor 类型、computePriority、getAllScores
@@ -10,12 +11,20 @@ export interface PriorityFactor {
     weight: number;
     score: (stats: Record<string, any>, profile: Record<string, any>) => number;
     reason: (stats: Record<string, any>, profile: Record<string, any>) => string;
+=======
+export interface PriorityFactor {
+    name: string;
+    weight: number;
+    score: (s: any, p: any) => number;
+    reason: (s: any, p: any) => string;
+>>>>>>> origin/feat/gh-49-plan-cli
 }
 export interface PriorityScore {
     module: string;
     score: number;
     reasons: string[];
 }
+<<<<<<< HEAD
 export declare function computePriority(module: string, stats: Record<string, any>, profile: Record<string, any>): PriorityScore;
 export declare function getAllScores(modules: string[], stats: Record<string, any>, profile: Record<string, any>): PriorityScore[];
 =======
@@ -25,4 +34,8 @@ export declare function computePriority(_m: string, _s: any, _p: any): {
     reasons: never[];
 };
 >>>>>>> origin/feat/gh-48-intervention-library
+=======
+export declare function computePriority(module: string, stats: any, profile: any): PriorityScore;
+export declare function getAllScores(modules: string[], stats: any, profile: any): PriorityScore[];
+>>>>>>> origin/feat/gh-49-plan-cli
 //# sourceMappingURL=scoring.d.ts.map

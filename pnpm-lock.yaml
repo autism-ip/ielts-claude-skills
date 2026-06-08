@@ -14,6 +14,12 @@ importers:
         specifier: workspace:*
         version: link:../schemas
     devDependencies:
+<<<<<<< HEAD
+=======
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.19
+>>>>>>> origin/feat/gh-49-plan-cli
       typescript:
         specifier: ^5.5.0
         version: 5.9.3
@@ -23,6 +29,9 @@ importers:
 
   packages/cli:
     dependencies:
+      '@ielts/adaptive':
+        specifier: workspace:*
+        version: link:../adaptive
       '@ielts/schemas':
         specifier: workspace:*
         version: link:../schemas

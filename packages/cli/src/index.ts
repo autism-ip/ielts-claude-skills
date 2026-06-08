@@ -7,6 +7,7 @@ import { snapshotCommand } from './commands/snapshot.js';
 import { backupCommand } from './commands/backup.js';
 import { restoreCommand } from './commands/restore.js';
 import { doctorCommand } from './commands/doctor.js';
+import { registerPlanCommands } from './commands/plan/index.js';
 
 const program = new Command();
 
@@ -53,5 +54,7 @@ program
   .command('doctor')
   .description('Diagnose installation health')
   .action(doctorCommand);
+
+registerPlanCommands(program);
 
 program.parse();

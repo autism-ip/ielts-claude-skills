@@ -7,6 +7,10 @@ import { snapshotCommand } from './commands/snapshot.js';
 import { backupCommand } from './commands/backup.js';
 import { restoreCommand } from './commands/restore.js';
 import { doctorCommand } from './commands/doctor.js';
+<<<<<<< HEAD
+=======
+import { registerPlanCommands } from './commands/plan/index.js';
+>>>>>>> origin/feat/gh-49-plan-cli
 const program = new Command();
 program
     .name('ielts')
@@ -44,5 +48,9 @@ program
     .command('doctor')
     .description('Diagnose installation health')
     .action(doctorCommand);
+<<<<<<< HEAD
+=======
+registerPlanCommands(program);
+>>>>>>> origin/feat/gh-49-plan-cli
 program.parse();
 //# sourceMappingURL=index.js.map
