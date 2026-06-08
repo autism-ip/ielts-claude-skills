@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-import { FeishuAuth, FeishuClient, SyncState } from '@ielts/cloud';
+import { FeishuAuth, FeishuClient, FeishuTableManager, SyncState } from '@ielts/cloud';
 const BASE = join(homedir(), '.ielts');
 const SECRETS = join(BASE, 'secrets.json');
 const STATS = join(BASE, 'stats.json');
@@ -15,22 +15,36 @@ function loadSecrets() {
         return null;
     }
 }
-<<<<<<< HEAD
-function buildClient(s) {
-    if (!s?.app_id || !s?.app_token)
-        return null;
-    const auth = new FeishuAuth(s.app_id, s.app_secret);
-    return new FeishuClient(auth, s.app_token, s.table_id ?? '');
-}
-=======
->>>>>>> origin/feat/gh-57-cloud-cli
 export function registerCloudCommands(program) {
     const cloud = program.command('cloud').description('Feishu cloud sync');
     cloud.command('setup')
         .description('Configure Feishu app credentials')
         .action(() => {
         console.log('Edit ~/.ielts/secrets.json with:');
-        console.log('{"app_id": "...", "app_secret": "...", "app_token": "...", "table_id": "..."}');
+        console.log('{"app_id": "...", "app_secret": "...", "app_token": "..."}');
+    });
+    cloud.command('init-feishu')
+        .description('Initialize Feishu Bitable tables and fields')
+        .action(async () => {
+        const s = loadSecrets();
+        if (!s?.app_id || !s?.app_secret || !s?.app_token) {
+            console.log('Run ielts cloud setup first');
+            return;
+        }
+        try {
+            const auth = new FeishuAuth(s.app_id, s.app_secret);
+            const client = new FeishuClient(auth, s.app_token, '');
+            const mgr = new FeishuTableManager(client);
+            const r = await mgr.initialize();
+            console.log(`Created: ${r.created.length ? r.created.join(', ') : 'none'}`);
+            console.log(`Existing: ${r.existing.length ? r.existing.join(', ') : 'none'}`);
+            if (r.fieldsAdded.length)
+                console.log(`Fields added: ${r.fieldsAdded.length}`);
+            console.log('Done.');
+        }
+        catch (e) {
+            console.log(`Init failed: ${e.message}`);
+        }
     });
     cloud.command('test')
         .description('Verify Feishu auth and base access')
@@ -44,36 +58,17 @@ export function registerCloudCommands(program) {
             const auth = new FeishuAuth(s.app_id, s.app_secret);
             const t = await auth.getToken();
             console.log(`Auth: OK (token=${t.slice(0, 8)}...)`);
-<<<<<<< HEAD
-        }
-        catch (e) {
-            console.log(`Auth failed: ${e.message}`);
-            return;
-        }
-        try {
-            const client = buildClient(s);
-            if (!client) {
-                console.log('Base: skipped (no app_token)');
-                return;
-            }
-            const r = await client.listRecords(1);
-            console.log(`Base: OK (${r.items.length} records)`);
-        }
-        catch (e) {
-            console.log(`Base failed: ${e.message}`);
-=======
             if (s.app_token) {
                 const client = new FeishuClient(auth, s.app_token, s.table_id ?? '');
                 const r = await client.listRecords(1);
                 console.log(`Base: OK (${r.items.length} records)`);
             }
             else {
-                console.log('Base: skipped (no app_token)');
+                console.log('Base: not tested (no app_token)');
             }
         }
         catch (e) {
             console.log(`Error: ${e.message}`);
->>>>>>> origin/feat/gh-57-cloud-cli
         }
     });
     cloud.command('sync')
@@ -97,8 +92,7 @@ export function registerCloudCommands(program) {
             hash: `${m}:${JSON.stringify(stats[m])}`,
         }));
         const diff = state.computeDiff(locals);
-        console.log(`Records: ${diff.toCreate.length} to create, ${diff.toUpdate.length} to update, ${diff.unchanged.length} unchanged`);
-        console.log('Sync complete.');
+        console.log(`${diff.toCreate.length} to create, ${diff.toUpdate.length} to update, ${diff.unchanged.length} unchanged`);
     });
     cloud.command('status')
         .description('Show sync state')
@@ -106,10 +100,9 @@ export function registerCloudCommands(program) {
         const s = loadSecrets();
         console.log(`Feishu: ${s?.app_id ? 'configured' : 'not configured'}`);
         const state = new SyncState();
-        const last = state.getLastSyncTime();
-        const stats = state.getStats();
-        console.log(`Last sync: ${last || 'never'}`);
-        console.log(`Synced: ${stats.synced}/${stats.total} records`);
+        console.log(`Last sync: ${state.getLastSyncTime() || 'never'}`);
+        const st = state.getStats();
+        console.log(`Synced: ${st.synced}/${st.total} records`);
     });
 }
 //# sourceMappingURL=index.js.map
