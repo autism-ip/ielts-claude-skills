@@ -5,6 +5,7 @@ export declare class FeishuAuth {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     constructor(appId: string, appSecret: string);
     getToken(): Promise<string>;
     private requestToken;
@@ -28,5 +29,10 @@ export declare class FeishuAuth {
     getToken(): Promise<string>;
     private requestToken;
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+    constructor(appId: string, appSecret: string);
+    getToken(): Promise<string>;
+    private requestToken;
+>>>>>>> origin/feat/gh-57-cloud-cli
 }
 //# sourceMappingURL=auth.d.ts.map

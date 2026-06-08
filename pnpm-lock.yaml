@@ -35,9 +35,15 @@ importers:
 
   packages/cli:
     dependencies:
+<<<<<<< HEAD
       '@ielts/adaptive':
         specifier: workspace:*
         version: link:../adaptive
+=======
+      '@ielts/cloud':
+        specifier: workspace:*
+        version: link:../cloud
+>>>>>>> origin/feat/gh-57-cloud-cli
       '@ielts/schemas':
         specifier: workspace:*
         version: link:../schemas

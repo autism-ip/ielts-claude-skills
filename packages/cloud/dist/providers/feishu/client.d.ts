@@ -3,6 +3,7 @@ export declare class FeishuClient {
     private auth;
     private appToken;
     private tableId;
+<<<<<<< HEAD
     private tokens;
     private lastRefill;
     constructor(auth: FeishuAuth, appToken: string, tableId: string);
@@ -21,6 +22,19 @@ export declare class FeishuClient {
     }>;
     createRecord(fields: Record<string, any>): Promise<string>;
     updateRecord(recordId: string, fields: Record<string, any>): Promise<void>;
+=======
+    private tks;
+    private lr;
+    constructor(auth: FeishuAuth, appToken: string, tableId: string);
+    private rl;
+    private req;
+    listRecords(ps?: number, pt?: string): Promise<{
+        items: any;
+        hasMore: any;
+    }>;
+    createRecord(fields: Record<string, any>): Promise<string>;
+    updateRecord(rid: string, fields: Record<string, any>): Promise<void>;
+>>>>>>> origin/feat/gh-57-cloud-cli
     batchCreate(records: {
         fields: Record<string, any>;
     }[]): Promise<string[]>;

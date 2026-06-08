@@ -13,6 +13,7 @@ import { doctorCommand } from './commands/doctor.js';
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import { registerPlanCommands } from './commands/plan/index.js';
 >>>>>>> origin/feat/gh-49-plan-cli
@@ -27,6 +28,10 @@ import { registerPlanCommands } from './commands/plan/index.js';
 >>>>>>> origin/feat/gh-55-feishu-mappers
 =======
 >>>>>>> origin/feat/gh-56-sync-state
+=======
+import { registerPlanCommands } from './commands/plan/index.js';
+import { registerCloudCommands } from './commands/cloud/index.js';
+>>>>>>> origin/feat/gh-57-cloud-cli
 const program = new Command();
 program
     .name('ielts')
@@ -70,6 +75,7 @@ program
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 registerPlanCommands(program);
 >>>>>>> origin/feat/gh-49-plan-cli
@@ -84,5 +90,9 @@ registerPlanCommands(program);
 >>>>>>> origin/feat/gh-55-feishu-mappers
 =======
 >>>>>>> origin/feat/gh-56-sync-state
+=======
+registerPlanCommands(program);
+registerCloudCommands(program);
+>>>>>>> origin/feat/gh-57-cloud-cli
 program.parse();
 //# sourceMappingURL=index.js.map

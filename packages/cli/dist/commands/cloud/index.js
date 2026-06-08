@@ -15,12 +15,15 @@ function loadSecrets() {
         return null;
     }
 }
+<<<<<<< HEAD
 function buildClient(s) {
     if (!s?.app_id || !s?.app_token)
         return null;
     const auth = new FeishuAuth(s.app_id, s.app_secret);
     return new FeishuClient(auth, s.app_token, s.table_id ?? '');
 }
+=======
+>>>>>>> origin/feat/gh-57-cloud-cli
 export function registerCloudCommands(program) {
     const cloud = program.command('cloud').description('Feishu cloud sync');
     cloud.command('setup')
@@ -41,6 +44,7 @@ export function registerCloudCommands(program) {
             const auth = new FeishuAuth(s.app_id, s.app_secret);
             const t = await auth.getToken();
             console.log(`Auth: OK (token=${t.slice(0, 8)}...)`);
+<<<<<<< HEAD
         }
         catch (e) {
             console.log(`Auth failed: ${e.message}`);
@@ -57,6 +61,19 @@ export function registerCloudCommands(program) {
         }
         catch (e) {
             console.log(`Base failed: ${e.message}`);
+=======
+            if (s.app_token) {
+                const client = new FeishuClient(auth, s.app_token, s.table_id ?? '');
+                const r = await client.listRecords(1);
+                console.log(`Base: OK (${r.items.length} records)`);
+            }
+            else {
+                console.log('Base: skipped (no app_token)');
+            }
+        }
+        catch (e) {
+            console.log(`Error: ${e.message}`);
+>>>>>>> origin/feat/gh-57-cloud-cli
         }
     });
     cloud.command('sync')

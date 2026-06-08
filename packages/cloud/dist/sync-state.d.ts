@@ -20,10 +20,15 @@ export interface SyncDiff {
 }
 export declare class SyncState {
     private entries;
+<<<<<<< HEAD
     private statePath;
     constructor(statePath?: string);
     private load;
     private saveDirPath;
+=======
+    constructor();
+    private load;
+>>>>>>> origin/feat/gh-57-cloud-cli
     private save;
     set(localId: string, hash: string, remoteId?: string): void;
     setBatch(items: {
@@ -31,7 +36,10 @@ export declare class SyncState {
         hash: string;
         remoteId?: string;
     }[]): void;
+<<<<<<< HEAD
     get(localId: string): SyncEntry | undefined;
+=======
+>>>>>>> origin/feat/gh-57-cloud-cli
     computeDiff(locals: {
         localId: string;
         hash: string;

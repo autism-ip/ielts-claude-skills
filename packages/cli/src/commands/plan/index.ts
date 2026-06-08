@@ -1,4 +1,5 @@
 import { Command } from 'commander';
+<<<<<<< HEAD
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
@@ -109,3 +110,6 @@ function printTasks(tasks: any[], label: string): void {
   console.log(`  └${b}┘\n  Total: ${total}min | Tasks: ${tasks.length}\n`);
 }
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+export function registerPlanCommands(_program: Command): void {}
+>>>>>>> origin/feat/gh-57-cloud-cli

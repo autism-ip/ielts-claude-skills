@@ -2,8 +2,12 @@ import { Command } from 'commander';
 import { existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
+<<<<<<< HEAD
 import https from 'node:https';
 import { FeishuAuth, SyncState } from '@ielts/cloud';
+=======
+import { FeishuAuth, FeishuClient, SyncState } from '@ielts/cloud';
+>>>>>>> origin/feat/gh-57-cloud-cli
 
 const BASE = join(homedir(), '.ielts');
 const SECRETS = join(BASE, 'secrets.json');
@@ -14,6 +18,7 @@ function loadSecrets(): any {
   try { return JSON.parse(readFileSync(SECRETS, 'utf-8')); } catch { return null; }
 }
 
+<<<<<<< HEAD
 function requestGet(url: string, token: string): Promise<any> {
   return new Promise((resolve, reject) => {
     const r = https.get(url, { headers: { 'Authorization': `Bearer ${token}` } }, (res) => {
@@ -24,6 +29,8 @@ function requestGet(url: string, token: string): Promise<any> {
   });
 }
 
+=======
+>>>>>>> origin/feat/gh-57-cloud-cli
 export function registerCloudCommands(program: Command): void {
   const cloud = program.command('cloud').description('Feishu cloud sync');
 
@@ -45,6 +52,7 @@ export function registerCloudCommands(program: Command): void {
         console.log(`Auth: OK (token=${t.slice(0, 8)}...)`);
 
         if (s.app_token) {
+<<<<<<< HEAD
           try {
             const tablePath = s.table_id ? `/tables/${s.table_id}/records?page_size=1` : '';
             const url = `https://open.feishu.cn/open-apis/bitable/v1/apps/${s.app_token}${tablePath}`;
@@ -53,6 +61,15 @@ export function registerCloudCommands(program: Command): void {
           } catch (e2: any) { console.log(`Base failed: ${e2.message}`); }
         } else { console.log('Base: skipped (no app_token)'); }
       } catch (e: any) { console.log(`Auth failed: ${e.message}`); }
+=======
+          const client = new FeishuClient(auth, s.app_token, s.table_id ?? '');
+          const r = await client.listRecords(1);
+          console.log(`Base: OK (${r.items.length} records)`);
+        } else {
+          console.log('Base: skipped (no app_token)');
+        }
+      } catch (e: any) { console.log(`Error: ${e.message}`); }
+>>>>>>> origin/feat/gh-57-cloud-cli
     });
 
   cloud.command('sync')

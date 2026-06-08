@@ -1,15 +1,15 @@
 /**
- * [INPUT]: 无
- * [OUTPUT]: 对外提供 PriorityScore, PriorityFactor, computePriority, getAllScores
- * [POS]: packages/adaptive 的优先级评分引擎
+ * [INPUT]: 依赖 @ielts/schemas 的 Stats/Profile 类型
+ * [OUTPUT]: 对外提供 PriorityFactor 类型、computePriority、getAllScores 函数
+ * [POS]: packages/adaptive 的评分引擎，纯函数，无副作用
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
 
 export interface PriorityFactor {
   name: string;
   weight: number;
-  score: (s: any, p: any) => number;
-  reason: (s: any, p: any) => string;
+  score: (s: Record<string, any>, p: Record<string, any>) => number;
+  reason: (s: Record<string, any>, p: Record<string, any>) => string;
 }
 
 export interface PriorityScore {
@@ -46,12 +46,12 @@ const FACTORS: PriorityFactor[] = [
   },
 ];
 
-export function computePriority(module: string, stats: any, profile: any): PriorityScore {
+export function computePriority(module: string, stats: Record<string, any>, profile: Record<string, any>): PriorityScore {
   let total = 0; const reasons: string[] = [];
   for (const f of FACTORS) { const s = f.score(stats, profile) * f.weight; total += s; reasons.push(`${f.name}: ${s.toFixed(1)}`); }
   return { module, score: Math.min(100, Math.max(0, Math.round(total))), reasons };
 }
 
-export function getAllScores(modules: string[], stats: any, profile: any): PriorityScore[] {
+export function getAllScores(modules: string[], stats: Record<string, any>, profile: Record<string, any>): PriorityScore[] {
   return modules.map((m) => computePriority(m, stats, profile)).sort((a, b) => b.score - a.score);
 }
