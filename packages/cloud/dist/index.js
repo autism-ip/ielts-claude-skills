@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 export { mapProfile, mapWriting, mapReading, mapListening, mapVocab, mapSpeaking, mapPlan } from './providers/feishu/mappers.js';
 =======
 /**
@@ -14,4 +15,8 @@ export { FeishuAuth } from './providers/feishu/auth.js';
 export { FeishuAuth } from './providers/feishu/auth.js';
 export { FeishuClient } from './providers/feishu/client.js';
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+export { FeishuAuth } from './providers/feishu/auth.js';
+export { FeishuClient } from './providers/feishu/client.js';
+>>>>>>> origin/feat/gh-55-feishu-mappers
 //# sourceMappingURL=index.js.map

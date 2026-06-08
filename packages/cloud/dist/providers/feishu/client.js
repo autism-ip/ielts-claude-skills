@@ -39,14 +39,18 @@ export class FeishuClient {
                                 if (j.code === 0)
                                     resolve(j.data);
 <<<<<<< HEAD
+<<<<<<< HEAD
                                 else if (res.statusCode === 429)
                                     reject(new Error('Feishu 429: Rate limited'));
 =======
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+>>>>>>> origin/feat/gh-55-feishu-mappers
                                 else
                                     reject(new Error(`Feishu ${j.code}: ${j.msg}`));
                             }
                             catch {
+<<<<<<< HEAD
 <<<<<<< HEAD
                                 if (res.statusCode === 429)
                                     reject(new Error('Feishu 429: Rate limited'));
@@ -55,6 +59,9 @@ export class FeishuClient {
 =======
                                 reject(new Error('Invalid response'));
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+                                reject(new Error('Invalid response'));
+>>>>>>> origin/feat/gh-55-feishu-mappers
                             }
                         });
                     });
@@ -66,10 +73,14 @@ export class FeishuClient {
             }
             catch (e) {
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if (attempt < 2 && (e.message?.includes('Rate') || e.message?.includes('99991663') || e.message?.includes('99991664'))) {
 =======
                 if (attempt < 2 && e.message?.includes('Rate')) {
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+                if (attempt < 2 && e.message?.includes('Rate')) {
+>>>>>>> origin/feat/gh-55-feishu-mappers
                     await delay(1000 * Math.pow(2, attempt));
                     continue;
                 }
@@ -83,10 +94,14 @@ export class FeishuClient {
             p += `&page_token=${pageToken}`;
         const d = await this.request(p, 'GET');
 <<<<<<< HEAD
+<<<<<<< HEAD
         return { items: d.items || [], pageToken: d.page_token, hasMore: d.has_more || false };
 =======
         return { items: d.items || [], hasMore: d.has_more || false };
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+        return { items: d.items || [], hasMore: d.has_more || false };
+>>>>>>> origin/feat/gh-55-feishu-mappers
     }
     async createRecord(fields) {
         const d = await this.request(`tables/${this.tableId}/records`, 'POST', { fields });

@@ -1,8 +1,11 @@
 import https from 'node:https';
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+>>>>>>> origin/feat/gh-55-feishu-mappers
 const AUTH = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal';
 export class FeishuAuth {
   private token: { value: string; expiresAt: number } | null = null;
@@ -22,6 +25,7 @@ export class FeishuAuth {
       }); r.on('error', reject); r.write(body); r.end();
     });
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 
@@ -70,4 +74,6 @@ export class FeishuAuth {
 >>>>>>> origin/feat/gh-53-feishu-auth
 =======
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+>>>>>>> origin/feat/gh-55-feishu-mappers
 }

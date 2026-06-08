@@ -11,9 +11,12 @@ export declare class FeishuClient {
     listRecords(pageSize?: number, pageToken?: string): Promise<{
         items: any[];
 <<<<<<< HEAD
+<<<<<<< HEAD
         pageToken?: string;
 =======
 >>>>>>> origin/feat/gh-54-feishu-client
+=======
+>>>>>>> origin/feat/gh-55-feishu-mappers
         hasMore: boolean;
     }>;
     createRecord(fields: Record<string, any>): Promise<string>;
