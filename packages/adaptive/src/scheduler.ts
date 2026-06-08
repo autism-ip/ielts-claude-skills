@@ -1,6 +1,7 @@
-import { getAllScores } from "./scoring.js";
-import { getInterventions } from "./interventions.js";
-export interface AdaptiveTask { id: string; module: string; taskType: string; priorityScore: number; reason: string; estimatedMinutes: number; status: "todo"; }
+import { getAllScores } from './scoring.js';
+import { getInterventions } from './interventions.js';
+import { planComplete as psComplete, planSkip as psSkip } from './plan-store.js';
+export interface AdaptiveTask { id: string; module: string; taskType: string; priorityScore: number; reason: string; estimatedMinutes: number; status: 'todo'; }
 let c = 0;
 function nid(p: string): string { return `${p}-${Date.now()}-${++c}`; }
 export function planToday(stats: any, profile: any): AdaptiveTask[] {
@@ -17,6 +18,10 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
   }
   return tasks;
 }
-export function planWeek(stats: any, profile: any): AdaptiveTask[] { return planToday(stats, profile); }
-export function planComplete(_id: string): void {}
-export function planSkip(_id: string): void {}
+export function planWeek(stats: any, profile: any): AdaptiveTask[] {
+  const all: AdaptiveTask[] = [];
+  for (let d = 0; d < 7; d++) { all.push(...planToday(stats, profile)); }
+  return all;
+}
+export function planComplete(id: string): void { psComplete(id); }
+export function planSkip(id: string): void { psSkip(id); }
