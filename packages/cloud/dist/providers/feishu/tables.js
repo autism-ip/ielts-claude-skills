@@ -75,6 +75,7 @@ const VOCAB_TABLE = {
 const SPEAKING_TABLE = {
     name: 'Speaking',
     fields: [
+        { field_name: 'date', type: FIELD_TYPES.DATE },
         { field_name: 'story_name', type: FIELD_TYPES.TEXT },
         { field_name: 'applicable_topics', type: FIELD_TYPES.MULTI_SELECT },
         { field_name: 'part2_length', type: FIELD_TYPES.NUMBER },
