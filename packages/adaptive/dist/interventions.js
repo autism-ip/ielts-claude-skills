@@ -33,4 +33,5 @@ export function getInterventions(errorTag, module) {
         r = r.filter(i => i.module === module);
     return [...r];
 }
+export function getAllModules() { return [...new Set(C.map(i => i.module))]; }
 //# sourceMappingURL=interventions.js.map

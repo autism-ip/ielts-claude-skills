@@ -29,3 +29,4 @@ const C: Intervention[] = [
 export function getInterventions(errorTag?: string, module?: string): Intervention[] {
   let r = C; if (errorTag) r = r.filter(i => i.errorTag === errorTag); if (module) r = r.filter(i => i.module === module); return [...r];
 }
+export function getAllModules(): string[] { return [...new Set(C.map(i => i.module))]; }
