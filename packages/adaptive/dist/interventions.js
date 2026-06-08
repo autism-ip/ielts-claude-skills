@@ -26,14 +26,11 @@ const C = [
     { module: 'vocab', errorTag: 'collocation', taskType: 'collo-build', duration: 15, instructions: 'Complete 15 adjective-noun and verb-noun collocations', successCriteria: '12/15 correct' },
 ];
 export function getInterventions(errorTag, module) {
-    let r = CATALOG;
+    let r = C;
     if (errorTag)
-        r = r.filter((i) => i.errorTag === errorTag);
+        r = r.filter(i => i.errorTag === errorTag);
     if (module)
-        r = r.filter((i) => i.module === module);
-    return r;
-}
-export function getAllModules() {
-    return [...new Set(CATALOG.map((i) => i.module))];
+        r = r.filter(i => i.module === module);
+    return [...r];
 }
 //# sourceMappingURL=interventions.js.map
