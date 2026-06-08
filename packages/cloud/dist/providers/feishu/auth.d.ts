@@ -10,9 +10,5 @@ export declare class FeishuAuth {
         ok: boolean;
         message: string;
     }>;
-    catch(e: any): {
-        ok: boolean;
-        message: any;
-    };
 }
 //# sourceMappingURL=auth.d.ts.map

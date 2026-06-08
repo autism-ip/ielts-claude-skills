@@ -18,7 +18,7 @@ export class FeishuAuth {
     });
   }
   async verify(): Promise<{ok:boolean;message:string}> {
-    try { const t = await this.getToken(); return { ok: \!\!t, message: "OK" }; }
+    try { const t = await this.getToken(); return { ok: !!t, message: "OK" }; }
     catch (e: any) { return { ok: false, message: e.message || "Unknown error" }; }
   }
 }
