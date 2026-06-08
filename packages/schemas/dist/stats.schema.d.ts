@@ -149,6 +149,22 @@ export declare const CombinedStatsSchema: z.ZodObject<{
     overallBand?: number | undefined;
     daysUntilExam?: number | undefined;
 }>;
+export declare const PlanSummarySchema: z.ZodObject<{
+    total: z.ZodDefault<z.ZodNumber>;
+    completed: z.ZodDefault<z.ZodNumber>;
+    skipped: z.ZodDefault<z.ZodNumber>;
+    primaryFocus: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+}, "strip", z.ZodTypeAny, {
+    total: number;
+    completed: number;
+    skipped: number;
+    primaryFocus: string | null;
+}, {
+    total?: number | undefined;
+    completed?: number | undefined;
+    skipped?: number | undefined;
+    primaryFocus?: string | null | undefined;
+}>;
 export declare const StatsSchema: z.ZodObject<{
     version: z.ZodDefault<z.ZodString>;
     lastSnapshot: z.ZodString;
@@ -302,6 +318,22 @@ export declare const StatsSchema: z.ZodObject<{
         overallBand?: number | undefined;
         daysUntilExam?: number | undefined;
     }>>;
+    plan: z.ZodOptional<z.ZodObject<{
+        total: z.ZodDefault<z.ZodNumber>;
+        completed: z.ZodDefault<z.ZodNumber>;
+        skipped: z.ZodDefault<z.ZodNumber>;
+        primaryFocus: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    }, "strip", z.ZodTypeAny, {
+        total: number;
+        completed: number;
+        skipped: number;
+        primaryFocus: string | null;
+    }, {
+        total?: number | undefined;
+        completed?: number | undefined;
+        skipped?: number | undefined;
+        primaryFocus?: string | null | undefined;
+    }>>;
 }, "strip", z.ZodTypeAny, {
     writing: {
         totalEssays: number;
@@ -349,6 +381,12 @@ export declare const StatsSchema: z.ZodObject<{
         overallBand: number;
         daysUntilExam: number;
     };
+    plan?: {
+        total: number;
+        completed: number;
+        skipped: number;
+        primaryFocus: string | null;
+    } | undefined;
 }, {
     lastSnapshot: string;
     writing?: {
@@ -395,6 +433,12 @@ export declare const StatsSchema: z.ZodObject<{
     combined?: {
         overallBand?: number | undefined;
         daysUntilExam?: number | undefined;
+    } | undefined;
+    plan?: {
+        total?: number | undefined;
+        completed?: number | undefined;
+        skipped?: number | undefined;
+        primaryFocus?: string | null | undefined;
     } | undefined;
 }>;
 export type Stats = z.infer<typeof StatsSchema>;
