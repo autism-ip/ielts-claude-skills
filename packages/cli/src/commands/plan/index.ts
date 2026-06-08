@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Command } from 'commander';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -53,3 +54,7 @@ export function registerPlanCommands(program: Command): void {
       console.log('Task ' + id + ' not found or already done');
     });
 }
+=======
+import { Command } from "commander";
+export function registerPlanCommands(_program: Command): void {}
+>>>>>>> 52e6d5a32c86d1e584bce03b444aeaa61adca72e

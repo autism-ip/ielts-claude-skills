@@ -11,10 +11,6 @@ export class FeishuAuth {
     try { const r = await this.pending; this.token = { value: r.tenant_access_token, expiresAt: Date.now() + r.expire * 1000 }; return r.tenant_access_token; }
     finally { this.pending = null; }
   }
-  async verify(): Promise<{ok: boolean; message: string}> {
-    try { const t = await this.getToken(); return { ok: !!t, message: 'OK' }; }
-    catch (e: any) { return { ok: false, message: e.message || 'Unknown error' }; }
-  }
   private requestToken(): Promise<{ tenant_access_token: string; expire: number }> {
     return new Promise((resolve, reject) => {
       const body = JSON.stringify({ app_id: this.appId, app_secret: this.appSecret }); const u = new URL(AUTH);

@@ -1,3 +1,12 @@
+<<<<<<< HEAD
+=======
+/**
+ * [INPUT]: 依赖 @ielts/schemas 的类型定义
+ * [OUTPUT]: 对外提供 Intervention 类型、getInterventions、getAllModules 函数
+ * [POS]: packages/adaptive 的干预库
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
+>>>>>>> 52e6d5a32c86d1e584bce03b444aeaa61adca72e
 export interface Intervention {
     module: string;
     errorTag: string;

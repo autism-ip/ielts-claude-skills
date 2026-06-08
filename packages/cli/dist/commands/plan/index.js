@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
@@ -59,4 +60,7 @@ export function registerPlanCommands(program) {
         console.log('Task ' + id + ' not found or already done');
     });
 }
+=======
+export function registerPlanCommands(_program) { }
+>>>>>>> 52e6d5a32c86d1e584bce03b444aeaa61adca72e
 //# sourceMappingURL=index.js.map

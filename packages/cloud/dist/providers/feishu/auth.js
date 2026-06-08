@@ -23,6 +23,7 @@ export class FeishuAuth {
         finally {
             this.pending = null;
         }
+<<<<<<< HEAD
     }
     async verify() {
         try {
@@ -32,6 +33,8 @@ export class FeishuAuth {
         catch (e) {
             return { ok: false, message: e.message || 'Unknown error' };
         }
+=======
+>>>>>>> 52e6d5a32c86d1e584bce03b444aeaa61adca72e
     }
     requestToken() {
         return new Promise((resolve, reject) => {
