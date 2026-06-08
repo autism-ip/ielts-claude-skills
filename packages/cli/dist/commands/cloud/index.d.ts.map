@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAqBpC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CA6D5D"}
-=======
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAepC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CA8D5D"}
->>>>>>> origin/feat/gh-57-cloud-cli
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAepC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CAuD5D"}

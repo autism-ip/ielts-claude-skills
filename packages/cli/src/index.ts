@@ -8,10 +8,8 @@ import { backupCommand } from './commands/backup.js';
 import { restoreCommand } from './commands/restore.js';
 import { doctorCommand } from './commands/doctor.js';
 import { registerPlanCommands } from './commands/plan/index.js';
-<<<<<<< HEAD
-=======
 import { registerCloudCommands } from './commands/cloud/index.js';
->>>>>>> origin/feat/gh-57-cloud-cli
+import { registerReportCommands } from './commands/report/index.js';
 
 const program = new Command();
 
@@ -60,9 +58,7 @@ program
   .action(doctorCommand);
 
 registerPlanCommands(program);
-<<<<<<< HEAD
-=======
 registerCloudCommands(program);
->>>>>>> origin/feat/gh-57-cloud-cli
+registerReportCommands(program);
 
 program.parse();

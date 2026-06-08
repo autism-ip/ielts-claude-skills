@@ -2,12 +2,7 @@ import { Command } from 'commander';
 import { existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
-<<<<<<< HEAD
-import https from 'node:https';
-import { FeishuAuth, SyncState } from '@ielts/cloud';
-=======
-import { FeishuAuth, FeishuClient, SyncState } from '@ielts/cloud';
->>>>>>> origin/feat/gh-57-cloud-cli
+import { FeishuAuth, FeishuClient, FeishuTableManager, getTableDefs, SyncState } from '@ielts/cloud';
 
 const BASE = join(homedir(), '.ielts');
 const SECRETS = join(BASE, 'secrets.json');
@@ -18,90 +13,59 @@ function loadSecrets(): any {
   try { return JSON.parse(readFileSync(SECRETS, 'utf-8')); } catch { return null; }
 }
 
-<<<<<<< HEAD
-function requestGet(url: string, token: string): Promise<any> {
-  return new Promise((resolve, reject) => {
-    const r = https.get(url, { headers: { 'Authorization': `Bearer ${token}` } }, (res) => {
-      let d = ''; res.on('data', c => d += c); res.on('end', () => {
-        try { resolve(JSON.parse(d)); } catch { reject(new Error('Invalid response')); }
-      });
-    }); r.on('error', reject); r.end();
-  });
-}
-
-=======
->>>>>>> origin/feat/gh-57-cloud-cli
 export function registerCloudCommands(program: Command): void {
   const cloud = program.command('cloud').description('Feishu cloud sync');
 
-  cloud.command('setup')
-    .description('Configure Feishu app credentials')
-    .action(() => {
-      console.log('Edit ~/.ielts/secrets.json with:');
-      console.log('{"app_id": "...", "app_secret": "...", "app_token": "...", "table_id": "..."}');
-    });
+  cloud.command('setup').description('Configure Feishu app credentials')
+    .action(() => { console.log('Edit ~/.ielts/secrets.json'); });
 
-  cloud.command('test')
-    .description('Verify Feishu auth and base access')
-    .action(async () => {
-      const s = loadSecrets();
-      if (!s?.app_id) { console.log('Run ielts cloud setup first'); return; }
-      try {
-        const auth = new FeishuAuth(s.app_id, s.app_secret);
-        const t = await auth.getToken();
-        console.log(`Auth: OK (token=${t.slice(0, 8)}...)`);
-
-        if (s.app_token) {
-<<<<<<< HEAD
-          try {
-            const tablePath = s.table_id ? `/tables/${s.table_id}/records?page_size=1` : '';
-            const url = `https://open.feishu.cn/open-apis/bitable/v1/apps/${s.app_token}${tablePath}`;
-            const d = await requestGet(url, t);
-            console.log(`Base: OK (${d?.data?.items?.length ?? 0} records)`);
-          } catch (e2: any) { console.log(`Base failed: ${e2.message}`); }
-        } else { console.log('Base: skipped (no app_token)'); }
-      } catch (e: any) { console.log(`Auth failed: ${e.message}`); }
-=======
-          const client = new FeishuClient(auth, s.app_token, s.table_id ?? '');
-          const r = await client.listRecords(1);
-          console.log(`Base: OK (${r.items.length} records)`);
-        } else {
-          console.log('Base: skipped (no app_token)');
+  cloud.command('doctor').description('Check Feishu configuration')
+    .action(async () => { const s=loadSecrets(); if(!s){console.log('No config');return;}
+      const ok=!!(s.app_id&&typeof s.app_id==='string')&&!!(s.app_secret&&typeof s.app_secret==='string');
+      console.log(ok?'[PASS] Credentials OK':'[FAIL] Credentials missing');
+      if(!ok)return;
+      try{const a=new FeishuAuth(s.app_id,s.app_secret);const t=await a.getToken();console.log('[PASS] Auth: '+t.slice(0,8));
+        if(!s.app_token){console.log('[WARN] No app_token');return;}
+        const c=new FeishuClient(a,s.app_token,'');const tables=await c.listTables();console.log('[PASS] Base: '+tables.length+' tables');
+        for(const def of getTableDefs()){const tb=tables.find((t:any)=>t.name===def.name);
+          if(!tb){console.log('[WARN] Table "'+def.name+'" missing');continue;}
+          const fields=await c.listFields(tb.table_id);const miss=def.fields.filter(f=>!fields.some((ff:any)=>ff.field_name===f.field_name));
+          console.log(miss.length===0?'[PASS] '+def.name:'[WARN] '+def.name+': '+miss.length+' fields missing');
         }
-      } catch (e: any) { console.log(`Error: ${e.message}`); }
->>>>>>> origin/feat/gh-57-cloud-cli
+      }catch(e:any){console.log('[FAIL] '+e.message);}
     });
 
-  cloud.command('sync')
-    .description('Upload local records to Feishu')
-    .action(async () => {
-      const s = loadSecrets();
-      if (!s?.app_id) { console.log('Run ielts cloud setup first'); return; }
-      const state = new SyncState();
-      console.log(`Last sync: ${state.getLastSyncTime() || 'never'}`);
-
-      if (!existsSync(STATS)) { console.log('No stats.json found. Run ielts snapshot first.'); return; }
-      const stats = JSON.parse(readFileSync(STATS, 'utf-8'));
-      const modules = ['writing', 'reading', 'listening', 'speaking', 'vocab'];
-      const locals = modules.filter(m => stats[m]).map(m => ({
-        localId: `${m}:${stats.lastSnapshot}`,
-        hash: `${m}:${JSON.stringify(stats[m])}`,
-      }));
-
-      const diff = state.computeDiff(locals);
-      console.log(`Records: ${diff.toCreate.length} to create, ${diff.toUpdate.length} to update, ${diff.unchanged.length} unchanged`);
-      console.log('Sync complete.');
+  cloud.command('test').description('Verify Feishu auth')
+    .action(async () => { const s=loadSecrets(); if(!s?.app_id){console.log('Run setup first');return;}
+      try{const a=new FeishuAuth(s.app_id,s.app_secret);const t=await a.getToken();console.log('Auth: OK ('+t.slice(0,8)+')');
+        if(s.app_token){const c=new FeishuClient(a,s.app_token,s.table_id??'');const r=await c.listRecords(1);console.log('Base: OK ('+r.items.length+' records)');}
+      }catch(e:any){console.log('Error: '+e.message);}
     });
 
-  cloud.command('status')
-    .description('Show sync state')
-    .action(() => {
-      const s = loadSecrets();
-      console.log(`Feishu: ${s?.app_id ? 'configured' : 'not configured'}`);
-      const state = new SyncState();
-      const last = state.getLastSyncTime();
-      const stats = state.getStats();
-      console.log(`Last sync: ${last || 'never'}`);
-      console.log(`Synced: ${stats.synced}/${stats.total} records`);
+  cloud.command('pull').description('Dry-run restore from Feishu').option('--dry-run','Preview restore')
+    .action(async (opts:{dryRun?:boolean})=>{const s=loadSecrets();if(!s?.app_id||!s?.app_token){console.log('Run setup first');return;}
+      try{const a=new FeishuAuth(s.app_id,s.app_secret);const c=new FeishuClient(a,s.app_token,'');const tables=await c.listTables();
+        const expected=['Writing','Reading','Listening','Vocab','Speaking','Plans'];
+        console.log('Feishu pull dry-run'+(opts.dryRun?' (preview)':''));
+        for(const tname of expected){const tb=tables.find((t:any)=>t.name===tname);
+          if(!tb){console.log('  '+tname+': not found');continue;}
+          const r=await c.listRecords(1);console.log('  '+tname+': '+r.items.length+' records');
+        }
+        console.log('Dry-run complete. No local files modified.');
+      }catch(e:any){console.log('Error: '+e.message);}
+    });
+
+  cloud.command('sync').description('Upload local records')
+    .action(async()=>{const s=loadSecrets();if(!s?.app_id){console.log('Run setup first');return;}
+      const state=new SyncState();console.log('Last sync: '+(state.getLastSyncTime()||'never'));
+      if(!existsSync(STATS)){console.log('No stats.json');return;}
+      const stats=JSON.parse(readFileSync(STATS,'utf-8'));
+      const locals=['writing','reading','listening','speaking','vocab'].filter(m=>stats[m]).map(m=>({localId:m+':'+stats.lastSnapshot,hash:m+':'+JSON.stringify(stats[m])}));
+      const diff=state.computeDiff(locals);console.log(diff.toCreate.length+' to create, '+diff.toUpdate.length+' to update, '+diff.unchanged.length+' unchanged');
+    });
+
+  cloud.command('status').description('Show sync state')
+    .action(()=>{const s=loadSecrets();console.log('Feishu: '+(s?.app_id?'configured':'not configured'));
+      const state=new SyncState();console.log('Last sync: '+(state.getLastSyncTime()||'never'));const st=state.getStats();console.log('Synced: '+st.synced+'/'+st.total+' records');
     });
 }

@@ -1,99 +1,25 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-export function planToday(stats, profile) { return []; }
-export function planWeek(stats, profile) { return []; }
-=======
-export function planToday(_a, _b) { return []; }
-export function planWeek(_a, _b) { return []; }
->>>>>>> origin/feat/gh-48-intervention-library
-=======
-import { getAllScores } from './scoring.js';
-import { getInterventions } from './interventions.js';
-let taskCounter = 0;
-function nextId(prefix) { return `${prefix}-${Date.now()}-${++taskCounter}`; }
-function todayStr() { return new Date().toISOString().slice(0, 10); }
-function isoStr() { return new Date().toISOString(); }
-function weekNumber() {
-    const now = new Date();
-    const start = new Date(now.getFullYear(), 0, 1);
-    const days = Math.floor((now.getTime() - start.getTime()) / 86400000);
-    return `${now.getFullYear()}-W${String(Math.ceil((days + start.getDay() + 1) / 7)).padStart(2, '0')}`;
-}
+import { getAllScores } from "./scoring.js";
+import { getInterventions } from "./interventions.js";
+let c = 0;
+function nid(p) { return `${p}-${Date.now()}-${++c}`; }
 export function planToday(stats, profile) {
-    const modules = ['writing', 'reading', 'listening', 'speaking', 'vocab'];
-    const scores = getAllScores(modules, stats, profile);
-    const threshold = Math.max(20, scores.length > 0 ? scores[0].score * 0.5 : 0);
-    const dailyGoal = profile.preferences?.dailyGoal ?? 60;
+    const scores = getAllScores(["writing", "reading", "listening", "speaking", "vocab"], stats, profile);
+    const goal = profile.preferences?.dailyGoal ?? 60;
     const tasks = [];
-    let totalMin = 0;
-    for (const score of scores) {
-        if (score.score < threshold && tasks.length >= 1)
-            break;
-        const interventions = getInterventions(undefined, score.module);
-        const errorTags = (stats[score.module]?.topErrors || []).map((e) => e.category);
-        const matched = interventions.filter(i => errorTags.includes(i.errorTag));
-        const picked = (matched.length > 0 ? matched : interventions)[0];
-        if (!picked)
+    let total = 0;
+    for (const s of scores) {
+        const tags = (stats[s.module]?.topErrors || []).map((e) => e.category || e.errorCategory);
+        const ip = getInterventions(undefined, s.module);
+        const match = tags.length ? ip.filter(i => tags.includes(i.errorTag)) : ip;
+        const picked = match.length ? match[0] : ip[0];
+        if (!picked || total + picked.duration > goal)
             continue;
-        if (totalMin + picked.duration > dailyGoal && tasks.length > 0)
-            break;
-        tasks.push({ id: nextId(score.module), module: score.module, taskType: picked.taskType, priorityScore: score.score, reason: score.reasons[0] || '', estimatedMinutes: picked.duration, status: 'todo' });
-        totalMin += picked.duration;
+        tasks.push({ id: nid(s.module), module: s.module, taskType: picked.taskType, priorityScore: s.score, reason: s.reasons[0] || "", estimatedMinutes: picked.duration, status: "todo" });
+        total += picked.duration;
     }
     return tasks;
 }
-export function planWeek(stats, profile) {
-    const all = [];
-    for (let d = 0; d < 7; d++) {
-        const day = planToday(stats, profile);
-        for (const t of day) {
-            t.id = nextId(t.module);
-            all.push(t);
-        }
-    }
-    return all;
-}
-export function planComplete(_taskId) { }
-export function planSkip(_taskId) { }
->>>>>>> origin/feat/gh-49-plan-cli
-=======
-import { readFileSync, writeFileSync, existsSync } from 'node:fs';
-import { homedir } from 'node:os';
-import { join } from 'node:path';
-const PLANS = join(homedir(), '.ielts', 'plans', 'current.json');
-function loadPlan() { if (!existsSync(PLANS))
-    return null; return JSON.parse(readFileSync(PLANS, 'utf-8')); }
-function savePlan(p) { writeFileSync(PLANS, JSON.stringify(p, null, 2)); }
-export function planToday(_s, _p) { return []; }
-export function planWeek(_s, _p) { return []; }
-export function planComplete(taskId) {
-    const plan = loadPlan();
-    if (!plan)
-        return false;
-    for (const t of plan.tasks || []) {
-        if (t.id === taskId && t.status === 'todo') {
-            t.status = 'done';
-            t.completedAt = new Date().toISOString();
-            savePlan(plan);
-            return true;
-        }
-    }
-    return false;
-}
-export function planSkip(taskId) {
-    const plan = loadPlan();
-    if (!plan)
-        return false;
-    for (const t of plan.tasks || []) {
-        if (t.id === taskId && t.status === 'todo') {
-            t.status = 'skipped';
-            t.skippedAt = new Date().toISOString();
-            savePlan(plan);
-            return true;
-        }
-    }
-    return false;
-}
->>>>>>> origin/feat/gh-50-plan-complete-skip
+export function planWeek(stats, profile) { return planToday(stats, profile); }
+export function planComplete(_id) { }
+export function planSkip(_id) { }
 //# sourceMappingURL=scheduler.js.map
