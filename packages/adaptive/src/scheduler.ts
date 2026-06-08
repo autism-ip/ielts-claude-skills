@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 <<<<<<< HEAD
  * [INPUT]: 依赖 scoring.ts 的 PriorityScore
@@ -20,6 +21,9 @@ export function planWeek(stats: Record<string, any>, profile: Record<string, any
 =======
 /**
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+/**
+>>>>>>> origin/feat/gh-51-dashboard-plan
  * [INPUT]: 依赖 scoring.ts 的 getAllScores, interventions.ts 的 getInterventions
  * [OUTPUT]: 对外提供 planToday, planWeek, planComplete, planSkip 函数
  * [POS]: packages/adaptive 的调度器，编排日/周计划，处理任务完成/跳过
@@ -92,6 +96,7 @@ export function planToday(
       status: 'todo',
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import { getAllScores } from './scoring.js';
 import { getInterventions } from './interventions.js';
@@ -129,6 +134,8 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
 >>>>>>> origin/feat/gh-49-plan-cli
 =======
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+>>>>>>> origin/feat/gh-51-dashboard-plan
     totalMin += picked.duration;
   }
   return tasks;
@@ -136,8 +143,11 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+>>>>>>> origin/feat/gh-51-dashboard-plan
 export function planWeek(
   stats: Record<string, any>,
   profile: Record<string, any>,
@@ -149,6 +159,7 @@ export function planWeek(
       all.push({ ...t, id: nextId(t.module) });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 export function planWeek(stats: any, profile: any): AdaptiveTask[] {
   const all: AdaptiveTask[] = [];
@@ -158,14 +169,19 @@ export function planWeek(stats: any, profile: any): AdaptiveTask[] {
 >>>>>>> origin/feat/gh-49-plan-cli
 =======
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+>>>>>>> origin/feat/gh-51-dashboard-plan
   }
   return all;
 }
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+>>>>>>> origin/feat/gh-51-dashboard-plan
 export function planComplete(taskId: string): boolean {
   const plan = loadPlan();
   if (!plan) return false;
@@ -193,6 +209,7 @@ export function planSkip(taskId: string): boolean {
   }
   return false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> origin/feat/gh-46-adaptive-plan-schema
 }
 =======
@@ -210,3 +227,6 @@ export function planSkip(_taskId: string): void {}
 =======
 }
 >>>>>>> origin/feat/gh-50-plan-complete-skip
+=======
+}
+>>>>>>> origin/feat/gh-51-dashboard-plan

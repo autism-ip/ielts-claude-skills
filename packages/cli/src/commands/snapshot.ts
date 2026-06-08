@@ -120,6 +120,19 @@ export function snapshotCommand(): void {
   const bands = [writingAvg, readingAvg, listeningAvg].filter(b => b > 0);
   if (bands.length > 0) overallBand = Math.round(bands.reduce((a, b) => a + b, 0) / bands.length * 2) / 2;
 
+  /* 读取计划数据 */
+  let planSummary: Record<string, any> = {};
+  try {
+    const planPath = join(BASE, 'plans', 'current.json');
+    if (existsSync(planPath)) {
+      const plan = JSON.parse(readFileSync(planPath, 'utf-8'));
+      const tasks = plan.tasks || [];
+      const completed = tasks.filter((t: any) => t.status === 'done').length;
+      const skipped = tasks.filter((t: any) => t.status === 'skipped').length;
+      planSummary = { total: tasks.length, completed, skipped, primaryFocus: tasks[0]?.module || null };
+    }
+  } catch { /* no plan */ }
+
   const s = {
     version: '3.0.0', lastSnapshot: new Date().toISOString(),
     writing: {
@@ -132,6 +145,7 @@ export function snapshotCommand(): void {
     speaking: { totalPractices: 0, topicsCovered: 0 },
     vocab: { wordsReviewed: 0, retentionRate: 0 },
     combined: { overallBand, daysUntilExam },
+    plan: planSummary,
   };
 
   writeFileSync(STATS, JSON.stringify(s, null, 2));
