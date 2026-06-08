@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAepC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CAwE5D"}
-=======
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAepC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CA4C5D"}
->>>>>>> 52e6d5a32c86d1e584bce03b444aeaa61adca72e
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAepC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CA6E5D"}
