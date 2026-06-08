@@ -5,7 +5,7 @@ export interface AdaptiveTask {
     priorityScore: number;
     reason: string;
     estimatedMinutes: number;
-    status: "todo";
+    status: 'todo';
 }
 export declare function planToday(stats: any, profile: any): AdaptiveTask[];
 export declare function planWeek(stats: any, profile: any): AdaptiveTask[];
