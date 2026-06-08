@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 {
   "compilerOptions": { "outDir": "./dist", "rootDir": "./src", "declaration": true, "declarationMap": true, "sourceMap": true },
   "extends": "../../tsconfig.base.json",
   "include": ["src"]
 }
+=======
+{"compilerOptions":{"outDir":"./dist","rootDir":"./src","declaration":true,"declarationMap":true,"sourceMap":true},"extends":"../../tsconfig.base.json","include":["src"]}
+>>>>>>> origin/feat/gh-48-intervention-library

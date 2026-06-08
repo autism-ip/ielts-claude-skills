@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
  * [OUTPUT]: 对外提供计划/评分/干预 API
@@ -9,5 +10,8 @@ export { planComplete, planSkip } from './plan-store.js';
 export { computePriority, getAllScores } from './scoring.js';
 export { getInterventions } from './interventions.js';
 export type { PriorityFactor, PriorityScore } from './scoring.js';
+=======
+export { getInterventions, getAllModules } from './interventions.js';
+>>>>>>> origin/feat/gh-48-intervention-library
 export type { Intervention } from './interventions.js';
 //# sourceMappingURL=index.d.ts.map

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 stats.json 和 profile.json 的数据结构
  * [OUTPUT]: 对外提供 PriorityFactor 类型、computePriority、getAllScores
@@ -99,4 +100,7 @@ export function computePriority(module, stats, profile) {
 export function getAllScores(modules, stats, profile) {
     return modules.map(m => computePriority(m, stats, profile)).sort((a, b) => b.score - a.score);
 }
+=======
+export function computePriority(_m, _s, _p) { return { module: _m, score: 0, reasons: [] }; }
+>>>>>>> origin/feat/gh-48-intervention-library
 //# sourceMappingURL=scoring.js.map

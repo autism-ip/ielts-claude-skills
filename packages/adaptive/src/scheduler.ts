@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 <<<<<<< HEAD
  * [INPUT]: 依赖 scoring.ts 的 PriorityScore
@@ -136,3 +137,7 @@ export function planSkip(taskId: string): boolean {
 export function planToday(stats: Record<string, any>, profile: Record<string, any>): any[] { return []; }
 export function planWeek(stats: Record<string, any>, profile: Record<string, any>): any[] { return []; }
 >>>>>>> origin/feat/gh-47-priority-scoring
+=======
+export function planToday(_a: any, _b: any): any[] { return []; }
+export function planWeek(_a: any, _b: any): any[] { return []; }
+>>>>>>> origin/feat/gh-48-intervention-library
