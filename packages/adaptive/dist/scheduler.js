@@ -1,5 +1,6 @@
-import { getAllScores } from "./scoring.js";
-import { getInterventions } from "./interventions.js";
+import { getAllScores } from './scoring.js';
+import { getInterventions } from './interventions.js';
+import { planComplete as psComplete, planSkip as psSkip } from './plan-store.js';
 let c = 0;
 function nid(p) { return `${p}-${Date.now()}-${++c}`; }
 export function planToday(stats, profile) {
@@ -19,7 +20,13 @@ export function planToday(stats, profile) {
     }
     return tasks;
 }
-export function planWeek(stats, profile) { return planToday(stats, profile); }
-export function planComplete(_id) { }
-export function planSkip(_id) { }
+export function planWeek(stats, profile) {
+    const all = [];
+    for (let d = 0; d < 7; d++) {
+        all.push(...planToday(stats, profile));
+    }
+    return all;
+}
+export function planComplete(id) { psComplete(id); }
+export function planSkip(id) { psSkip(id); }
 //# sourceMappingURL=scheduler.js.map
