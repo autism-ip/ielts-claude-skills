@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
  * [OUTPUT]: 对外提供 planToday, planWeek, planComplete, planSkip 函数
@@ -12,3 +13,7 @@ export { getInterventions } from './interventions.js';
 
 export type { PriorityScore } from './scoring.js';
 export type { Intervention } from './interventions.js';
+=======
+export { planToday, planWeek, planComplete, planSkip } from './scheduler.js';
+export type { AdaptiveTask } from './scheduler.js';
+>>>>>>> origin/feat/gh-46-adaptive-plan-schema
