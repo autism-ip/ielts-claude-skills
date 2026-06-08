@@ -7,7 +7,6 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "prepublish": "pnpm build",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },

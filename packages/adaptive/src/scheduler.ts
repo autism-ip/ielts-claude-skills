@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
 <<<<<<< HEAD
  * [INPUT]: 依赖 scoring.ts 的 PriorityScore
@@ -131,3 +132,7 @@ export function planSkip(taskId: string): boolean {
   return false;
 >>>>>>> origin/feat/gh-46-adaptive-plan-schema
 }
+=======
+export function planToday(stats: Record<string, any>, profile: Record<string, any>): any[] { return []; }
+export function planWeek(stats: Record<string, any>, profile: Record<string, any>): any[] { return []; }
+>>>>>>> origin/feat/gh-47-priority-scoring

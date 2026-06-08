@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
 <<<<<<< HEAD
@@ -62,4 +63,10 @@ export function getInterventions(errorTag?: string, module?: string): Interventi
 export function getAllModules(): string[] {
   return [...new Set(CATALOG.map((i) => i.module))];
 >>>>>>> origin/feat/gh-46-adaptive-plan-schema
+=======
+export interface Intervention { module: string; errorTag: string; duration: number; instructions: string; successCriteria: string; }
+const LIST: Intervention[] = [];
+export function getInterventions(errorTag?: string): Intervention[] {
+  return errorTag ? LIST.filter(i => i.errorTag === errorTag) : LIST;
+>>>>>>> origin/feat/gh-47-priority-scoring
 }
