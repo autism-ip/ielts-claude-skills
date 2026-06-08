@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { join, dirname } from 'node:path';
 const STATE = join(homedir(), '.ielts', 'sync', 'feishu.json');
 export class SyncState {
     statePath;
@@ -18,7 +18,7 @@ export class SyncState {
         if (e.code !== 'ENOENT')
             console.warn('SyncState: ignoring corrupted state file');
     } }
-    save() { mkdirSync(join(homedir(), '.ielts', 'sync'), { recursive: true }); writeFileSync(this.statePath || STATE, JSON.stringify([...this.entries.values()], null, 2)); }
+    save() { const p = this.statePath || STATE; mkdirSync(dirname(p), { recursive: true }); writeFileSync(p, JSON.stringify([...this.entries.values()], null, 2)); }
     set(localId, hash, remoteId) { const ex = this.entries.get(localId); this.entries.set(localId, { localId, remoteId: remoteId || ex?.remoteId, hash, lastSyncedAt: new Date().toISOString() }); this.save(); }
     setBatch(items) { for (const i of items)
         this.set(i.localId, i.hash, i.remoteId); }

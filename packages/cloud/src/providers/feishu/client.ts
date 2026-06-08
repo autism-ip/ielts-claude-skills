@@ -81,7 +81,7 @@ export class FeishuClient {
 
   async createTable(name: string): Promise<string> {
     const d = await this.request('tables', 'POST', { table: { name, fields: [{ field_name: 'Name', type: 1 }] } });
-    return d.table?.table_id || '';
+    return d?.table_id || '';
   }
 
   async listFields(tableId: string): Promise<any[]> {
