@@ -1,68 +1,13 @@
-<<<<<<< HEAD
-export type FeishuFieldValue = string | number | boolean | null | string[];
-export interface MappedRecord { fields: Record<string, FeishuFieldValue>; stableHash: string; }
-export interface PrivacyConfig { syncRawText: boolean; syncScores: boolean; }
-const DEF: PrivacyConfig = { syncRawText: false, syncScores: true };
-
-function hash(f: Record<string, FeishuFieldValue>): string {
-  const s = JSON.stringify(Object.entries(f).sort(([a],[b]) => a<b ? -1 : 1));
-  return Array.from(s).reduce((h, c) => ((h << 5) - h + c.charCodeAt(0)) | 0, 0).toString(36);
-}
-
-export function mapProfile(p: Record<string, any>, _privacy = DEF): MappedRecord {
-  const f = { target_overall: p.target?.overall ?? 0, target_writing: p.target?.writing ?? 0, target_reading: p.target?.reading ?? 0, target_listening: p.target?.listening ?? 0, target_speaking: p.target?.speaking ?? 0, exam_date: p.examDate, daily_goal: p.preferences?.dailyGoal ?? 60 };
-  return { fields: f, stableHash: hash(f) };
-}
-
-export function mapWriting(r: Record<string, any>, p = DEF): MappedRecord {
-  const tags = (r.errors || []).map((e: any) => e.category || e.errorCategory).filter(Boolean);
-  const title = p.syncRawText ? (r.topic ?? '') : (r.topic ?? '').slice(0, 200);
-  const scores = p.syncScores
-    ? { tr_score: r.bandScore?.tr ?? 0, cc_score: r.bandScore?.cc ?? 0, lr_score: r.bandScore?.lr ?? 0, gra_score: r.bandScore?.gra ?? 0, overall: r.bandScore?.overall ?? 0 }
-    : { tr_score: null, cc_score: null, lr_score: null, gra_score: null, overall: null };
-  const f = { date: (r.createdAt ?? '').slice(0,10), task_type: r.taskType ?? '', topic: title, word_count: r.wordCount ?? 0, ...scores, error_tags: tags, error_count: tags.length };
-  return { fields: f, stableHash: hash(f) };
-}
-
-export function mapReading(r: Record<string, any>, p = DEF): MappedRecord {
-  const tags = (r.errors || []).map((e: any) => e.errorCategory || e.type).filter(Boolean);
-  const title = p.syncRawText ? (r.passageTitle ?? '') : (r.passageTitle ?? '').slice(0, 100);
-  const f = { date: (r.createdAt ?? '').slice(0,10), passage: title, total_questions: r.totalQuestions ?? 0, correct_count: r.correctCount ?? 0, band_estimate: r.bandEstimate ?? 0, error_tags: tags, error_count: tags.length };
-  return { fields: f, stableHash: hash(f) };
-}
-
-export function mapListening(r: Record<string, any>): MappedRecord {
-  const tags = (r.errors || []).map((e: any) => e.errorCategory).filter(Boolean);
-  const f = { date: (r.createdAt ?? '').slice(0,10), section: r.section ?? 0, total_questions: r.totalQuestions ?? 0, correct_count: r.correctCount ?? 0, band_estimate: r.bandEstimate ?? 0, error_tags: tags, error_count: tags.length };
-  return { fields: f, stableHash: hash(f) };
-}
-
-export function mapVocab(r: Record<string, any>): MappedRecord {
-  const f = { date: r.date ?? '', reviewed: r.reviewed ?? 0, new_words: r.newWords ?? 0, correct: r.correct ?? 0 };
-  return { fields: f, stableHash: hash(f) };
-}
-
-export function mapSpeaking(r: Record<string, any>, p = DEF): MappedRecord {
-  const f = { date: (r.lastPracticed ?? '').slice(0,10), story_name: r.name ?? '', applicable_topics: r.applicableTopics || [], part2_length: r.part2Length ?? 0 };
-  return { fields: f, stableHash: hash(f) };
-}
-
-export function mapPlan(r: Record<string, any>): MappedRecord {
-  const ts = r.tasks || [];
-  const f = { date: r.startDate ?? '', total_tasks: ts.length, completed: ts.filter((t:any) => t.status==='done').length, skipped: ts.filter((t:any) => t.status==='skipped').length };
-  return { fields: f, stableHash: hash(f) };
-}
-=======
 export type FeishuFieldValue=string|number|boolean|null|string[];
 export interface MappedRecord{fields:Record<string,FeishuFieldValue>;stableHash:string;}
 export interface PrivacyConfig{syncRawText:boolean;syncScores:boolean;}
 const DEF:PrivacyConfig={syncRawText:false,syncScores:true};
-function hash(f:Record<string,FeishuFieldValue>):string{let h=0;const s=JSON.stringify(Object.entries(f).sort(([a],[b])=>a<b?-1:1));for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return h.toString(16);}
-export function mapProfile(p:Record<string,any>):MappedRecord{const f={target_overall:p.target?.overall??0,target_writing:p.target?.writing??0,target_reading:p.target?.reading??0,target_listening:p.target?.listening??0,target_speaking:p.target?.speaking??0,exam_date:p.examDate,daily_goal:p.preferences?.dailyGoal??60};return{fields:f,stableHash:hash(f)};}
-export function mapWriting(r:Record<string,any>,p=DEF):MappedRecord{const tags=(r.errors||[]).map((e:any)=>e.category||e.errorCategory).filter(Boolean);const f={date:(r.createdAt??'').slice(0,10),task_type:r.taskType??'',topic:p.syncRawText?(r.topic??''):(r.topic??'').slice(0,200),word_count:r.wordCount??0,tr_score:r.bandScore?.tr??0,cc_score:r.bandScore?.cc??0,lr_score:r.bandScore?.lr??0,gra_score:r.bandScore?.gra??0,overall:r.bandScore?.overall??0,error_tags:tags,error_count:tags.length};return{fields:f,stableHash:hash(f)};}
-export function mapReading(r:Record<string,any>,p=DEF):MappedRecord{const tags=(r.errors||[]).map((e:any)=>e.errorCategory||e.type).filter(Boolean);const f={date:(r.createdAt??'').slice(0,10),passage:p.syncRawText?(r.passageTitle??''):(r.passageTitle??'').slice(0,100),total_questions:r.totalQuestions??0,correct_count:r.correctCount??0,band_estimate:r.bandEstimate??0,error_tags:tags,error_count:tags.length};return{fields:f,stableHash:hash(f)};}
-export function mapListening(r:Record<string,any>):MappedRecord{const tags=(r.errors||[]).map((e:any)=>e.errorCategory).filter(Boolean);const f={date:(r.createdAt??'').slice(0,10),section:r.section??0,total_questions:r.totalQuestions??0,correct_count:r.correctCount??0,band_estimate:r.bandEstimate??0,error_tags:tags,error_count:tags.length};return{fields:f,stableHash:hash(f)};}
-export function mapVocab(r:Record<string,any>):MappedRecord{const f={date:r.date??'',reviewed:r.reviewed??0,new_words:r.newWords??0,correct:r.correct??0};return{fields:f,stableHash:hash(f)};}
-export function mapSpeaking(r:Record<string,any>):MappedRecord{const f={date:(r.lastPracticed??'').slice(0,10),story_name:r.name??'',applicable_topics:r.applicableTopics||[],part2_length:r.part2Length??0};return{fields:f,stableHash:hash(f)};}
-export function mapPlan(r:Record<string,any>):MappedRecord{const ts=r.tasks||[];const f={date:r.startDate??'',total_tasks:ts.length,completed:ts.filter((t:any)=>t.status==='done').length,skipped:ts.filter((t:any)=>t.status==='skipped').length};return{fields:f,stableHash:hash(f)};}
->>>>>>> origin/feat/gh-57-cloud-cli
+function hash(f:Record<string,FeishuFieldValue>):string{let h=0;const s=JSON.stringify(Object.entries(f).sort(([a],[b])=>a<b?-1:1));for(let i=0;i<s.length;i++){h=((h<<5)-h)+s.charCodeAt(i);h|=0;}return Math.abs(h).toString(36);}
+function toTs(d:string|undefined|null):number|null{return d?new Date(d).getTime():null;}
+export function mapProfile(p:Record<string,any>):MappedRecord{const f={target_overall:p.target?.overall??0,target_writing:p.target?.writing??0,target_reading:p.target?.reading??0,target_listening:p.target?.listening??0,target_speaking:p.target?.speaking??0,exam_date:toTs(p.examDate),daily_goal:p.preferences?.dailyGoal??60};return{fields:f,stableHash:hash(f)};}
+export function mapWriting(r:Record<string,any>,p=DEF):MappedRecord{const tags=(r.errors||[]).map((e:any)=>e.category||e.errorCategory).filter(Boolean);const f={date:toTs(r.createdAt),task_type:r.taskType??'',topic:p.syncRawText?(r.topic??''):(r.topic??'').slice(0,200),word_count:r.wordCount??0,tr_score:p.syncScores?r.bandScore?.tr??0:null,cc_score:p.syncScores?r.bandScore?.cc??0:null,lr_score:p.syncScores?r.bandScore?.lr??0:null,gra_score:p.syncScores?r.bandScore?.gra??0:null,overall:p.syncScores?r.bandScore?.overall??0:null,error_tags:tags,error_count:tags.length};return{fields:f,stableHash:hash(f)};}
+export function mapReading(r:Record<string,any>,p=DEF):MappedRecord{const tags=(r.errors||[]).map((e:any)=>e.errorCategory||e.type).filter(Boolean);const f={date:toTs(r.createdAt),passage:p.syncRawText?(r.passageTitle??''):(r.passageTitle??'').slice(0,100),total_questions:r.totalQuestions??0,correct_count:r.correctCount??0,band_estimate:r.bandEstimate??0,error_tags:tags,error_count:tags.length};return{fields:f,stableHash:hash(f)};}
+export function mapListening(r:Record<string,any>):MappedRecord{const tags=(r.errors||[]).map((e:any)=>e.errorCategory).filter(Boolean);const f={date:toTs(r.createdAt),section:r.section??0,total_questions:r.totalQuestions??0,correct_count:r.correctCount??0,band_estimate:r.bandEstimate??0,error_tags:tags,error_count:tags.length};return{fields:f,stableHash:hash(f)};}
+export function mapVocab(r:Record<string,any>):MappedRecord{const f={date:toTs(r.date),reviewed:r.reviewed??0,new_words:r.newWords??0,correct:r.correct??0};return{fields:f,stableHash:hash(f)};}
+export function mapSpeaking(r:Record<string,any>):MappedRecord{const f={date:toTs(r.lastPracticed),story_name:r.name??'',applicable_topics:r.applicableTopics||[],part2_length:r.part2Length??0};return{fields:f,stableHash:hash(f)};}
+export function mapPlan(r:Record<string,any>):MappedRecord{const ts=r.tasks||[];const f={date:toTs(r.startDate),total_tasks:ts.length,completed:ts.filter((t:any)=>t.status==='done').length,skipped:ts.filter((t:any)=>t.status==='skipped').length};return{fields:f,stableHash:hash(f)};}

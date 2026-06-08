@@ -7,92 +7,20 @@ import { snapshotCommand } from './commands/snapshot.js';
 import { backupCommand } from './commands/backup.js';
 import { restoreCommand } from './commands/restore.js';
 import { doctorCommand } from './commands/doctor.js';
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-import { registerPlanCommands } from './commands/plan/index.js';
->>>>>>> origin/feat/gh-49-plan-cli
-=======
-import { registerPlanCommands } from './commands/plan/index.js';
->>>>>>> origin/feat/gh-50-plan-complete-skip
-=======
->>>>>>> origin/feat/gh-51-dashboard-plan
-=======
->>>>>>> origin/feat/gh-53-feishu-auth
-=======
->>>>>>> origin/feat/gh-55-feishu-mappers
-=======
->>>>>>> origin/feat/gh-56-sync-state
-=======
 import { registerPlanCommands } from './commands/plan/index.js';
 import { registerCloudCommands } from './commands/cloud/index.js';
->>>>>>> origin/feat/gh-57-cloud-cli
+import { registerReportCommands } from './commands/report/index.js';
 const program = new Command();
-program
-    .name('ielts')
-    .description('IELTS Claude Skills v3.0 CLI')
-    .version('3.0.0-alpha');
-program
-    .command('init')
-    .description('Initialize ~/.ielts/ directory structure')
-    .option('-f, --fixtures', 'Install fixture dataset for testing')
-    .action(initCommand);
-program
-    .command('profile')
-    .description('View current profile')
-    .action(profileCommand);
-program
-    .command('ls')
-    .argument('[module]', 'Module name (writing, reading, listening, speaking, vocab)')
-    .description('List records for a module')
-    .action(lsCommand);
-program
-    .command('snapshot')
-    .description('Generate stats snapshot for dashboard')
-    .action(snapshotCommand);
-program
-    .command('backup')
-    .argument('<dest>', 'Destination path')
-    .description('Backup ~/.ielts/ to destination')
-    .action(backupCommand);
-program
-    .command('restore')
-    .argument('<src>', 'Source backup path')
-    .description('Restore ~/.ielts/ from backup')
-    .action(restoreCommand);
-program
-    .command('doctor')
-    .description('Diagnose installation health')
-    .action(doctorCommand);
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-registerPlanCommands(program);
->>>>>>> origin/feat/gh-49-plan-cli
-=======
-registerPlanCommands(program);
->>>>>>> origin/feat/gh-50-plan-complete-skip
-=======
->>>>>>> origin/feat/gh-51-dashboard-plan
-=======
->>>>>>> origin/feat/gh-53-feishu-auth
-=======
->>>>>>> origin/feat/gh-55-feishu-mappers
-=======
->>>>>>> origin/feat/gh-56-sync-state
-=======
+program.name('ielts').description('IELTS Claude Skills v3.0 CLI').version('3.0.0-alpha');
+program.command('init').description('Initialize ~/.ielts/').option('-f,--fixtures', 'Install fixtures').action(initCommand);
+program.command('profile').description('View profile').action(profileCommand);
+program.command('ls').argument('[module]').description('List records').action(lsCommand);
+program.command('snapshot').description('Generate snapshot').action(snapshotCommand);
+program.command('backup').argument('<dest>').description('Backup').action(backupCommand);
+program.command('restore').argument('<src>').description('Restore').action(restoreCommand);
+program.command('doctor').description('Diagnose').action(doctorCommand);
 registerPlanCommands(program);
 registerCloudCommands(program);
->>>>>>> origin/feat/gh-57-cloud-cli
+registerReportCommands(program);
 program.parse();
 //# sourceMappingURL=index.js.map
