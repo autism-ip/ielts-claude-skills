@@ -9,6 +9,6 @@ export interface AdaptiveTask {
 }
 export declare function planToday(stats: any, profile: any): AdaptiveTask[];
 export declare function planWeek(stats: any, profile: any): AdaptiveTask[];
-export declare function planComplete(_id: string): void;
-export declare function planSkip(_id: string): void;
+export declare function planComplete(id: string): void;
+export declare function planSkip(id: string): void;
 //# sourceMappingURL=scheduler.d.ts.map

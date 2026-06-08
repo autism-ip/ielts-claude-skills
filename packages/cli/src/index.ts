@@ -9,54 +9,18 @@ import { restoreCommand } from './commands/restore.js';
 import { doctorCommand } from './commands/doctor.js';
 import { registerPlanCommands } from './commands/plan/index.js';
 import { registerCloudCommands } from './commands/cloud/index.js';
+import { registerReportCommands } from './commands/report/index.js';
 
 const program = new Command();
-
-program
-  .name('ielts')
-  .description('IELTS Claude Skills v3.0 CLI')
-  .version('3.0.0-alpha');
-
-program
-  .command('init')
-  .description('Initialize ~/.ielts/ directory structure')
-  .option('-f, --fixtures', 'Install fixture dataset for testing')
-  .action(initCommand);
-
-program
-  .command('profile')
-  .description('View current profile')
-  .action(profileCommand);
-
-program
-  .command('ls')
-  .argument('[module]', 'Module name (writing, reading, listening, speaking, vocab)')
-  .description('List records for a module')
-  .action(lsCommand);
-
-program
-  .command('snapshot')
-  .description('Generate stats snapshot for dashboard')
-  .action(snapshotCommand);
-
-program
-  .command('backup')
-  .argument('<dest>', 'Destination path')
-  .description('Backup ~/.ielts/ to destination')
-  .action(backupCommand);
-
-program
-  .command('restore')
-  .argument('<src>', 'Source backup path')
-  .description('Restore ~/.ielts/ from backup')
-  .action(restoreCommand);
-
-program
-  .command('doctor')
-  .description('Diagnose installation health')
-  .action(doctorCommand);
-
+program.name('ielts').description('IELTS Claude Skills v3.0 CLI').version('3.0.0-alpha');
+program.command('init').description('Initialize ~/.ielts/').option('-f,--fixtures','Install fixtures').action(initCommand);
+program.command('profile').description('View profile').action(profileCommand);
+program.command('ls').argument('[module]').description('List records').action(lsCommand);
+program.command('snapshot').description('Generate snapshot').action(snapshotCommand);
+program.command('backup').argument('<dest>').description('Backup').action(backupCommand);
+program.command('restore').argument('<src>').description('Restore').action(restoreCommand);
+program.command('doctor').description('Diagnose').action(doctorCommand);
 registerPlanCommands(program);
 registerCloudCommands(program);
-
+registerReportCommands(program);
 program.parse();
