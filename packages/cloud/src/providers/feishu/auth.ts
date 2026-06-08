@@ -1,5 +1,8 @@
 import https from 'node:https';
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
 const AUTH = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal';
 export class FeishuAuth {
   private token: { value: string; expiresAt: number } | null = null;
@@ -19,6 +22,7 @@ export class FeishuAuth {
       }); r.on('error', reject); r.write(body); r.end();
     });
   }
+<<<<<<< HEAD
 =======
 
 const AUTH_URL = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal';
@@ -64,4 +68,6 @@ export class FeishuAuth {
     catch (e: any) { return { ok: false, message: e.message || 'Unknown error' }; }
   }
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
 }

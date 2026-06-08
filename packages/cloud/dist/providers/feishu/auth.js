@@ -1,17 +1,24 @@
 import https from 'node:https';
 <<<<<<< HEAD
+<<<<<<< HEAD
 const AUTH = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal';
 =======
 const AUTH_URL = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal';
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+const AUTH = 'https://open.feishu.cn/open-apis/auth/v3/tenant_access_token/internal';
+>>>>>>> origin/feat/gh-54-feishu-client
 export class FeishuAuth {
     appId;
     appSecret;
     token = null;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     pending = null;
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
     constructor(appId, appSecret) {
         this.appId = appId;
         this.appSecret = appSecret;
@@ -19,6 +26,7 @@ export class FeishuAuth {
     async getToken() {
         if (this.token && Date.now() < this.token.expiresAt - 300000)
             return this.token.value;
+<<<<<<< HEAD
 <<<<<<< HEAD
         const { tenant_access_token, expire } = await this.requestToken();
         this.token = { value: tenant_access_token, expiresAt: Date.now() + expire * 1000 };
@@ -36,11 +44,19 @@ export class FeishuAuth {
             this.pending = null;
         }
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+        const { tenant_access_token, expire } = await this.requestToken();
+        this.token = { value: tenant_access_token, expiresAt: Date.now() + expire * 1000 };
+        return this.token.value;
+>>>>>>> origin/feat/gh-54-feishu-client
     }
     requestToken() {
         return new Promise((resolve, reject) => {
             const body = JSON.stringify({ app_id: this.appId, app_secret: this.appSecret });
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
             const u = new URL(AUTH);
             const r = https.request(u, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
                 let d = '';
@@ -61,6 +77,7 @@ export class FeishuAuth {
             r.end();
         });
     }
+<<<<<<< HEAD
 =======
             const url = new URL(AUTH_URL);
             const req = https.request(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
@@ -94,5 +111,7 @@ export class FeishuAuth {
         }
     }
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
 }
 //# sourceMappingURL=auth.js.map

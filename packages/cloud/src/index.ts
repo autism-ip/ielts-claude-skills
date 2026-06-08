@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 export type { MappedRecord, PrivacyConfig, FeishuFieldValue } from './providers/feishu/mappers.js';
 export { mapProfile, mapWriting, mapReading, mapListening, mapVocab, mapSpeaking, mapPlan } from './providers/feishu/mappers.js';
 =======
@@ -12,3 +13,8 @@ export { mapProfile, mapWriting, mapReading, mapListening, mapVocab, mapSpeaking
 export { FeishuAuth } from './providers/feishu/auth.js';
 export type { SyncResult, ConnectionResult } from './provider.js';
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+export { FeishuAuth } from './providers/feishu/auth.js';
+export { FeishuClient } from './providers/feishu/client.js';
+export type { SyncResult, ConnectionResult } from './provider.js';
+>>>>>>> origin/feat/gh-54-feishu-client

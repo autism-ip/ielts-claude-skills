@@ -4,6 +4,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
 <<<<<<< HEAD
@@ -24,10 +25,13 @@
 >>>>>>> origin/feat/gh-51-dashboard-plan
 =======
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
  * [OUTPUT]: 对外提供 Intervention 类型、getInterventions、getAllModules 函数
  * [POS]: packages/adaptive 的干预库，错误标签到训练任务的映射
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> origin/feat/gh-50-plan-complete-skip
@@ -35,12 +39,15 @@
 >>>>>>> origin/feat/gh-51-dashboard-plan
 =======
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
 
 export interface Intervention {
   module: string;
   errorTag: string;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -61,11 +68,15 @@ export interface Intervention {
 =======
   taskType: string;
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+  taskType: string;
+>>>>>>> origin/feat/gh-54-feishu-client
   duration: number;
   instructions: string;
   successCriteria: string;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -83,6 +94,8 @@ export function getInterventions(errorTag?: string): Intervention[] {
 >>>>>>> origin/feat/gh-51-dashboard-plan
 =======
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
 const CATALOG: Intervention[] = [
   { module: 'writing', errorTag: 'task_response', taskType: 'tr-drill', duration: 30, instructions: 'Write thesis + 2 supporting points for 3 Task 2 prompts', successCriteria: 'Each thesis addresses all prompt parts' },
   { module: 'writing', errorTag: 'coherence', taskType: 'cc-structure', duration: 20, instructions: 'Reorganize unordered essay into intro->BP1->BP2->conclusion', successCriteria: 'Each paragraph has clear topic sentence' },
@@ -115,6 +128,7 @@ export function getInterventions(errorTag?: string, module?: string): Interventi
 
 export function getAllModules(): string[] {
   return [...new Set(CATALOG.map((i) => i.module))];
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -270,3 +284,6 @@ export function getAllModules(): string[] { return [...new Set(C.map(i => i.modu
 =======
 }
 >>>>>>> origin/feat/gh-53-feishu-auth
+=======
+}
+>>>>>>> origin/feat/gh-54-feishu-client

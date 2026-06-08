@@ -10,7 +10,10 @@ export declare class FeishuClient {
     private request;
     listRecords(pageSize?: number, pageToken?: string): Promise<{
         items: any[];
+<<<<<<< HEAD
         pageToken?: string;
+=======
+>>>>>>> origin/feat/gh-54-feishu-client
         hasMore: boolean;
     }>;
     createRecord(fields: Record<string, any>): Promise<string>;

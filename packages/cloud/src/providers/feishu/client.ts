@@ -31,23 +31,40 @@ export class FeishuClient {
           }, (res) => {
             let d = ''; res.on('data', c => d += c);
             res.on('end', () => {
+<<<<<<< HEAD
               try { const j = JSON.parse(d); if (j.code === 0) resolve(j.data); else if (res.statusCode === 429) reject(new Error('Feishu 429: Rate limited')); else reject(new Error(`Feishu ${j.code}: ${j.msg}`)); }
               catch { if (res.statusCode === 429) reject(new Error('Feishu 429: Rate limited')); else reject(new Error('Invalid response')); }
+=======
+              try { const j = JSON.parse(d); if (j.code === 0) resolve(j.data); else reject(new Error(`Feishu ${j.code}: ${j.msg}`)); }
+              catch { reject(new Error('Invalid response')); }
+>>>>>>> origin/feat/gh-54-feishu-client
             });
           }); req.on('error', reject); if (data) req.write(data); req.end();
         });
       } catch (e: any) {
+<<<<<<< HEAD
         if (attempt < 2 && (e.message?.includes('Rate') || e.message?.includes('99991663') || e.message?.includes('99991664'))) { await delay(1000 * Math.pow(2, attempt)); continue; }
+=======
+        if (attempt < 2 && e.message?.includes('Rate')) { await delay(1000 * Math.pow(2, attempt)); continue; }
+>>>>>>> origin/feat/gh-54-feishu-client
         throw e;
       }
     }
   }
 
+<<<<<<< HEAD
   async listRecords(pageSize = 500, pageToken?: string): Promise<{ items: any[]; pageToken?: string; hasMore: boolean }> {
     let p = `tables/${this.tableId}/records?page_size=${pageSize}`;
     if (pageToken) p += `&page_token=${pageToken}`;
     const d = await this.request(p, 'GET');
     return { items: d.items || [], pageToken: d.page_token, hasMore: d.has_more || false };
+=======
+  async listRecords(pageSize = 500, pageToken?: string): Promise<{ items: any[]; hasMore: boolean }> {
+    let p = `tables/${this.tableId}/records?page_size=${pageSize}`;
+    if (pageToken) p += `&page_token=${pageToken}`;
+    const d = await this.request(p, 'GET');
+    return { items: d.items || [], hasMore: d.has_more || false };
+>>>>>>> origin/feat/gh-54-feishu-client
   }
 
   async createRecord(fields: Record<string, any>): Promise<string> {
