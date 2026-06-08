@@ -14,18 +14,9 @@ importers:
         specifier: workspace:*
         version: link:../schemas
     devDependencies:
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
       '@types/node':
         specifier: ^22.0.0
         version: 22.19.19
->>>>>>> origin/feat/gh-49-plan-cli
-=======
-      '@types/node':
-        specifier: ^22.0.0
-        version: 22.19.19
->>>>>>> origin/feat/gh-50-plan-complete-skip
       typescript:
         specifier: ^5.5.0
         version: 5.9.3
@@ -35,15 +26,12 @@ importers:
 
   packages/cli:
     dependencies:
-<<<<<<< HEAD
       '@ielts/adaptive':
         specifier: workspace:*
         version: link:../adaptive
-=======
       '@ielts/cloud':
         specifier: workspace:*
         version: link:../cloud
->>>>>>> origin/feat/gh-57-cloud-cli
       '@ielts/schemas':
         specifier: workspace:*
         version: link:../schemas

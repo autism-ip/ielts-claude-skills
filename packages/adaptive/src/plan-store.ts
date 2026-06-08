@@ -1,35 +1,11 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-export function planComplete(_taskId: string): void {}
-export function planSkip(_taskId: string): void {}
-=======
-export function planComplete(_id: string) {}
-export function planSkip(_id: string) {}
->>>>>>> origin/feat/gh-48-intervention-library
-=======
-import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { homedir } from 'node:os';
-import { join } from 'node:path';
-
-const PLANS_DIR = join(homedir(), '.ielts', 'plans');
-
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os'; import { join } from 'node:path';
+const P = join(homedir(), '.ielts', 'plans', 'current.json');
 export function planComplete(taskId: string): void {
-  const p = join(PLANS_DIR, 'current.json');
-  if (!existsSync(p)) return;
-  const plan = JSON.parse(readFileSync(p, 'utf-8'));
-  for (const t of plan.tasks || []) {
-    if (t.id === taskId) { t.status = 'done'; t.completedAt = new Date().toISOString(); break; }
-  }
-  writeFileSync(p, JSON.stringify(plan, null, 2));
+  if (!existsSync(P)) return; const p = JSON.parse(readFileSync(P, 'utf-8'));
+  for (const t of p.tasks||[]) { if (t.id===taskId && t.status==='todo') { t.status='done'; t.completedAt=new Date().toISOString(); writeFileSync(P,JSON.stringify(p,null,2)); return; } }
 }
-
 export function planSkip(taskId: string): void {
-  const p = join(PLANS_DIR, 'current.json');
-  if (!existsSync(p)) return;
-  const plan = JSON.parse(readFileSync(p, 'utf-8'));
-  for (const t of plan.tasks || []) {
-    if (t.id === taskId) { t.status = 'skipped'; t.skippedAt = new Date().toISOString(); break; }
-  }
-  writeFileSync(p, JSON.stringify(plan, null, 2));
+  if (!existsSync(P)) return; const p = JSON.parse(readFileSync(P, 'utf-8'));
+  for (const t of p.tasks||[]) { if (t.id===taskId && t.status==='todo') { t.status='skipped'; t.skippedAt=new Date().toISOString(); writeFileSync(P,JSON.stringify(p,null,2)); return; } }
 }
->>>>>>> origin/feat/gh-49-plan-cli

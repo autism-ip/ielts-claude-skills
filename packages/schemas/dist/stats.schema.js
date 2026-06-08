@@ -34,6 +34,12 @@ export const CombinedStatsSchema = z.object({
     overallBand: z.number().default(0),
     daysUntilExam: z.number().int().default(0),
 });
+export const PlanSummarySchema = z.object({
+    total: z.number().int().default(0),
+    completed: z.number().int().default(0),
+    skipped: z.number().int().default(0),
+    primaryFocus: z.string().nullable().default(null),
+});
 export const StatsSchema = z.object({
     version: z.string().default('3.0.0'),
     lastSnapshot: z.string().datetime(),
@@ -43,5 +49,6 @@ export const StatsSchema = z.object({
     speaking: SpeakingStatsSchema.default({}),
     vocab: VocabStatsSchema.default({}),
     combined: CombinedStatsSchema.default({}),
+    plan: PlanSummarySchema.optional(),
 });
 //# sourceMappingURL=stats.schema.js.map
