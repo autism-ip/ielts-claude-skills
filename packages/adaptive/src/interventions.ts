@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
 <<<<<<< HEAD
@@ -16,6 +17,12 @@
  * [OUTPUT]: 对外提供 Intervention 类型、getInterventions、getAllModules
  * [POS]: packages/adaptive 的干预库，写作/阅读/听力/口语/词汇错误标签→训练任务
 >>>>>>> origin/feat/gh-48-intervention-library
+=======
+/**
+ * [INPUT]: 依赖 @ielts/schemas 的类型定义
+ * [OUTPUT]: 对外提供 Intervention 类型、getInterventions、getAllModules 函数
+ * [POS]: packages/adaptive 的干预库，错误标签到训练任务的映射
+>>>>>>> origin/feat/gh-50-plan-complete-skip
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
 
@@ -24,17 +31,22 @@ export interface Intervention {
   errorTag: string;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   taskType: string;
 >>>>>>> origin/feat/gh-46-adaptive-plan-schema
 =======
   taskType: string;
 >>>>>>> origin/feat/gh-48-intervention-library
+=======
+  taskType: string;
+>>>>>>> origin/feat/gh-50-plan-complete-skip
   duration: number;
   instructions: string;
   successCriteria: string;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 const INTERVENTIONS: Intervention[] = [];
@@ -43,6 +55,8 @@ export function getInterventions(errorTag?: string): Intervention[] {
   if (errorTag) return INTERVENTIONS.filter(i => i.errorTag === errorTag);
   return [...INTERVENTIONS];
 =======
+=======
+>>>>>>> origin/feat/gh-50-plan-complete-skip
 const CATALOG: Intervention[] = [
   { module: 'writing', errorTag: 'task_response', taskType: 'tr-drill', duration: 30, instructions: 'Write thesis + 2 supporting points for 3 Task 2 prompts', successCriteria: 'Each thesis addresses all prompt parts' },
   { module: 'writing', errorTag: 'coherence', taskType: 'cc-structure', duration: 20, instructions: 'Reorganize unordered essay into intro->BP1->BP2->conclusion', successCriteria: 'Each paragraph has clear topic sentence' },
@@ -75,6 +89,7 @@ export function getInterventions(errorTag?: string, module?: string): Interventi
 
 export function getAllModules(): string[] {
   return [...new Set(CATALOG.map((i) => i.module))];
+<<<<<<< HEAD
 >>>>>>> origin/feat/gh-46-adaptive-plan-schema
 =======
 export interface Intervention { module: string; errorTag: string; duration: number; instructions: string; successCriteria: string; }
@@ -218,3 +233,6 @@ export function getInterventions(errorTag?: string, module?: string): Interventi
 }
 export function getAllModules(): string[] { return [...new Set(C.map(i => i.module))]; }
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+}
+>>>>>>> origin/feat/gh-50-plan-complete-skip

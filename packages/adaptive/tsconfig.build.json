@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 {
   "compilerOptions": { "outDir": "./dist", "rootDir": "./src", "declaration": true, "declarationMap": true, "sourceMap": true },
   "extends": "../../tsconfig.base.json",
@@ -11,3 +12,6 @@
 =======
 {"compilerOptions":{"outDir":"./dist","rootDir":"./src","declaration":true,"declarationMap":true,"sourceMap":true},"extends":"../../tsconfig.base.json","include":["src"]}
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+{"compilerOptions":{"outDir":"./dist","rootDir":"./src","declaration":true,"declarationMap":true,"sourceMap":true},"extends":"../../tsconfig.base.json","include":["src"]}
+>>>>>>> origin/feat/gh-50-plan-complete-skip

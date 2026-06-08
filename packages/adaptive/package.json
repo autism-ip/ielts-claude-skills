@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "name": "@ielts/adaptive",
   "version": "3.1.0-alpha",
@@ -30,3 +31,6 @@
   "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.5.0", "vitest": "^2.0.0" }
 >>>>>>> origin/feat/gh-49-plan-cli
 }
+=======
+{"name":"@ielts/adaptive","version":"3.1.0-alpha","private":true,"type":"module","main":"./dist/index.js","types":"./dist/index.d.ts","scripts":{"build":"tsc -p tsconfig.build.json","test":"vitest run","typecheck":"tsc --noEmit"},"dependencies":{"@ielts/schemas":"workspace:*"},"devDependencies":{"@types/node":"^22.0.0","typescript":"^5.5.0","vitest":"^2.0.0"}}
+>>>>>>> origin/feat/gh-50-plan-complete-skip

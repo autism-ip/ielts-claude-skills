@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 <<<<<<< HEAD
  * [INPUT]: 依赖 scoring.ts 的 PriorityScore
@@ -16,6 +17,9 @@ export function planToday(stats: Record<string, any>, profile: Record<string, an
 export function planWeek(stats: Record<string, any>, profile: Record<string, any>): any[] {
   return [];
 =======
+=======
+/**
+>>>>>>> origin/feat/gh-50-plan-complete-skip
  * [INPUT]: 依赖 scoring.ts 的 getAllScores, interventions.ts 的 getInterventions
  * [OUTPUT]: 对外提供 planToday, planWeek, planComplete, planSkip 函数
  * [POS]: packages/adaptive 的调度器，编排日/周计划，处理任务完成/跳过
@@ -87,6 +91,7 @@ export function planToday(
       estimatedMinutes: picked.duration,
       status: 'todo',
     });
+<<<<<<< HEAD
 =======
 import { getAllScores } from './scoring.js';
 import { getInterventions } from './interventions.js';
@@ -122,12 +127,17 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
     if (totalMin + picked.duration > dailyGoal && tasks.length > 0) break;
     tasks.push({ id: nextId(score.module), module: score.module, taskType: picked.taskType, priorityScore: score.score, reason: score.reasons[0] || '', estimatedMinutes: picked.duration, status: 'todo' });
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+>>>>>>> origin/feat/gh-50-plan-complete-skip
     totalMin += picked.duration;
   }
   return tasks;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feat/gh-50-plan-complete-skip
 export function planWeek(
   stats: Record<string, any>,
   profile: Record<string, any>,
@@ -138,6 +148,7 @@ export function planWeek(
     for (const t of day) {
       all.push({ ...t, id: nextId(t.module) });
     }
+<<<<<<< HEAD
 =======
 export function planWeek(stats: any, profile: any): AdaptiveTask[] {
   const all: AdaptiveTask[] = [];
@@ -145,11 +156,16 @@ export function planWeek(stats: any, profile: any): AdaptiveTask[] {
     const day = planToday(stats, profile);
     for (const t of day) { t.id = nextId(t.module); all.push(t); }
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+>>>>>>> origin/feat/gh-50-plan-complete-skip
   }
   return all;
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/feat/gh-50-plan-complete-skip
 export function planComplete(taskId: string): boolean {
   const plan = loadPlan();
   if (!plan) return false;
@@ -176,6 +192,7 @@ export function planSkip(taskId: string): boolean {
     }
   }
   return false;
+<<<<<<< HEAD
 >>>>>>> origin/feat/gh-46-adaptive-plan-schema
 }
 =======
@@ -190,3 +207,6 @@ export function planWeek(_a: any, _b: any): any[] { return []; }
 export function planComplete(_taskId: string): void {}
 export function planSkip(_taskId: string): void {}
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+}
+>>>>>>> origin/feat/gh-50-plan-complete-skip

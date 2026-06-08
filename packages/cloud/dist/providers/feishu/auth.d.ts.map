@@ -1,0 +1,1 @@
+{"version":3,"file":"auth.d.ts","sourceRoot":"","sources":["../../../src/providers/feishu/auth.ts"],"names":[],"mappings":"AAEA,qBAAa,UAAU;IAET,OAAO,CAAC,KAAK;IAAU,OAAO,CAAC,SAAS;IADpD,OAAO,CAAC,KAAK,CAAqD;gBAC9C,KAAK,EAAE,MAAM,EAAU,SAAS,EAAE,MAAM;IACtD,QAAQ,IAAI,OAAO,CAAC,MAAM,CAAC;IAMjC,OAAO,CAAC,YAAY;CASrB"}

@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * [INPUT]: 依赖 @ielts/schemas 的类型定义
  * [OUTPUT]: 对外提供计划/评分/干预 API
@@ -23,4 +24,8 @@ export type { Intervention } from './interventions.js';
 export { planToday, planWeek, planComplete, planSkip } from './scheduler.js';
 export type { AdaptiveTask } from './scheduler.js';
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+export { planToday, planWeek, planComplete, planSkip } from './scheduler.js';
+export type { AdaptiveTask } from './scheduler.js';
+>>>>>>> origin/feat/gh-50-plan-complete-skip
 //# sourceMappingURL=index.d.ts.map

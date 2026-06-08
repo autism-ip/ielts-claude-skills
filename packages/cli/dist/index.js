@@ -8,9 +8,13 @@ import { backupCommand } from './commands/backup.js';
 import { restoreCommand } from './commands/restore.js';
 import { doctorCommand } from './commands/doctor.js';
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import { registerPlanCommands } from './commands/plan/index.js';
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+import { registerPlanCommands } from './commands/plan/index.js';
+>>>>>>> origin/feat/gh-50-plan-complete-skip
 const program = new Command();
 program
     .name('ielts')
@@ -49,8 +53,12 @@ program
     .description('Diagnose installation health')
     .action(doctorCommand);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 registerPlanCommands(program);
 >>>>>>> origin/feat/gh-49-plan-cli
+=======
+registerPlanCommands(program);
+>>>>>>> origin/feat/gh-50-plan-complete-skip
 program.parse();
 //# sourceMappingURL=index.js.map
