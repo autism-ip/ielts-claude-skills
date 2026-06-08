@@ -6,6 +6,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
 <<<<<<< HEAD
  * [INPUT]: 依赖 scoring.ts 的 PriorityScore
@@ -36,6 +37,9 @@ export function planWeek(stats: Record<string, any>, profile: Record<string, any
 =======
 /**
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+/**
+>>>>>>> origin/feat/gh-56-sync-state
  * [INPUT]: 依赖 scoring.ts 的 getAllScores, interventions.ts 的 getInterventions
  * [OUTPUT]: 对外提供 planToday, planWeek, planComplete, planSkip 函数
  * [POS]: packages/adaptive 的调度器，编排日/周计划，处理任务完成/跳过
@@ -112,6 +116,7 @@ export function planToday(
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 import { getAllScores } from './scoring.js';
 import { getInterventions } from './interventions.js';
@@ -157,11 +162,14 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
 >>>>>>> origin/feat/gh-54-feishu-client
 =======
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+>>>>>>> origin/feat/gh-56-sync-state
     totalMin += picked.duration;
   }
   return tasks;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -178,6 +186,8 @@ export function planToday(stats: any, profile: any): AdaptiveTask[] {
 >>>>>>> origin/feat/gh-54-feishu-client
 =======
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+>>>>>>> origin/feat/gh-56-sync-state
 export function planWeek(
   stats: Record<string, any>,
   profile: Record<string, any>,
@@ -188,6 +198,7 @@ export function planWeek(
     for (const t of day) {
       all.push({ ...t, id: nextId(t.module) });
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -210,10 +221,13 @@ export function planWeek(stats: any, profile: any): AdaptiveTask[] {
 >>>>>>> origin/feat/gh-54-feishu-client
 =======
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+>>>>>>> origin/feat/gh-56-sync-state
   }
   return all;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -230,6 +244,8 @@ export function planWeek(stats: any, profile: any): AdaptiveTask[] {
 >>>>>>> origin/feat/gh-54-feishu-client
 =======
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+>>>>>>> origin/feat/gh-56-sync-state
 export function planComplete(taskId: string): boolean {
   const plan = loadPlan();
   if (!plan) return false;
@@ -256,6 +272,7 @@ export function planSkip(taskId: string): boolean {
     }
   }
   return false;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -290,3 +307,6 @@ export function planSkip(_taskId: string): void {}
 =======
 }
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+}
+>>>>>>> origin/feat/gh-56-sync-state

@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 export type { MappedRecord, PrivacyConfig, FeishuFieldValue } from './providers/feishu/mappers.js';
 export { mapProfile, mapWriting, mapReading, mapListening, mapVocab, mapSpeaking, mapPlan } from './providers/feishu/mappers.js';
 =======
@@ -23,4 +24,8 @@ export { FeishuAuth } from './providers/feishu/auth.js';
 export { FeishuClient } from './providers/feishu/client.js';
 export type { SyncResult, ConnectionResult } from './provider.js';
 >>>>>>> origin/feat/gh-55-feishu-mappers
+=======
+export { SyncState } from './sync-state.js';
+export type { SyncEntry, SyncDiff } from './sync-state.js';
+>>>>>>> origin/feat/gh-56-sync-state
 //# sourceMappingURL=index.d.ts.map
