@@ -1,9 +1,9 @@
 import { existsSync, readFileSync, writeFileSync, renameSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { join, dirname } from "node:path";
 const P = join(homedir(), ".ielts", "plans", "current.json");
 function atomicWrite(p, data) {
-    const dir = require("node:path").dirname(p);
+    const dir = dirname(p);
     const tmp = join(dir, ".tmp-" + Date.now() + ".json");
     writeFileSync(tmp, JSON.stringify(data, null, 2), { mode: 0o600 });
     renameSync(tmp, p);

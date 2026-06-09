@@ -36,7 +36,7 @@ export const WritingRecordSchema = z.object({
 }).refine(r => {
   const exam = r.examType || 'academic';
   if (r.taskType === 'letter' && exam === 'academic') return false;
-  if (r.taskType !== 'letter' && exam === 'general-training') return false;
+  if (r.taskType === 'task1' && exam === 'general-training') return false;
   return true;
 }, 'Incompatible taskType and examType combination');
 
