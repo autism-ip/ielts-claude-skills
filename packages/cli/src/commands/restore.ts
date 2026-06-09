@@ -13,5 +13,5 @@ export function restoreCommand(src: string): void {
   try {
     cpSync(resolved, DEST, { recursive: true });
     console.log('Restored ' + resolved + ' → ' + DEST);
-  } catch (e: any) { console.log('Restore failed: ' + e.message); }
+  } catch (e: any) { console.log('Restore failed: ' + e.message); process.exitCode = 1; }
 }

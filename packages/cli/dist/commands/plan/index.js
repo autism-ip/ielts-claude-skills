@@ -39,8 +39,11 @@ export function registerPlanCommands(program) {
             const stats = JSON.parse(readFileSync(sp, 'utf-8'));
             const profile = JSON.parse(readFileSync(pp, 'utf-8'));
             const week = [];
+            const used = [];
             for (let d = 0; d < 7; d++) {
-                week.push(...planToday(stats, profile));
+                const day = planToday(stats, profile).filter((t) => !used.includes(t.module));
+                day.forEach((t) => { t.dueDate = new Date(Date.now() + d * 86400000).toISOString().slice(0, 10); used.push(t.module); });
+                week.push(...day);
             }
             mkdirSync(join(BASE, 'plans'), { recursive: true });
             writeFileSync(join(BASE, 'plans', 'week.json'), JSON.stringify({ tasks: week }, null, 2));

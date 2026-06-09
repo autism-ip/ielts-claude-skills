@@ -8,7 +8,10 @@ const DIRS = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'd
 
 export function initCommand(options: { fixtures?: boolean }): void {
   if (existsSync(IELTS_DIR) && !options.fixtures) {
-    console.log('~/.ielts/ already exists. Creating missing directories...');
+    console.log('~/.ielts/ already exists. Ensuring directories...');
+    for (const dir of DIRS) { mkdirSync(join(IELTS_DIR, dir), { recursive: true }); }
+    console.log('Done.');
+    return;
   }
   if (options.fixtures) {
     installFixtures();

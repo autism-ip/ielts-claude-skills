@@ -23,6 +23,7 @@ export function restoreCommand(src) {
     }
     catch (e) {
         console.log('Restore failed: ' + e.message);
+        process.exitCode = 1;
     }
 }
 //# sourceMappingURL=restore.js.map
