@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-export function registerPlanCommands(_program) { }
-=======
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
@@ -69,5 +66,4 @@ export function registerPlanCommands(program) {
         console.log('Task ' + id + ' not found or already done');
     });
 }
->>>>>>> origin/main
 //# sourceMappingURL=index.js.map
