@@ -4,5 +4,5 @@
  * [POS]: packages/cli 的夹具模块，被 init 命令消费
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
-export declare function installFixtures(): void;
+export declare function installFixtures(force?: boolean): void;
 //# sourceMappingURL=fixtures.d.ts.map

@@ -4,10 +4,11 @@
  * [POS]: packages/cli 的夹具模块，被 init 命令消费
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
-import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync, existsSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 const BASE = join(homedir(), '.ielts');
+const BASE_LOCK = join(BASE, '.fixtures-lock');
 /* ── 辅助：写 frontmatter .md 文件 ── */
 function writeFm(path, data, body) {
     const lines = ['---'];
@@ -314,7 +315,11 @@ function makeStats() {
     };
 }
 /* ── 主入口 ── */
-export function installFixtures() {
+export function installFixtures(force) {
+    if (!force && existsSync(BASE_LOCK)) {
+        console.error('~/.ielts/ has real data. Use --force to overwrite.');
+        return;
+    }
     /* 清理旧记录，确保幂等性 */
     const dirs = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];
     for (const dir of dirs) {
@@ -363,6 +368,7 @@ export function installFixtures() {
     const r = makeReadingFixtures();
     const l = makeListeningFixtures();
     const s = makeSpeakingStories();
+    writeFileSync(BASE_LOCK, '');
     console.log(`Installed fixture dataset to ~/.ielts/`);
     console.log(`  Writing: ${w.length} essays`);
     console.log(`  Reading: ${r.length} passages`);
