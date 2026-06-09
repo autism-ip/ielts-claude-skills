@@ -1,5 +1,6 @@
 import { z } from 'zod';
 export declare const WritingTaskType: z.ZodEnum<["task1", "task2", "letter"]>;
+export declare const WritingExamType: z.ZodEnum<["academic", "general-training"]>;
 export declare const WritingErrorCategory: z.ZodEnum<["task_response", "coherence", "lexical", "grammar", "spelling"]>;
 export declare const WritingErrorSchema: z.ZodObject<{
     category: z.ZodEnum<["task_response", "coherence", "lexical", "grammar", "spelling"]>;
@@ -36,7 +37,7 @@ export declare const WritingScoresSchema: z.ZodObject<{
     lr: number;
     gra: number;
 }>;
-export declare const WritingRecordSchema: z.ZodObject<{
+export declare const WritingRecordSchema: z.ZodEffects<z.ZodObject<{
     type: z.ZodLiteral<"writing">;
     taskType: z.ZodEnum<["task1", "task2", "letter"]>;
     topic: z.ZodString;
@@ -78,6 +79,7 @@ export declare const WritingRecordSchema: z.ZodObject<{
     }>, "many">>;
     rewritten: z.ZodDefault<z.ZodBoolean>;
     createdAt: z.ZodString;
+    examType: z.ZodOptional<z.ZodEnum<["academic", "general-training"]>>;
 }, "strip", z.ZodTypeAny, {
     type: "writing";
     createdAt: string;
@@ -98,6 +100,7 @@ export declare const WritingRecordSchema: z.ZodObject<{
         description: string;
     }[];
     rewritten: boolean;
+    examType?: "academic" | "general-training" | undefined;
 }, {
     type: "writing";
     createdAt: string;
@@ -118,6 +121,49 @@ export declare const WritingRecordSchema: z.ZodObject<{
         description: string;
     }[] | undefined;
     rewritten?: boolean | undefined;
+    examType?: "academic" | "general-training" | undefined;
+}>, {
+    type: "writing";
+    createdAt: string;
+    taskType: "task1" | "task2" | "letter";
+    topic: string;
+    wordCount: number;
+    bandScore: {
+        overall: number;
+        tr: number;
+        cc: number;
+        lr: number;
+        gra: number;
+    };
+    errors: {
+        category: "task_response" | "coherence" | "lexical" | "grammar" | "spelling";
+        severity: "major" | "minor";
+        location: string;
+        description: string;
+    }[];
+    rewritten: boolean;
+    examType?: "academic" | "general-training" | undefined;
+}, {
+    type: "writing";
+    createdAt: string;
+    taskType: "task1" | "task2" | "letter";
+    topic: string;
+    wordCount: number;
+    bandScore: {
+        overall: number;
+        tr: number;
+        cc: number;
+        lr: number;
+        gra: number;
+    };
+    errors?: {
+        category: "task_response" | "coherence" | "lexical" | "grammar" | "spelling";
+        severity: "major" | "minor";
+        location: string;
+        description: string;
+    }[] | undefined;
+    rewritten?: boolean | undefined;
+    examType?: "academic" | "general-training" | undefined;
 }>;
 export type WritingRecord = z.infer<typeof WritingRecordSchema>;
 //# sourceMappingURL=writing.schema.d.ts.map

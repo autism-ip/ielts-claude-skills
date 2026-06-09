@@ -111,7 +111,7 @@ export function snapshotCommand(): void {
   let daysUntilExam = 0, overallBand = 0;
   try {
     const profile = JSON.parse(readFileSync(PROFILE, 'utf-8'));
-    if (profile.examDate) daysUntilExam = Math.max(0, Math.ceil((new Date(profile.examDate).getTime() - Date.now()) / 86400000));
+    if (profile.examDate) { const d = new Date(profile.examDate).getTime(); if (!isNaN(d)) daysUntilExam = Math.max(0, Math.ceil((d - Date.now()) / 86400000)); }
   } catch { /* no profile */ }
 
   const writingAvg = write.length ? (wrAvg('tr') + wrAvg('cc') + wrAvg('lr') + wrAvg('gra')) / 4 : 0;

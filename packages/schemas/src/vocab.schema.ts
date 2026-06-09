@@ -23,9 +23,9 @@ export type VocabWordlist = z.infer<typeof VocabWordlistSchema>;
 
 export const ReviewDaySchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
-  reviewed: z.number().int().default(0),
-  newWords: z.number().int().default(0),
-  correct: z.number().int().default(0),
+  reviewed: z.number().int().min(0).default(0),
+  newWords: z.number().int().min(0).default(0),
+  correct: z.number().int().min(0).default(0),
 });
 
 export const VocabReviewLogSchema = z.object({
