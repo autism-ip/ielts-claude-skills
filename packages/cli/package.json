@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
-  "bin": { "ielts": "./dist/index.js" },
+  "bin": {
+    "ielts": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "prepublish": "pnpm build",
