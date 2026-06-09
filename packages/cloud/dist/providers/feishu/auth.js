@@ -43,8 +43,6 @@ export class FeishuAuth {
             r.end();
         });
     }
-<<<<<<< HEAD
-=======
     async verify() {
         try {
             const t = await this.getToken();
@@ -54,6 +52,5 @@ export class FeishuAuth {
             return { ok: false, message: e.message || "Unknown error" };
         }
     }
->>>>>>> origin/main
 }
 //# sourceMappingURL=auth.js.map

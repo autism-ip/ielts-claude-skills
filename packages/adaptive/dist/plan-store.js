@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-"use strict";
-=======
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join } from "node:path";
@@ -31,5 +28,4 @@ export function planSkip(taskId) {
         }
     }
 }
->>>>>>> origin/main
 //# sourceMappingURL=plan-store.js.map
