@@ -43,14 +43,5 @@ export class FeishuAuth {
             r.end();
         });
     }
-    async verify() {
-        try {
-            const t = await this.getToken();
-            return { ok: !!t, message: "OK" };
-        }
-        catch (e) {
-            return { ok: false, message: e.message || "Unknown error" };
-        }
-    }
 }
 //# sourceMappingURL=auth.js.map

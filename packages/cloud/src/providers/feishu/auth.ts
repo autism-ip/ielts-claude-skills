@@ -17,12 +17,3 @@ export class FeishuAuth {
       const r = https.request(u,{method:'POST',headers:{'Content-Type':'application/json','Content-Length':Buffer.byteLength(body)}},(res)=>{let d='';res.on('data',c=>d+=c);res.on('end',()=>{try{const j=JSON.parse(d);if(j.tenant_access_token)resolve(j);else reject(new Error(j.msg))}catch{reject(new Error('invalid response'))}})});r.on('error',reject);r.write(body);r.end();
     });
   }
-<<<<<<< HEAD
-}
-=======
-  async verify(): Promise<{ok:boolean;message:string}> {
-    try { const t = await this.getToken(); return { ok: !!t, message: "OK" }; }
-    catch (e: any) { return { ok: false, message: e.message || "Unknown error" }; }
-  }
-}
->>>>>>> origin/main
