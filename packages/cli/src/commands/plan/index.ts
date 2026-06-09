@@ -1,7 +1,4 @@
 import { Command } from 'commander';
-<<<<<<< HEAD
-export function registerPlanCommands(_program: Command): void {}
-=======
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
@@ -52,4 +49,3 @@ export function registerPlanCommands(program: Command): void {
       console.log('Task ' + id + ' not found or already done');
     });
 }
->>>>>>> origin/main
