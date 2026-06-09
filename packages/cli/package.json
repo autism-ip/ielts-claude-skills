@@ -4,7 +4,13 @@
   "private": true,
   "type": "module",
   "main": "./dist/index.js",
+<<<<<<< HEAD
   "types": "./dist/index.d.ts",
+=======
+  "bin": {
+    "ielts": "./dist/index.js"
+  },
+>>>>>>> origin/main
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
