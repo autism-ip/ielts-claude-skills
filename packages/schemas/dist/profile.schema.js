@@ -25,7 +25,7 @@ export const ProfileSchema = z.object({
     createdAt: z.string().datetime(),
     updatedAt: z.string().datetime(),
     target: TargetScoresSchema,
-    examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be YYYY-MM-DD').nullable().default(null),
+    examDate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, 'Date must be YYYY-MM-DD').refine(v => !isNaN(new Date(v).getTime()), 'Invalid calendar date').nullable().default(null),
     timezone: z.string().default('Asia/Shanghai'),
     preferences: PreferencesSchema.default({}),
 });

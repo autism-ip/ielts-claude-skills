@@ -29,6 +29,6 @@ export const AdaptivePlanSchema = z.object({
     tasks: z.array(AdaptiveTaskSchema).default([]).refine((ts) => new Set(ts.filter(t => t.id).map(t => t.id)).size === ts.filter(t => t.id).length, 'Duplicate task IDs'),
     summary: PlanSummarySchema.default({}),
 }).refine((p) => !p.endDate || p.endDate >= p.startDate, 'endDate before startDate')
-    .refine((p) => { const ts = p.tasks || []; return !p.summary.total || (p.summary.total === ts.length && p.summary.completed === ts.filter((t) => t.status === 'done').length && p.summary.skipped === ts.filter((t) => t.status === 'skipped').length); }, 'Summary must match task counts')
+    .refine((p) => { const ts = p.tasks || []; return p.summary.total === ts.length && p.summary.completed === ts.filter((t) => t.status === 'done').length && p.summary.skipped === ts.filter((t) => t.status === 'skipped').length; }, 'Summary must match task counts')
     .refine((p) => p.tasks.filter((t) => (t.status === 'done' && !t.completedAt) || (t.status === 'skipped' && !t.skippedAt)).length === 0, 'Status requires matching timestamp');
 //# sourceMappingURL=plan.schema.js.map

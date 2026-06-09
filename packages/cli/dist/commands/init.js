@@ -6,8 +6,7 @@ const IELTS_DIR = join(homedir(), '.ielts');
 const DIRS = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];
 export function initCommand(options) {
     if (existsSync(IELTS_DIR) && !options.fixtures) {
-        console.log('~/.ielts/ already exists. Skipping init.');
-        return;
+        console.log('~/.ielts/ already exists. Creating missing directories...');
     }
     if (options.fixtures) {
         installFixtures();

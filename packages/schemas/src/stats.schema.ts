@@ -1,12 +1,13 @@
+import { PlanSummarySchema } from "./plan.schema.js";
 import { z } from 'zod';
 
 const StatsErrorSummarySchema = z.object({
   category: z.string(),
-  count: z.number().int().default(0),
+  count: z.number().int().min(0).default(0),
 });
 
 export const WritingStatsSchema = z.object({
-  totalEssays: z.number().int().default(0),
+  totalEssays: z.number().int().min(0).default(0),
   averageScores: z.object({
     tr: z.number(), cc: z.number(), lr: z.number(), gra: z.number(), overall: z.number(),
   }).optional(),
@@ -14,14 +15,14 @@ export const WritingStatsSchema = z.object({
 });
 
 export const ReadingStatsSchema = z.object({
-  totalPassages: z.number().int().default(0),
+  totalPassages: z.number().int().min(0).default(0),
   averageCorrect: z.number().default(0),
   averageBand: z.number().default(0),
   topErrors: z.array(StatsErrorSummarySchema).default([]),
 });
 
 export const ListeningStatsSchema = z.object({
-  totalSections: z.number().int().default(0),
+  totalSections: z.number().int().min(0).default(0),
   averageCorrect: z.number().default(0),
   averageBand: z.number().default(0),
   topErrors: z.array(StatsErrorSummarySchema).default([]),
@@ -33,7 +34,7 @@ export const SpeakingStatsSchema = z.object({
 });
 
 export const VocabStatsSchema = z.object({
-  wordsReviewed: z.number().int().default(0),
+  wordsReviewed: z.number().int().min(0).default(0),
   retentionRate: z.number().min(0).max(1).default(0),
 });
 
@@ -42,12 +43,6 @@ export const CombinedStatsSchema = z.object({
   daysUntilExam: z.number().int().default(0),
 });
 
-export const PlanSummarySchema = z.object({
-  total: z.number().int().default(0),
-  completed: z.number().int().default(0),
-  skipped: z.number().int().default(0),
-  primaryFocus: z.string().nullable().default(null),
-});
 
 export const StatsSchema = z.object({
   version: z.string().default('3.0.0'),
