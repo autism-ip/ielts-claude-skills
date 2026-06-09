@@ -7,4 +7,8 @@ export interface Intervention {
     successCriteria: string;
 }
 export declare function getInterventions(errorTag?: string, module?: string): Intervention[];
+<<<<<<< HEAD
+=======
+export declare function getAllModules(): string[];
+>>>>>>> origin/main
 //# sourceMappingURL=interventions.d.ts.map

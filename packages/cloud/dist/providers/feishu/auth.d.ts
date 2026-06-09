@@ -6,5 +6,12 @@ export declare class FeishuAuth {
     constructor(appId: string, appSecret: string);
     getToken(): Promise<string>;
     private requestToken;
+<<<<<<< HEAD
+=======
+    verify(): Promise<{
+        ok: boolean;
+        message: string;
+    }>;
+>>>>>>> origin/main
 }
 //# sourceMappingURL=auth.d.ts.map
