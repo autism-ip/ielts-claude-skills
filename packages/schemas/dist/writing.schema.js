@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { BandScoreSchema } from './profile.schema.js';
 export const WritingTaskType = z.enum(['task1', 'task2', 'letter']);
+export const WritingExamType = z.enum(['academic', 'general-training']).default('academic');
 export const WritingErrorCategory = z.enum([
     'task_response', 'coherence', 'lexical', 'grammar', 'spelling',
 ]);
@@ -23,6 +24,7 @@ export const WritingRecordSchema = z.object({
     topic: z.string().min(1),
     wordCount: z.number().int().positive(),
     bandScore: WritingScoresSchema,
+    examType: WritingExamType,
     errors: z.array(WritingErrorSchema).default([]),
     rewritten: z.boolean().default(false),
     createdAt: z.string().datetime(),
