@@ -6,6 +6,7 @@
  */
 
 import { Command } from 'commander';
+import { processPatterns } from '@ielts/cloud';
 
 export function registerReportCommands(program: Command): void {
   const report = program.command('report').description('Generate training reports');
