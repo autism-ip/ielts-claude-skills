@@ -4,7 +4,7 @@
  * [POS]: packages/cli 的夹具模块，被 init 命令消费
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
-import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 const BASE = join(homedir(), '.ielts');
@@ -314,6 +314,16 @@ function makeStats() {
     };
 }
 /* ── 主入口 ── */
+function hasRealData() {
+    try {
+        const p = join(BASE, 'profile.json');
+        const d = JSON.parse(readFileSync(p, 'utf-8'));
+        return d.target && (d.target.overall > 0 || d.target.writing > 0);
+    }
+    catch {
+        return false;
+    }
+}
 export function installFixtures() {
     /* 清理旧记录，确保幂等性 */
     const dirs = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];

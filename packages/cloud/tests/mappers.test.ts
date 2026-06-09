@@ -12,7 +12,7 @@ describe('mappers', () => {
   });
   it('mapReading respects privacy', () => {
     const r = mapReading({ createdAt: '2026-05-10T09:00Z', passageTitle: 'A'.repeat(300), totalQuestions: 13, correctCount: 8, bandEstimate: 6 });
-    expect((r.fields.passage as string).length).toBeLessThan(200);
+    expect(r.fields.passage).toBeUndefined();
   });
   it('mapListening extracts section', () => {
     const r = mapListening({ createdAt: '2026-05-10T09:00Z', section: 3, totalQuestions: 10, correctCount: 6, bandEstimate: 5.5 });

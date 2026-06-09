@@ -14,8 +14,8 @@ export class FeishuClient {
     const now = Date.now();
     this.tokens = Math.min(5, this.tokens + (now - this.lastRefill) * 5 / 1000);
     this.lastRefill = now;
-    if (this.tokens < 1) await delay(200);
-    this.tokens = Math.max(0, this.tokens - 1);
+    while (this.tokens < 1) { await delay(200); const n = Date.now(); this.tokens = Math.min(5, this.tokens + (n - this.lastRefill) * 5 / 1000); this.lastRefill = n; }
+    this.tokens -= 1;
   }
 
   private async request(path: string, method: string, body?: any): Promise<any> {
@@ -26,7 +26,7 @@ export class FeishuClient {
     for (let attempt = 0; attempt < 3; attempt++) {
       try {
         return await new Promise((resolve, reject) => {
-          const req = https.request(url, {
+          const req = https.request(url, { signal: AbortSignal.timeout(15000),
             method, headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', ...(data ? { 'Content-Length': Buffer.byteLength(data) } : {}) },
           }, (res) => {
             let d = ''; res.on('data', c => d += c);

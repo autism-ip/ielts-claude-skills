@@ -149,22 +149,6 @@ export declare const CombinedStatsSchema: z.ZodObject<{
     overallBand?: number | undefined;
     daysUntilExam?: number | undefined;
 }>;
-export declare const PlanSummarySchema: z.ZodObject<{
-    total: z.ZodDefault<z.ZodNumber>;
-    completed: z.ZodDefault<z.ZodNumber>;
-    skipped: z.ZodDefault<z.ZodNumber>;
-    primaryFocus: z.ZodDefault<z.ZodNullable<z.ZodString>>;
-}, "strip", z.ZodTypeAny, {
-    total: number;
-    completed: number;
-    skipped: number;
-    primaryFocus: string | null;
-}, {
-    total?: number | undefined;
-    completed?: number | undefined;
-    skipped?: number | undefined;
-    primaryFocus?: string | null | undefined;
-}>;
 export declare const StatsSchema: z.ZodObject<{
     version: z.ZodDefault<z.ZodString>;
     lastSnapshot: z.ZodString;
@@ -322,17 +306,17 @@ export declare const StatsSchema: z.ZodObject<{
         total: z.ZodDefault<z.ZodNumber>;
         completed: z.ZodDefault<z.ZodNumber>;
         skipped: z.ZodDefault<z.ZodNumber>;
-        primaryFocus: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+        completionRate: z.ZodDefault<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
-        primaryFocus: string | null;
+        completionRate: number;
     }, {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
-        primaryFocus?: string | null | undefined;
+        completionRate?: number | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     writing: {
@@ -382,10 +366,10 @@ export declare const StatsSchema: z.ZodObject<{
         daysUntilExam: number;
     };
     plan?: {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
-        primaryFocus: string | null;
+        completionRate: number;
     } | undefined;
 }, {
     lastSnapshot: string;
@@ -435,10 +419,10 @@ export declare const StatsSchema: z.ZodObject<{
         daysUntilExam?: number | undefined;
     } | undefined;
     plan?: {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
-        primaryFocus?: string | null | undefined;
+        completionRate?: number | undefined;
     } | undefined;
 }>;
 export type Stats = z.infer<typeof StatsSchema>;

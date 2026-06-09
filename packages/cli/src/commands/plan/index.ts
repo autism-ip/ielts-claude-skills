@@ -2,6 +2,7 @@ import { Command } from 'commander';
 import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
+import { planToday } from '@ielts/adaptive';
 
 const BASE = join(homedir(), '.ielts');
 
@@ -16,16 +17,35 @@ export function registerPlanCommands(program: Command): void {
       try {
         const stats = JSON.parse(readFileSync(sp, 'utf-8'));
         const profile = JSON.parse(readFileSync(pp, 'utf-8'));
+        const tasks = planToday(stats, profile);
         const now = new Date();
-        const planData = { id: 'plan-' + now.toISOString().slice(0, 10), type: 'adaptive-plan', createdAt: now.toISOString(), updatedAt: now.toISOString(), startDate: now.toISOString().slice(0, 10), tasks: [] };
+        const planData = { id: 'plan-' + now.toISOString().slice(0, 10), type: 'adaptive-plan', createdAt: now.toISOString(), updatedAt: now.toISOString(), startDate: now.toISOString().slice(0, 10), tasks };
         mkdirSync(join(BASE, 'plans'), { recursive: true });
         writeFileSync(join(BASE, 'plans', 'current.json'), JSON.stringify(planData, null, 2));
-        console.log("Today's plan generated. " + planData.tasks.length + ' tasks.');
-      } catch (e: any) { console.log('Error generating plan: ' + e.message); }
+        console.log("Today's plan: " + tasks.length + ' tasks.');
+      } catch (e: any) { console.log('Error: ' + e.message); }
     });
 
   plan.command('week').description('Generate weekly training plan')
-    .action(() => { console.log('Weekly plan: use ielts plan today for now.'); });
+    .action(() => {
+      const sp = join(BASE, 'stats.json');
+      const pp = join(BASE, 'profile.json');
+      if (!existsSync(sp) || !existsSync(pp)) { console.log('Run ielts init and ielts snapshot first'); return; }
+      try {
+        const stats = JSON.parse(readFileSync(sp, 'utf-8'));
+        const profile = JSON.parse(readFileSync(pp, 'utf-8'));
+        const week: any[] = [];
+        const used: string[] = [];
+        for (let d = 0; d < 7; d++) {
+          const day = planToday(stats, profile).filter((t: any) => !used.includes(t.module));
+          day.forEach((t: any) => { t.dueDate = new Date(Date.now() + d * 86400000).toISOString().slice(0,10); used.push(t.module); });
+          week.push(...day);
+        }
+        mkdirSync(join(BASE, 'plans'), { recursive: true });
+        writeFileSync(join(BASE, 'plans', 'week.json'), JSON.stringify({ tasks: week }, null, 2));
+        console.log('Weekly plan: ' + week.length + ' tasks across 7 days.');
+      } catch (e: any) { console.log('Error: ' + e.message); }
+    });
 
   plan.command('complete').argument('<task-id>', 'Task ID').description('Mark a plan task as completed')
     .action((id: string) => {

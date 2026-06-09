@@ -6,4 +6,6 @@ export * from './speaking.schema.js';
 export * from './vocab.schema.js';
 export * from './stats.schema.js';
 export * from "./calibration.schema.js";
+export * from "./plan.schema.js";
+export * from "./stats.schema.js";
 //# sourceMappingURL=index.d.ts.map

@@ -71,15 +71,21 @@ export function registerCloudCommands(program: Command): void {
       const locals = modules.filter(m => stats[m]).map(m => ({ localId: m + ':' + stats.lastSnapshot, hash: m + ':' + JSON.stringify(stats[m]) }));
       const diff = state.computeDiff(locals);
       console.log(diff.toCreate.length + ' to create, ' + diff.toUpdate.length + ' to update, ' + diff.unchanged.length + ' unchanged');
+      let failed = false;
       if (s.app_token && s.app_secret) {
         try {
           const auth = new FeishuAuth(s.app_id, s.app_secret);
           const client = new FeishuClient(auth, s.app_token, s.table_id ?? '');
           for (const item of diff.toCreate) {
             try { const rid = await client.createRecord({ module: item.localId.split(':')[0], note: 'synced' }); state.set(item.localId, item.hash, rid); console.log('  Created: ' + item.localId); }
-            catch (e: any) { console.log('  Failed: ' + item.localId + ' - ' + e.message); }
+            catch (e: any) { console.log('  Failed: ' + item.localId + ' - ' + e.message); failed = true; }
           }
-          console.log('Sync complete.');
+          for (const item of diff.toUpdate) {
+            try { await client.updateRecord(item.remoteId, { module: item.localId.split(':')[0], note: 'updated' }); state.set(item.localId, item.hash, item.remoteId); console.log('  Updated: ' + item.localId); }
+            catch (e: any) { console.log('  Failed: ' + item.localId + ' - ' + e.message); failed = true; }
+          }
+          console.log(failed ? 'Sync completed with errors.' : 'Sync complete.');
+      if (failed) process.exitCode = 1;
         } catch (e: any) { console.log('Sync failed: ' + e.message); }
       }
     });

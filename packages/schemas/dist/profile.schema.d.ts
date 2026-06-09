@@ -56,7 +56,7 @@ export declare const ProfileSchema: z.ZodObject<{
         listening: number;
         speaking: number;
     }>;
-    examDate: z.ZodDefault<z.ZodNullable<z.ZodString>>;
+    examDate: z.ZodDefault<z.ZodNullable<z.ZodEffects<z.ZodString, string, string>>>;
     timezone: z.ZodDefault<z.ZodString>;
     preferences: z.ZodDefault<z.ZodObject<{
         dailyGoal: z.ZodDefault<z.ZodNumber>;

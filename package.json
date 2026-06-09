@@ -3,7 +3,7 @@
   "private": true,
   "packageManager": "pnpm@11.5.2",
   "scripts": {
-    "test": "pnpm --filter @ielts/schemas test",
+    "test": "pnpm -r test",
     "build": "pnpm -r build"
   }
 }

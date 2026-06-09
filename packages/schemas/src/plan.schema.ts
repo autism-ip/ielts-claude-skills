@@ -37,6 +37,6 @@ export const AdaptivePlanSchema = z.object({
   tasks: z.array(AdaptiveTaskSchema).default([]).refine((ts: any[]) => new Set(ts.filter(t => t.id).map(t => t.id)).size === ts.filter(t => t.id).length, 'Duplicate task IDs'),
   summary: PlanSummarySchema.default({}),
 }).refine((p: any) => !p.endDate || p.endDate >= p.startDate, 'endDate before startDate')
- .refine((p: any) => { const ts = p.tasks || []; return !p.summary.total || (p.summary.total === ts.length && p.summary.completed === ts.filter((t: any) => t.status === 'done').length && p.summary.skipped === ts.filter((t: any) => t.status === 'skipped').length); }, 'Summary must match task counts')
+ .refine((p: any) => { const ts = p.tasks || []; if (ts.length === 0) return true; const totalMatch = p.summary.total === ts.length; const compMatch = p.summary.completed === ts.filter((t: any) => t.status === 'done').length; const skipMatch = p.summary.skipped === ts.filter((t: any) => t.status === 'skipped').length; return totalMatch && compMatch && skipMatch; }, 'Summary must match task counts')
  .refine((p: any) => p.tasks.filter((t: any) => (t.status === 'done' && !t.completedAt) || (t.status === 'skipped' && !t.skippedAt)).length === 0, 'Status requires matching timestamp');
 export type AdaptivePlan = z.infer<typeof AdaptivePlanSchema>;

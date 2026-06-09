@@ -15,7 +15,7 @@ export declare const AdaptiveTaskSchema: z.ZodObject<{
     skippedAt: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     dueDate: z.ZodDefault<z.ZodNullable<z.ZodString>>;
 }, "strip", z.ZodTypeAny, {
-    status: "skipped" | "todo" | "done";
+    status: "todo" | "done" | "skipped";
     taskType: string;
     id: string;
     module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -29,7 +29,7 @@ export declare const AdaptiveTaskSchema: z.ZodObject<{
     taskType: string;
     id: string;
     module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-    status?: "skipped" | "todo" | "done" | undefined;
+    status?: "todo" | "done" | "skipped" | undefined;
     priorityScore?: number | undefined;
     reason?: string | undefined;
     estimatedMinutes?: number | undefined;
@@ -44,14 +44,14 @@ export declare const PlanSummarySchema: z.ZodObject<{
     skipped: z.ZodDefault<z.ZodNumber>;
     completionRate: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
+    skipped: number;
     total: number;
     completed: number;
-    skipped: number;
     completionRate: number;
 }, {
+    skipped?: number | undefined;
     total?: number | undefined;
     completed?: number | undefined;
-    skipped?: number | undefined;
     completionRate?: number | undefined;
 }>;
 export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<z.ZodObject<{
@@ -73,7 +73,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         skippedAt: z.ZodDefault<z.ZodNullable<z.ZodString>>;
         dueDate: z.ZodDefault<z.ZodNullable<z.ZodString>>;
     }, "strip", z.ZodTypeAny, {
-        status: "skipped" | "todo" | "done";
+        status: "todo" | "done" | "skipped";
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -87,7 +87,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-        status?: "skipped" | "todo" | "done" | undefined;
+        status?: "todo" | "done" | "skipped" | undefined;
         priorityScore?: number | undefined;
         reason?: string | undefined;
         estimatedMinutes?: number | undefined;
@@ -95,7 +95,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         skippedAt?: string | null | undefined;
         dueDate?: string | null | undefined;
     }>, "many">>, {
-        status: "skipped" | "todo" | "done";
+        status: "todo" | "done" | "skipped";
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -109,7 +109,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-        status?: "skipped" | "todo" | "done" | undefined;
+        status?: "todo" | "done" | "skipped" | undefined;
         priorityScore?: number | undefined;
         reason?: string | undefined;
         estimatedMinutes?: number | undefined;
@@ -123,14 +123,14 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         skipped: z.ZodDefault<z.ZodNumber>;
         completionRate: z.ZodDefault<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
         completionRate: number;
     }, {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
         completionRate?: number | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
@@ -141,7 +141,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
     startDate: string;
     endDate: string | null;
     tasks: {
-        status: "skipped" | "todo" | "done";
+        status: "todo" | "done" | "skipped";
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -153,9 +153,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate: string | null;
     }[];
     summary: {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
         completionRate: number;
     };
 }, {
@@ -169,7 +169,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-        status?: "skipped" | "todo" | "done" | undefined;
+        status?: "todo" | "done" | "skipped" | undefined;
         priorityScore?: number | undefined;
         reason?: string | undefined;
         estimatedMinutes?: number | undefined;
@@ -178,9 +178,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate?: string | null | undefined;
     }[] | undefined;
     summary?: {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
         completionRate?: number | undefined;
     } | undefined;
 }>, {
@@ -191,7 +191,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
     startDate: string;
     endDate: string | null;
     tasks: {
-        status: "skipped" | "todo" | "done";
+        status: "todo" | "done" | "skipped";
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -203,9 +203,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate: string | null;
     }[];
     summary: {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
         completionRate: number;
     };
 }, {
@@ -219,7 +219,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-        status?: "skipped" | "todo" | "done" | undefined;
+        status?: "todo" | "done" | "skipped" | undefined;
         priorityScore?: number | undefined;
         reason?: string | undefined;
         estimatedMinutes?: number | undefined;
@@ -228,9 +228,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate?: string | null | undefined;
     }[] | undefined;
     summary?: {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
         completionRate?: number | undefined;
     } | undefined;
 }>, {
@@ -241,7 +241,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
     startDate: string;
     endDate: string | null;
     tasks: {
-        status: "skipped" | "todo" | "done";
+        status: "todo" | "done" | "skipped";
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -253,9 +253,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate: string | null;
     }[];
     summary: {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
         completionRate: number;
     };
 }, {
@@ -269,7 +269,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-        status?: "skipped" | "todo" | "done" | undefined;
+        status?: "todo" | "done" | "skipped" | undefined;
         priorityScore?: number | undefined;
         reason?: string | undefined;
         estimatedMinutes?: number | undefined;
@@ -278,9 +278,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate?: string | null | undefined;
     }[] | undefined;
     summary?: {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
         completionRate?: number | undefined;
     } | undefined;
 }>, {
@@ -291,7 +291,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
     startDate: string;
     endDate: string | null;
     tasks: {
-        status: "skipped" | "todo" | "done";
+        status: "todo" | "done" | "skipped";
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
@@ -303,9 +303,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate: string | null;
     }[];
     summary: {
+        skipped: number;
         total: number;
         completed: number;
-        skipped: number;
         completionRate: number;
     };
 }, {
@@ -319,7 +319,7 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         taskType: string;
         id: string;
         module: "writing" | "reading" | "listening" | "speaking" | "vocab";
-        status?: "skipped" | "todo" | "done" | undefined;
+        status?: "todo" | "done" | "skipped" | undefined;
         priorityScore?: number | undefined;
         reason?: string | undefined;
         estimatedMinutes?: number | undefined;
@@ -328,9 +328,9 @@ export declare const AdaptivePlanSchema: z.ZodEffects<z.ZodEffects<z.ZodEffects<
         dueDate?: string | null | undefined;
     }[] | undefined;
     summary?: {
+        skipped?: number | undefined;
         total?: number | undefined;
         completed?: number | undefined;
-        skipped?: number | undefined;
         completionRate?: number | undefined;
     } | undefined;
 }>;

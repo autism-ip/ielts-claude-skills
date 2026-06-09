@@ -1,22 +1,29 @@
-import { execSync } from 'node:child_process';
+import { cpSync } from 'node:fs';
 import { existsSync } from 'node:fs';
 import { homedir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 const DEST = join(homedir(), '.ielts');
 export function restoreCommand(src) {
-    if (!existsSync(src)) {
-        console.log(`Not found: ${src}`);
+    const resolved = resolve(src);
+    if (!existsSync(resolved)) {
+        console.log('Not found: ' + resolved);
         return;
     }
-    if (!existsSync(join(src, 'profile.json'))) {
-        console.log(`Invalid backup: ${src}`);
+    if (!existsSync(join(resolved, 'profile.json'))) {
+        console.log('Invalid backup: ' + resolved);
         return;
     }
     if (existsSync(DEST)) {
-        console.log(`${DEST} exists. Remove it first or use a different path.`);
+        console.log(DEST + ' exists. Remove it first or use a different path.');
         return;
     }
-    execSync(`cp -r "${src}" "${DEST}"`, { stdio: 'inherit' });
-    console.log(`Restored ${src} → ${DEST}`);
+    try {
+        cpSync(resolved, DEST, { recursive: true });
+        console.log('Restored ' + resolved + ' → ' + DEST);
+    }
+    catch (e) {
+        console.log('Restore failed: ' + e.message);
+        process.exitCode = 1;
+    }
 }
 //# sourceMappingURL=restore.js.map

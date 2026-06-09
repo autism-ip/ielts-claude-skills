@@ -1,8 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { SyncState } from '../src/sync-state.js';
+import { mkdtempSync } from 'node:fs';
+import { join } from 'node:path';
+import { tmpdir } from 'node:os';
 
 describe('SyncState', () => {
-  const state = new SyncState();
+  const tmpDir = mkdtempSync(join(tmpdir(), 'sync-test-'));
+  const state = new SyncState(join(tmpDir, 'state.json'));
 
   it('computes creates for unknown records', () => {
     const diff = state.computeDiff([{ localId: 'e1', hash: 'a' }, { localId: 'e2', hash: 'b' }]);

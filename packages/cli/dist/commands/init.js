@@ -6,7 +6,11 @@ const IELTS_DIR = join(homedir(), '.ielts');
 const DIRS = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];
 export function initCommand(options) {
     if (existsSync(IELTS_DIR) && !options.fixtures) {
-        console.log('~/.ielts/ already exists. Skipping init.');
+        console.log('~/.ielts/ already exists. Ensuring directories...');
+        for (const dir of DIRS) {
+            mkdirSync(join(IELTS_DIR, dir), { recursive: true });
+        }
+        console.log('Done.');
         return;
     }
     if (options.fixtures) {

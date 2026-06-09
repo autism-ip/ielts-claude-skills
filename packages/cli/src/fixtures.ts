@@ -5,11 +5,12 @@
  * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
  */
 
-import { writeFileSync, mkdirSync, rmSync } from 'node:fs';
+import { writeFileSync, mkdirSync, rmSync, existsSync, readFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
 const BASE = join(homedir(), '.ielts');
+
 
 /* ── 辅助：写 frontmatter .md 文件 ── */
 function writeFm(path: string, data: Record<string, unknown>, body?: string): void {
@@ -323,6 +324,13 @@ function makeStats(): Record<string, unknown> {
 }
 
 /* ── 主入口 ── */
+function hasRealData(): boolean {
+  try {
+    const p = join(BASE, 'profile.json');
+    const d = JSON.parse(readFileSync(p, 'utf-8'));
+    return d.target && (d.target.overall > 0 || d.target.writing > 0);
+  } catch { return false; }
+}
 export function installFixtures(): void {
   /* 清理旧记录，确保幂等性 */
   const dirs = ['writing', 'reading', 'listening', 'speaking/stories', 'vocab', 'diagnosis'];
