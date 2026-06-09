@@ -28,7 +28,7 @@ export class FeishuAuth {
         return new Promise((resolve, reject) => {
             const body = JSON.stringify({ app_id: this.appId, app_secret: this.appSecret });
             const u = new URL(AUTH);
-            const r = https.request(u, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => { let d = ''; res.on('data', c => d += c); res.on('end', () => { try {
+            const r = https.request(u, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) }, signal: AbortSignal.timeout(10000) }, (res) => { let d = ''; res.on('data', c => d += c); res.on('end', () => { try {
                 const j = JSON.parse(d);
                 if (j.tenant_access_token)
                     resolve(j);
