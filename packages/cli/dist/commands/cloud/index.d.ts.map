@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAqBpC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CA8F5D"}
+=======
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../src/commands/cloud/index.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,OAAO,EAAE,MAAM,WAAW,CAAC;AAepC,wBAAgB,qBAAqB,CAAC,OAAO,EAAE,OAAO,GAAG,IAAI,CA6E5D"}
+>>>>>>> origin/main
