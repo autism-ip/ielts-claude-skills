@@ -4,7 +4,7 @@ description: |
   雅思词汇训练教练。间隔重复复习 + 同义替换专项 + Anki 导出。
   触发方式：/ielts-vocab、「背单词」「复习词汇」「Anki」「词汇训练」
 metadata:
-  version: 3.0.0-alpha
+  version: 3.1.0
 ---
 
 # IELTS Vocab — 雅思词汇训练教练
@@ -36,15 +36,29 @@ metadata:
 
 ## 词库来源
 
-内置 450 词词表，分三个难度层级：
+词汇来自 4 路池子，每日复习从各池混合抽取：
+
+### 池 1：听力核心词汇（材料库）
+- 文件：`~/.ielts/materials/vocab/listening-words.pdf`
+- 用 OCR（pdf2image + tesseract）逐页抽词
+- 每天分配 5 词，逐步推进，记录位置到 `~/.ielts/materials/progress.json` 的 `vocab.listening_pdf_last_position`
+
+### 池 2：阅读同义替换（手动积累）
+- 每次做阅读后挑 5 组同义替换，追加到 `~/.ielts/vocab/wordlist.md`
+- 格式：`[原文词] → [替换词]（出处：Cambridge 19 T1P1）`
+
+### 池 3：写作高级表达（手动积累）
+- 每次 `/ielts-writing` 批改后提炼 3-5 个高级表达
+- 格式：`[普通版] → [高级版]（语境：Competition essay）`
+
+### 池 4：内置基础词表（450 词）
+存储在 `~/.ielts/vocab/wordlist.md`，分三个难度层级：
 
 | Tier | 词数 | 适合 |
 |------|------|------|
 | Band 6 | 150 | 目标 5.5-6.5 |
 | Band 7 | 150 | 目标 6.5-7.5 |
 | Band 8 | 150 | 目标 7.5+ |
-
-词表存储在 `~/.ielts/vocab/wordlist.md`。
 
 ---
 

@@ -4,7 +4,7 @@ description: |
   雅思备考 AI 教练系统入口。路由到写作 / 阅读 / 口语训练。
   触发方式：/ielts、「我要备考雅思」「雅思怎么准备」「IELTS」
 metadata:
-  version: 3.0.0-alpha
+  version: 3.1.0
 ---
 
 # IELTS — 雅思备考 AI 教练系统
@@ -132,7 +132,52 @@ metadata:
 
 ---
 
-## v3.0 数据驱动模式
+## 材料库结构（v3.1）
+
+用户已将真题材料存入 `~/.ielts/materials/`，结构如下：
+
+```
+~/.ielts/materials/
+├── cambridge-{NN}/
+│   └── test-1.pdf              ← 每册一个 PDF（含全部 4 个 Test）
+├── speaking/{YYYY-MM}/
+│   └── topics.pdf               ← 当季口语题库
+└── vocab/
+    └── listening-words.pdf      ← 听力核心词汇
+```
+
+生成每日计划时，必须：
+
+1. **扫描 `~/.ielts/materials/`** 获取可用剑桥册号（cambridge-04 ~ cambridge-20）
+2. **读取 `~/.ielts/materials/progress.json`** 了解哪些 Test/Passage/Section 已做过
+3. **按最新可用册号分配**（优先未做过的，cambridge-19 -> 18 -> 17...）
+4. **每次分配后在 progress.json 记录**，避免重复
+
+### progress.json 格式
+
+```json
+{
+  "reading": [
+    {"book": "cambridge-19", "test": 1, "passage": 1, "done": true, "date": "2026-06-10"}
+  ],
+  "listening": [
+    {"book": "cambridge-19", "test": 1, "section": 2, "done": true, "date": "2026-06-10"}
+  ],
+  "writing": [
+    {"book": "cambridge-19", "test": 1, "task": 2, "done": true, "date": "2026-06-10"}
+  ],
+  "speaking": [
+    {"batch": "2026-01-04", "parts": ["part1", "part2", "part3"], "done": false}
+  ],
+  "vocab": {
+    "listening_pdf_last_position": 0
+  }
+}
+```
+
+---
+
+## v3.1 材料驱动模式
 
 ### 模式 1: init — 首次启动
 
@@ -168,16 +213,48 @@ metadata:
 
 ### 模式 4: daily — 每日任务生成
 
-读取 stats + 距离考试天数，生成今日训练计划：
+读取 stats + 材料库 + 距离考试天数，生成今日训练计划。
+
+**必须执行以下步骤：**
+
+**Step 1: 扫描材料库**
+- 读取 `~/.ielts/materials/` 下所有 `cambridge-*/` 目录，获取可用册号
+- 按数字倒序排列（最新优先）：cambridge-20, cambridge-19, cambridge-18...
+- 读取 `~/.ielts/materials/speaking/` 获取最新口语题库目录
+
+**Step 2: 读取进度**
+- 读取 `~/.ielts/materials/progress.json`
+- 找到每种题型下一个未做的位置（从最新册的 Test 1 开始）
+
+**Step 3: 分配具体题目**
+- **阅读**：从最新未做完的册中选 1 个 Passage（循环 Test 1-4，Passage 1-3）
+- **听力**：从最新未做完的册中选 1 个 Section（循环 Test 1-4，Section 1-4）
+- **写作**：从最新未做完的册中选 Task 2（Task 2 优先，Task 1 间隔穿插）
+- **口语**：从最新口语题库中分配 Part 2 题目
+- **词汇**：从 `vocab/listening-words.pdf` 中抽 5-10 词 + 历史积累的替换词
+
+**Step 4: 输出计划**
 
 ```
 📋 今日训练计划（距离考试 71 天）
 
-建议时长：60 分钟
-1. 写作 Task 2 练习（25min）—— 语法是主要失分点
-2. 阅读 T/F/NG 专项（20min）—— 最近错 6 次
-3. 词汇复习 15 个词（15min）—— 用 /ielts-vocab review
+建议时长：100 分钟
+
+1. 阅读 — Cambridge 19 Test 1 Passage 1: How Tennis Rackets Have Changed
+   T/F/NG + 填空 | 限时 20min → 10min 错题分析 | 做完挑 5 组同义替换
+
+2. 听力 — Cambridge 19 Test 1 Section 2: Stanthorpe Twinning Association
+   单选 + 地图 | 限时做完 → 精听错题句
+
+3. 写作 — Cambridge 19 Test 1 Task 2
+   Competition vs Cooperation | 限时 40min → 发 /ielts-writing 批改
+
+4. 词汇 — /ielts-vocab review | 15 词（听力词汇 + 阅读同义替换）
 ```
+
+**Step 5: 持久化**
+- 写入 `~/.ielts/plans/current.json`（今日任务列表）
+- 更新 `~/.ielts/materials/progress.json`（标记已分配，`done: false`，完成后设为 `true` + 日期）
 
 ---
 
