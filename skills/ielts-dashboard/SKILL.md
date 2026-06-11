@@ -33,34 +33,33 @@ metadata:
 
 ## 启动模式
 
-启动前必须先将 `~/.ielts/` 下的统计数据同步到 Dashboard 项目，否则页面空白。
+启动前必须先同步数据，否则页面空白。
 
 **同步步骤（每次启动前必做）：**
 
-1. 读取 `~/.ielts/stats.json`（主统计）
-2. 读取 `~/.ielts/profile.json`（获取目标分、考试日期）
-3. 读取最近一次的分析存档（reading/writing/listening 最新文件）
-4. 将以上数据合并写入 `packages/dashboard/public/stats.json`
-5. 格式必须与 App.tsx 的 Stats interface 一致（含 detail/answers 等扩展字段）
-6. 然后运行 `pnpm --filter @ielts/dashboard dev`
+1. 在项目根目录运行 `node scripts/sync-dashboard.mjs`
+   - 自动扫描 `~/.ielts/` 下所有存档文件
+   - 读取 reading/writing/listening 目录下的 `*.md` 文件 YAML frontmatter
+   - 合并 `stats.json`、`profile.json`、`progress.json`、`plans/current.json`
+   - 输出到 `packages/dashboard/public/stats.json`
+2. 然后运行 `pnpm --filter @ielts/dashboard dev`
 
-**注意：stats.json 不只是 `~/.ielts/stats.json` 的镜像。**
-- 必须包含每个 Section 的逐题答案表（answers: [{q, user, correct, result, type?, note?}]）
-- 必须包含写作四维分数和逐句错误清单
-- 必须包含阅读同义替换词表
-- 必须包含听力错因分布
-- 必须包含今日任务状态
+**同步脚本做了什么：**
+- 按日期分组所有训练记录 → Dashboard 可按日浏览
+- 生成各科分数趋势（随时间变化）
+- 生成学习日历（有训练的天标记）
+- 保留逐题答案、错误分布、改写对比等详细数据
 
 **遇到空白页处理：**
-- 先检查 `packages/dashboard/public/stats.json` 是否存在且非空 `{}`
-- 空文件 = 未执行同步步骤，立即补充数据
+- 先运行 `node scripts/sync-dashboard.mjs` 检查是否有错误
+- 再刷新浏览器
 
-Dashboard 页面：
-- / 概览页：四科分数卡片、Subject Comparison 柱状图、Writing Radar 图、错误分布图、今日任务、考试时间线
-- /reading 阅读详情：逐题答案表 + 同义替换词表
-- /writing 写作详情：四维雷达图 + 逐句错误 + 改写对比 + 提分优先级
-- /listening 听力详情：逐题答案表 + 错因饼图
-- /diagnosis 诊断：弱点分布
+Dashboard 页面（v3.1）：
+- **日期导航栏**：切换浏览任意历史日期的训练数据
+- **学习日历**：标记有训练的天，点击跳转
+- **趋势图**：各科分数随时间变化的折线图
+- **今日概览**：当天训练汇总
+- **各科详情**：reading/writing/listening 的历史记录
 
 ---
 

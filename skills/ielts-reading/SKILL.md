@@ -220,42 +220,43 @@ metadata:
 
 ---
 
-## v3.0 存档输出
+## v3.0 存档输出（Dashboard 兼容）
 
 分析完成后，将结果以 YAML frontmatter 格式写入本地存档。
+
+**所有数据必须写入 YAML frontmatter**，因为 `scripts/sync-dashboard.mjs`
+只读取 YAML frontmatter，Dashboard 从生成的 stats.json 读取渲染。
 
 ### 写入路径
 
 `~/.ielts/reading/{YYYY-MM-DD}-{passage-slug}.md`
 
-### 存档格式
+### 存档格式（必须包含以下全部字段）
 
 ```yaml
 ---
 type: "reading"
 passageTitle: "文章标题"
-questionTypes: ["tfng", "matching-headings"]
+questionTypes: ["tfng", "gap_fill"]
 totalQuestions: 13
-correctCount: 10
-bandEstimate: 6.5
-errors:
-  - questionNumber: 5
+correctCount: 9
+bandEstimate: null
+errors:                               # 错题详情
+  - questionNumber: 4
     type: "tfng"
-    userAnswer: "FALSE"
-    correctAnswer: "NOT GIVEN"
+    userAnswer: "TRUE"
+    correctAnswer: "FALSE"
     errorCategory: "tfng_logic"
-  - questionNumber: 8
-    type: "matching-headings"
-    userAnswer: "iv"
-    correctAnswer: "vi"
-    errorCategory: "matching"
+    detail: "具体的错因分析"
 createdAt: "2026-06-01T10:00:00.000Z"
-synonymsExtracted:
-  - source: "rapidly"
-    match: "at a fast pace"
-    context: "The telegraph developed rapidly in the 19th century"
+answers:                              # 完整逐题答案（必须！Dashboard 渲染答案表用）
+  - q: 1;  user: "FALSE";  correct: "FALSE";  result: "correct";  text: "题目的完整原文"
+  - q: 2;  user: "FALSE";  correct: "FALSE";  result: "correct";  text: "题目的完整原文"
+  - q: 4;  user: "TRUE";  correct: "FALSE";  result: "wrong";  type: "tfng";  text: "题目的完整原文"
+synonyms:                             # 同义替换（Dashboard 渲染词表用）
+  - from: "five years previously";  to: "for at least five years before"
+  - from: "climatic conditions";  to: "weather"
 ---
-```
 
 ### 存档时机
 

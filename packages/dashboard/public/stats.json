@@ -1,143 +1,1251 @@
 {
-  "version": "3.0.0-alpha",
-  "lastSnapshot": "2026-06-11T23:55:00.000Z",
+  "version": "3.1.0",
+  "lastSnapshot": "2026-06-11T17:36:09.032Z",
   "combined": {
-    "overallBand": 5.0,
+    "overallBand": 5,
     "daysUntilExam": 19,
     "targetBand": 7.5,
-    "examDates": ["2026-06-30", "2026-07-31", "2026-08-31"]
-  },
-  "writing": {
-    "totalEssays": 1,
-    "averageBand": 5.0,
-    "dimensions": { "tr": 5.5, "cc": 5.0, "lr": 5.0, "gra": 4.0 },
-    "topErrors": [
-      {"category": "grammar/spelling", "count": 18},
-      {"category": "lexical", "count": 4},
-      {"category": "coherence", "count": 2},
-      {"category": "task_response", "count": 1}
+    "examDates": [
+      "2026-06",
+      "2026-07",
+      "2026-08"
     ],
-    "recentTopics": ["Competition vs Cooperation"],
-    "detail": {
-      "topic": "Some people think that competition at work, at school and in daily life is a good thing. Others believe that we should try to cooperate more, rather than competing against each other.",
-      "wordCount": 280,
-      "rewritten": true,
-      "errors": [
-        {"q": "P1S1", "type": "grammar", "detail": "主谓不一致: Competition and Cooperation is → are"},
-        {"q": "P1S2", "type": "grammar", "detail": "词性混淆: we should be competition → we should compete"},
-        {"q": "P2S2", "type": "lexical", "detail": "搭配错误: play a effect → play a role / have an effect"},
-        {"q": "P4S2", "type": "grammar", "detail": "冠词错误: a important → an important"},
-        {"q": "P1-P3", "type": "spelling", "detail": "10+ 拼写错误: necessery, remarkble, clobrators, studens..."},
-        {"q": "P2-P3", "type": "task_response", "detail": "未覆盖 daily life 的示例"}
-      ],
-      "rewriteHighlights": [
-        {"from": "keep competition", "to": "maintain a competitive environment"},
-        {"from": "play a positive effect", "to": "play a positive role / have a beneficial impact"},
-        {"from": "staffs", "to": "employees"},
-        {"from": "all of they", "to": "they can all"},
-        {"from": "acknowledge", "to": "knowledge"},
-        {"from": "clobrators", "to": "collaborators"},
-        {"from": "in a statue help", "to": "in a mutually supportive manner"},
-        {"from": "temperate competition", "to": "moderate competition"}
-      ],
-      "upgradePriorities": [
-        "1. GRA: 复习主谓一致 + 词性区分",
-        "2. LR: 写完后花2分钟检查拼写",
-        "3. TR: 确保题目每个限定词都在正文出现"
+    "totalStudyDays": 1,
+    "totalSessions": 3
+  },
+  "days": [
+    {
+      "date": "2026-06-11",
+      "sessions": 3,
+      "subjects": [
+        "reading",
+        "writing",
+        "listening"
       ]
     }
+  ],
+  "trends": {
+    "reading": [
+      {
+        "date": "2026-06-11",
+        "band": 6.2,
+        "score": "9/13"
+      }
+    ],
+    "writing": [
+      {
+        "date": "2026-06-11",
+        "band": 5,
+        "tr": 5.5,
+        "cc": 5,
+        "lr": 5,
+        "gra": 4
+      }
+    ],
+    "listening": [
+      {
+        "date": "2026-06-11",
+        "band": 3.1,
+        "score": "7/20"
+      }
+    ]
   },
-  "reading": {
-    "totalPassages": 1,
-    "averageBand": 6.0,
-    "accuracy": "9/13",
-    "topErrors": [
-      {"category": "tfng_logic", "count": 3},
-      {"category": "gap_fill", "count": 1}
-    ],
-    "recentPassages": [
-      {"title": "How tennis rackets have changed", "score": "9/13", "date": "2026-06-11"}
-    ],
-    "detail": {
-      "title": "How tennis rackets have changed",
-      "questionTypes": "T/F/NG (Q1-7) + Note Completion (Q8-13)",
-      "timeSpent": "20:00",
+  "history": [
+    {
+      "date": "2026-06-11",
+      "type": "reading",
+      "title": "\"How tennis rackets have changed\"",
+      "totalQuestions": 13,
+      "correctCount": 9,
+      "questionTypes": [
+        "tfng",
+        " gap_fill"
+      ],
+      "errors": [
+        {
+          "q": "4",
+          "type": "tfng_logic",
+          "detail": "原文说 weigh more than the average（更重），题目说 light（更轻），明确相反"
+        },
+        {
+          "q": "5",
+          "type": "tfng_logic",
+          "detail": "混淆 FALSE 和 NOT GIVEN。原文提到 Werner Fischer 用了 spaghetti-strung 球拍，但没说是不是他设计的。没提供信息 = NOT GIVEN"
+        },
+        {
+          "q": "6",
+          "type": "tfng_logic",
+          "detail": "同义替换不敏感。climatic conditions = weather 没识别出来"
+        },
+        {
+          "q": "12",
+          "type": "gap_fill",
+          "detail": "原文是复数 weights（对应 four to five），题目要求 ONE WORD ONLY from the passage，必须用原文原词"
+        }
+      ],
       "answers": [
-        {"q": 1, "user": "FALSE", "correct": "FALSE", "result": "correct"},
-        {"q": 2, "user": "FALSE", "correct": "FALSE", "result": "correct"},
-        {"q": 3, "user": "NOT GIVEN", "correct": "NOT GIVEN", "result": "correct"},
-        {"q": 4, "user": "TRUE", "correct": "FALSE", "result": "wrong", "type": "tfng_logic", "note": "原文说更重, 题目说更轻, 明确相反"},
-        {"q": 5, "user": "FALSE", "correct": "NOT GIVEN", "result": "wrong", "type": "tfng_logic", "note": "混淆FALSE和NG, 原文没提是否自设计"},
-        {"q": 6, "user": "NOT GIVEN", "correct": "TRUE", "result": "wrong", "type": "tfng_logic", "note": "climatic conditions=weather 同义替换没识别"},
-        {"q": 7, "user": "TRUE", "correct": "TRUE", "result": "correct"},
-        {"q": 8, "user": "paint", "correct": "paint", "result": "correct"},
-        {"q": 9, "user": "topspin", "correct": "topspin", "result": "correct"},
-        {"q": 10, "user": "training", "correct": "training", "result": "correct"},
-        {"q": 11, "user": "intestines", "correct": "intestines", "result": "correct"},
-        {"q": 12, "user": "weight", "correct": "weights", "result": "wrong", "type": "gap_fill", "note": "原文是复数weights, 注意单复数"},
-        {"q": 13, "user": "grips", "correct": "grips", "result": "correct"}
+        {
+          "q": "1",
+          "user": "FALSE",
+          "correct": "FALSE",
+          "result": "correct",
+          "text": "People had expected Andy Murray to become the world's top tennis player for at least 5 years before 2016"
+        },
+        {
+          "q": "2",
+          "user": "FALSE",
+          "correct": "FALSE",
+          "result": "correct",
+          "text": "The change that Andy Murray made to his rackets attracted a lot of attention"
+        },
+        {
+          "q": "3",
+          "user": "NOT GIVEN",
+          "correct": "NOT GIVEN",
+          "result": "correct",
+          "text": "Most of the world's top players take a professional racket stringer on tour"
+        },
+        {
+          "q": "4",
+          "user": "TRUE",
+          "correct": "FALSE",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "Mike and Bob Bryan use rackets that are light in comparison to the majority"
+        },
+        {
+          "q": "5",
+          "user": "FALSE",
+          "correct": "NOT GIVEN",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "Werner Fischer played with a spaghetti-strung racket that he designed himself"
+        },
+        {
+          "q": "6",
+          "user": "NOT GIVEN",
+          "correct": "TRUE",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "The weather can affect how professional players adjust the strings on their rackets"
+        },
+        {
+          "q": "7",
+          "user": "TRUE",
+          "correct": "TRUE",
+          "result": "correct",
+          "text": "It was believed that the change Pete Sampras made to his rackets contributed to his strong serve"
+        },
+        {
+          "q": "8",
+          "user": "paint",
+          "correct": "paint",
+          "result": "correct",
+          "text": "Mike and Bob Bryan made changes to the types of ___ on their racket frames"
+        },
+        {
+          "q": "9",
+          "user": "topspin",
+          "correct": "topspin",
+          "result": "correct",
+          "text": "Players were not allowed to use the spaghetti-strung racket because of amount of ___"
+        },
+        {
+          "q": "10",
+          "user": "training",
+          "correct": "training",
+          "result": "correct",
+          "text": "Changes to rackets can be regarded as as important as players' diets or ___"
+        },
+        {
+          "q": "11",
+          "user": "intestines",
+          "correct": "intestines",
+          "result": "correct",
+          "text": "All rackets used to have natural strings made from the ___ of animals"
+        },
+        {
+          "q": "12",
+          "user": "weight",
+          "correct": "weights",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "Pete Sampras had metal ___ put into the frames of his rackets"
+        },
+        {
+          "q": "13",
+          "user": "grips",
+          "correct": "grips",
+          "result": "correct",
+          "text": "Gongalo Oliveira changed the ___ on his racket handles"
+        }
       ],
       "synonyms": [
-        {"from": "five years previously", "to": "for at least five years before"},
-        {"from": "so subtle as to pass unnoticed", "to": "attracted a lot of attention"},
-        {"from": "weigh more than average", "to": "light in comparison"},
-        {"from": "climatic conditions", "to": "weather"},
-        {"from": "was attributed to", "to": "was believed contributed to"},
-        {"from": "serving power", "to": "strong serve"},
-        {"from": "was quickly banned", "to": "was not allowed to use"},
-        {"from": "equal in significance to", "to": "as important as"}
+        {
+          "from": "five years previously",
+          "to": "for at least five years before"
+        },
+        {
+          "from": "so subtle as to pass more or less unnoticed",
+          "to": "attracted a lot of attention"
+        },
+        {
+          "from": "weigh more than the average model",
+          "to": "light in comparison to the majority"
+        },
+        {
+          "from": "climatic conditions",
+          "to": "weather"
+        },
+        {
+          "from": "was attributed to",
+          "to": "was believed contributed to"
+        },
+        {
+          "from": "serving power",
+          "to": "strong serve"
+        },
+        {
+          "from": "was quickly banned",
+          "to": "was not allowed to use"
+        },
+        {
+          "from": "equal in significance to",
+          "to": "as important as"
+        },
+        {
+          "from": "nutrition or training",
+          "to": "diets or training"
+        },
+        {
+          "from": "natural gut made from intestines",
+          "to": "natural strings made from intestines"
+        },
+        {
+          "from": "addition of lead weights",
+          "to": "had metal weights put into frames"
+        },
+        {
+          "from": "replaced the original grips",
+          "to": "changed the grips on racket handles"
+        },
+        {
+          "source": "weigh more than the average model"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "type": "writing",
+      "title": "\"task2\"",
+      "topic": "\"Some people think that competition at work, at school and in daily life is a good thing. Others believe that we should try to cooperate more, rather than competing against each other.\"",
+      "wordCount": 280,
+      "dimensions": {
+        "tr": 5.5,
+        "cc": 5,
+        "lr": 5,
+        "gra": 4
+      },
+      "overall": 5,
+      "errors": [
+        {
+          "q": "paragraph 1 sentence 1",
+          "type": "grammar",
+          "severity": "major",
+          "detail": "主谓不一致：Competition and Cooperation is → are"
+        },
+        {
+          "q": "paragraph 1 sentence 1",
+          "type": "grammar",
+          "severity": "major",
+          "detail": "缺少系动词：whenever we in → whenever we are in"
+        },
+        {
+          "q": "paragraph 1 sentence 2",
+          "type": "grammar",
+          "severity": "major",
+          "detail": "词性混淆：we should be competition → we should compete"
+        },
+        {
+          "q": "paragraph 1 sentence 4",
+          "type": "grammar",
+          "severity": "major",
+          "detail": "主谓不一致：competition and cooperation is → are"
+        },
+        {
+          "q": "paragraph 4 sentence 2",
+          "type": "grammar",
+          "severity": "major",
+          "detail": "主谓不一致：Temperate competition have → has"
+        },
+        {
+          "q": "paragraph 3 sentence 3",
+          "type": "grammar",
+          "severity": "minor",
+          "detail": "主谓不一致：which benefit → which benefits"
+        },
+        {
+          "q": "paragraph 4 sentence 2",
+          "type": "grammar",
+          "severity": "minor",
+          "detail": "冠词错误：a important → an important"
+        },
+        {
+          "q": "paragraph 2 sentence 2",
+          "type": "grammar",
+          "severity": "major",
+          "detail": "搭配混淆：play a effect (应为 play a role / have an effect)"
+        },
+        {
+          "q": "paragraph 1 sentence 1",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "necessery → necessary"
+        },
+        {
+          "q": "paragraph 2 sentence 2",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "remarkble → remarkable"
+        },
+        {
+          "q": "paragraph 2 sentence 2",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "improvent → improvement"
+        },
+        {
+          "q": "paragraph 2 sentence 3",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "acknowledge → knowledge（形近词混淆）"
+        },
+        {
+          "q": "paragraph 3 sentence 2",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "clobrators → collaborators"
+        },
+        {
+          "q": "paragraph 3 sentence 2",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "incressing → increase"
+        },
+        {
+          "q": "paragraph 3 sentence 2",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "espicially → especially"
+        },
+        {
+          "q": "paragraph 3 sentence 3",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "studens → students"
+        },
+        {
+          "q": "paragraph 3 sentence 3",
+          "type": "spelling",
+          "severity": "major",
+          "detail": "statue → state（形近词混淆）"
+        },
+        {
+          "q": "paragraph 1 sentence 1",
+          "type": "lexical",
+          "severity": "minor",
+          "detail": "spirit 用词不自然"
+        },
+        {
+          "q": "paragraph 1 sentence 3",
+          "type": "lexical",
+          "severity": "minor",
+          "detail": "contract to → compared to"
+        },
+        {
+          "q": "paragraph 2 sentence 2",
+          "type": "lexical",
+          "severity": "minor",
+          "detail": "fight 过于激烈"
+        },
+        {
+          "q": "paragraph 4 sentence 2",
+          "type": "lexical",
+          "severity": "minor",
+          "detail": "Temperate → Moderate"
+        },
+        {
+          "q": "body paragraphs",
+          "type": "task_response",
+          "severity": "minor",
+          "detail": "未覆盖 daily life 的例子"
+        },
+        {
+          "q": "paragraph 2",
+          "type": "coherence",
+          "severity": "minor",
+          "detail": "work → school 缺过渡句"
+        },
+        {
+          "q": "paragraph 3",
+          "type": "coherence",
+          "severity": "minor",
+          "detail": "enterprise → students 跳跃太快"
+        }
+      ],
+      "rewriteHighlights": [
+        {
+          "from": "keep competition",
+          "to": "maintain a competitive environment"
+        },
+        {
+          "from": "play a positive effect",
+          "to": "play a positive role / have a beneficial impact"
+        },
+        {
+          "from": "staffs",
+          "to": "employees"
+        },
+        {
+          "from": "all of they",
+          "to": "they can all"
+        },
+        {
+          "from": "acknowledge",
+          "to": "knowledge"
+        },
+        {
+          "from": "clobrators",
+          "to": "collaborators"
+        },
+        {
+          "from": "in a statue help",
+          "to": "in a mutually supportive manner"
+        },
+        {
+          "from": "temperate competition",
+          "to": "moderate competition"
+        },
+        {
+          "from": "fight among staffs",
+          "to": "healthy rivalry among employees"
+        },
+        {
+          "from": "improvent",
+          "to": "improvement"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "type": "listening",
+      "book": "\"cambridge-19\"",
+      "test": 1,
+      "totalQuestions": 20,
+      "correctCount": 7,
+      "sections": "[1, 2]",
+      "sectionScores": {
+        "s1": "\"4/10\"",
+        "s2": "\"3/10\""
+      },
+      "questions": [
+        {
+          "q": "11",
+          "text": "During the visit to Malatte, in France, members especially enjoyed",
+          "options": "A: theme park | B: river trip | C: cheese factory",
+          "user": "B",
+          "correct": "B"
+        },
+        {
+          "q": "12",
+          "text": "What will happen in Stanthorpe to mark the 25th anniversary?",
+          "options": "A: tree planted | B: garden seat | C: footbridge",
+          "user": "C",
+          "correct": "A"
+        },
+        {
+          "q": "13",
+          "text": "Which event raised most funds this year?",
+          "options": "A: film show | B: pancake evening | C: cookery demo",
+          "user": "B",
+          "correct": "B"
+        },
+        {
+          "q": "14",
+          "text": "First evening with French visitors: host families advised to",
+          "options": "A: walk round town | B: local restaurant | C: meal at home",
+          "user": "C",
+          "correct": "C"
+        },
+        {
+          "q": "15",
+          "text": "On Saturday evening there will be the chance to",
+          "options": "A: concert | B: match | C: competition",
+          "user": "C",
+          "correct": "A"
+        },
+        {
+          "q": "16",
+          "text": "Farm shop",
+          "options": "map location A-H",
+          "user": "E",
+          "correct": "G"
+        },
+        {
+          "q": "17",
+          "text": "Disabled entry",
+          "options": "map location A-H",
+          "user": "C",
+          "correct": "C"
+        },
+        {
+          "q": "18",
+          "text": "Adventure playground",
+          "options": "map location A-H",
+          "user": "D",
+          "correct": "B"
+        },
+        {
+          "q": "19",
+          "text": "Kitchen gardens",
+          "options": "map location A-H",
+          "user": "B",
+          "correct": "D"
+        },
+        {
+          "q": "20",
+          "text": "The Temple of the Four Winds",
+          "options": "map location A-H",
+          "user": "G",
+          "correct": "A"
+        }
+      ],
+      "errors": [
+        {
+          "q": "2",
+          "type": "spelling",
+          "userAnswer": "strin",
+          "correctAnswer": "stream",
+          "section": "1",
+          "detail": "发音 /striːm/，ea 组合长音，拼写误作 strin"
+        },
+        {
+          "q": "3",
+          "type": "distraction",
+          "userAnswer": "study",
+          "correctAnswer": "data",
+          "section": "1",
+          "detail": "被上下文提前出现的词干扰"
+        },
+        {
+          "q": "5",
+          "type": "distraction",
+          "userAnswer": "store",
+          "correctAnswer": "visitors",
+          "section": "1",
+          "detail": "没听到定位词后的答案词"
+        },
+        {
+          "q": "6",
+          "type": "distraction",
+          "userAnswer": "temper",
+          "correctAnswer": "sounds",
+          "section": "1",
+          "detail": "被后方远距离词干扰"
+        },
+        {
+          "q": "7",
+          "type": "distraction",
+          "userAnswer": "creative",
+          "correctAnswer": "freedom",
+          "section": "1",
+          "detail": "自己替换了原文词汇"
+        },
+        {
+          "q": "9",
+          "type": "number",
+          "userAnswer": "4",
+          "correctAnswer": "4.95",
+          "section": "1",
+          "detail": "价格数字不完整，漏了 .95"
+        },
+        {
+          "q": "12",
+          "type": "distraction",
+          "userAnswer": "C",
+          "correctAnswer": "A",
+          "section": "2",
+          "detail": "单选干扰选项"
+        },
+        {
+          "q": "15",
+          "type": "distraction",
+          "userAnswer": "C",
+          "correctAnswer": "A",
+          "section": "2",
+          "detail": "单选干扰选项"
+        },
+        {
+          "q": "16",
+          "type": "map_orientation",
+          "userAnswer": "E",
+          "correctAnswer": "G",
+          "section": "2",
+          "detail": "地图定位错误"
+        },
+        {
+          "q": "18",
+          "type": "map_orientation",
+          "userAnswer": "D",
+          "correctAnswer": "B",
+          "section": "2",
+          "detail": "地图定位错误"
+        },
+        {
+          "q": "19",
+          "type": "map_orientation",
+          "userAnswer": "B",
+          "correctAnswer": "D",
+          "section": "2",
+          "detail": "地图定位错误"
+        },
+        {
+          "q": "20",
+          "type": "map_orientation",
+          "userAnswer": "G",
+          "correctAnswer": "A",
+          "section": "2",
+          "detail": "地图定位错误"
+        }
       ]
     }
+  ],
+  "writing": {
+    "totalSessions": 1,
+    "averageOverall": 5,
+    "records": [
+      {
+        "date": "2026-06-11",
+        "topic": "Competition vs Cooperation",
+        "tr": 5.5,
+        "cc": 5,
+        "lr": 5,
+        "gra": 4,
+        "overall": 5
+      }
+    ],
+    "weakestDimension": "gra",
+    "sessions": [
+      {
+        "date": "2026-06-11",
+        "type": "writing",
+        "title": "\"task2\"",
+        "topic": "\"Some people think that competition at work, at school and in daily life is a good thing. Others believe that we should try to cooperate more, rather than competing against each other.\"",
+        "wordCount": 280,
+        "dimensions": {
+          "tr": 5.5,
+          "cc": 5,
+          "lr": 5,
+          "gra": 4
+        },
+        "overall": 5,
+        "errors": [
+          {
+            "q": "paragraph 1 sentence 1",
+            "type": "grammar",
+            "severity": "major",
+            "detail": "主谓不一致：Competition and Cooperation is → are"
+          },
+          {
+            "q": "paragraph 1 sentence 1",
+            "type": "grammar",
+            "severity": "major",
+            "detail": "缺少系动词：whenever we in → whenever we are in"
+          },
+          {
+            "q": "paragraph 1 sentence 2",
+            "type": "grammar",
+            "severity": "major",
+            "detail": "词性混淆：we should be competition → we should compete"
+          },
+          {
+            "q": "paragraph 1 sentence 4",
+            "type": "grammar",
+            "severity": "major",
+            "detail": "主谓不一致：competition and cooperation is → are"
+          },
+          {
+            "q": "paragraph 4 sentence 2",
+            "type": "grammar",
+            "severity": "major",
+            "detail": "主谓不一致：Temperate competition have → has"
+          },
+          {
+            "q": "paragraph 3 sentence 3",
+            "type": "grammar",
+            "severity": "minor",
+            "detail": "主谓不一致：which benefit → which benefits"
+          },
+          {
+            "q": "paragraph 4 sentence 2",
+            "type": "grammar",
+            "severity": "minor",
+            "detail": "冠词错误：a important → an important"
+          },
+          {
+            "q": "paragraph 2 sentence 2",
+            "type": "grammar",
+            "severity": "major",
+            "detail": "搭配混淆：play a effect (应为 play a role / have an effect)"
+          },
+          {
+            "q": "paragraph 1 sentence 1",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "necessery → necessary"
+          },
+          {
+            "q": "paragraph 2 sentence 2",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "remarkble → remarkable"
+          },
+          {
+            "q": "paragraph 2 sentence 2",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "improvent → improvement"
+          },
+          {
+            "q": "paragraph 2 sentence 3",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "acknowledge → knowledge（形近词混淆）"
+          },
+          {
+            "q": "paragraph 3 sentence 2",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "clobrators → collaborators"
+          },
+          {
+            "q": "paragraph 3 sentence 2",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "incressing → increase"
+          },
+          {
+            "q": "paragraph 3 sentence 2",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "espicially → especially"
+          },
+          {
+            "q": "paragraph 3 sentence 3",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "studens → students"
+          },
+          {
+            "q": "paragraph 3 sentence 3",
+            "type": "spelling",
+            "severity": "major",
+            "detail": "statue → state（形近词混淆）"
+          },
+          {
+            "q": "paragraph 1 sentence 1",
+            "type": "lexical",
+            "severity": "minor",
+            "detail": "spirit 用词不自然"
+          },
+          {
+            "q": "paragraph 1 sentence 3",
+            "type": "lexical",
+            "severity": "minor",
+            "detail": "contract to → compared to"
+          },
+          {
+            "q": "paragraph 2 sentence 2",
+            "type": "lexical",
+            "severity": "minor",
+            "detail": "fight 过于激烈"
+          },
+          {
+            "q": "paragraph 4 sentence 2",
+            "type": "lexical",
+            "severity": "minor",
+            "detail": "Temperate → Moderate"
+          },
+          {
+            "q": "body paragraphs",
+            "type": "task_response",
+            "severity": "minor",
+            "detail": "未覆盖 daily life 的例子"
+          },
+          {
+            "q": "paragraph 2",
+            "type": "coherence",
+            "severity": "minor",
+            "detail": "work → school 缺过渡句"
+          },
+          {
+            "q": "paragraph 3",
+            "type": "coherence",
+            "severity": "minor",
+            "detail": "enterprise → students 跳跃太快"
+          }
+        ],
+        "rewriteHighlights": [
+          {
+            "from": "keep competition",
+            "to": "maintain a competitive environment"
+          },
+          {
+            "from": "play a positive effect",
+            "to": "play a positive role / have a beneficial impact"
+          },
+          {
+            "from": "staffs",
+            "to": "employees"
+          },
+          {
+            "from": "all of they",
+            "to": "they can all"
+          },
+          {
+            "from": "acknowledge",
+            "to": "knowledge"
+          },
+          {
+            "from": "clobrators",
+            "to": "collaborators"
+          },
+          {
+            "from": "in a statue help",
+            "to": "in a mutually supportive manner"
+          },
+          {
+            "from": "temperate competition",
+            "to": "moderate competition"
+          },
+          {
+            "from": "fight among staffs",
+            "to": "healthy rivalry among employees"
+          },
+          {
+            "from": "improvent",
+            "to": "improvement"
+          }
+        ]
+      }
+    ]
+  },
+  "reading": {
+    "totalSessions": 1,
+    "averageCorrect": 9,
+    "averageTotal": 13,
+    "records": [
+      {
+        "date": "2026-06-11",
+        "passage": "How tennis rackets have changed",
+        "score": "9/13",
+        "errors": [
+          "tfng_logic",
+          "tfng_logic",
+          "tfng_logic",
+          "gap_fill"
+        ]
+      }
+    ],
+    "errorFrequency": {
+      "tfng_logic": 3,
+      "gap_fill": 1
+    },
+    "sessions": [
+      {
+        "date": "2026-06-11",
+        "type": "reading",
+        "title": "\"How tennis rackets have changed\"",
+        "totalQuestions": 13,
+        "correctCount": 9,
+        "questionTypes": [
+          "tfng",
+          " gap_fill"
+        ],
+        "errors": [
+          {
+            "q": "4",
+            "type": "tfng_logic",
+            "detail": "原文说 weigh more than the average（更重），题目说 light（更轻），明确相反"
+          },
+          {
+            "q": "5",
+            "type": "tfng_logic",
+            "detail": "混淆 FALSE 和 NOT GIVEN。原文提到 Werner Fischer 用了 spaghetti-strung 球拍，但没说是不是他设计的。没提供信息 = NOT GIVEN"
+          },
+          {
+            "q": "6",
+            "type": "tfng_logic",
+            "detail": "同义替换不敏感。climatic conditions = weather 没识别出来"
+          },
+          {
+            "q": "12",
+            "type": "gap_fill",
+            "detail": "原文是复数 weights（对应 four to five），题目要求 ONE WORD ONLY from the passage，必须用原文原词"
+          }
+        ],
+        "answers": [
+          {
+            "q": "1",
+            "user": "FALSE",
+            "correct": "FALSE",
+            "result": "correct",
+            "text": "People had expected Andy Murray to become the world's top tennis player for at least 5 years before 2016"
+          },
+          {
+            "q": "2",
+            "user": "FALSE",
+            "correct": "FALSE",
+            "result": "correct",
+            "text": "The change that Andy Murray made to his rackets attracted a lot of attention"
+          },
+          {
+            "q": "3",
+            "user": "NOT GIVEN",
+            "correct": "NOT GIVEN",
+            "result": "correct",
+            "text": "Most of the world's top players take a professional racket stringer on tour"
+          },
+          {
+            "q": "4",
+            "user": "TRUE",
+            "correct": "FALSE",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "Mike and Bob Bryan use rackets that are light in comparison to the majority"
+          },
+          {
+            "q": "5",
+            "user": "FALSE",
+            "correct": "NOT GIVEN",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "Werner Fischer played with a spaghetti-strung racket that he designed himself"
+          },
+          {
+            "q": "6",
+            "user": "NOT GIVEN",
+            "correct": "TRUE",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "The weather can affect how professional players adjust the strings on their rackets"
+          },
+          {
+            "q": "7",
+            "user": "TRUE",
+            "correct": "TRUE",
+            "result": "correct",
+            "text": "It was believed that the change Pete Sampras made to his rackets contributed to his strong serve"
+          },
+          {
+            "q": "8",
+            "user": "paint",
+            "correct": "paint",
+            "result": "correct",
+            "text": "Mike and Bob Bryan made changes to the types of ___ on their racket frames"
+          },
+          {
+            "q": "9",
+            "user": "topspin",
+            "correct": "topspin",
+            "result": "correct",
+            "text": "Players were not allowed to use the spaghetti-strung racket because of amount of ___"
+          },
+          {
+            "q": "10",
+            "user": "training",
+            "correct": "training",
+            "result": "correct",
+            "text": "Changes to rackets can be regarded as as important as players' diets or ___"
+          },
+          {
+            "q": "11",
+            "user": "intestines",
+            "correct": "intestines",
+            "result": "correct",
+            "text": "All rackets used to have natural strings made from the ___ of animals"
+          },
+          {
+            "q": "12",
+            "user": "weight",
+            "correct": "weights",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "Pete Sampras had metal ___ put into the frames of his rackets"
+          },
+          {
+            "q": "13",
+            "user": "grips",
+            "correct": "grips",
+            "result": "correct",
+            "text": "Gongalo Oliveira changed the ___ on his racket handles"
+          }
+        ],
+        "synonyms": [
+          {
+            "from": "five years previously",
+            "to": "for at least five years before"
+          },
+          {
+            "from": "so subtle as to pass more or less unnoticed",
+            "to": "attracted a lot of attention"
+          },
+          {
+            "from": "weigh more than the average model",
+            "to": "light in comparison to the majority"
+          },
+          {
+            "from": "climatic conditions",
+            "to": "weather"
+          },
+          {
+            "from": "was attributed to",
+            "to": "was believed contributed to"
+          },
+          {
+            "from": "serving power",
+            "to": "strong serve"
+          },
+          {
+            "from": "was quickly banned",
+            "to": "was not allowed to use"
+          },
+          {
+            "from": "equal in significance to",
+            "to": "as important as"
+          },
+          {
+            "from": "nutrition or training",
+            "to": "diets or training"
+          },
+          {
+            "from": "natural gut made from intestines",
+            "to": "natural strings made from intestines"
+          },
+          {
+            "from": "addition of lead weights",
+            "to": "had metal weights put into frames"
+          },
+          {
+            "from": "replaced the original grips",
+            "to": "changed the grips on racket handles"
+          },
+          {
+            "source": "weigh more than the average model"
+          }
+        ]
+      }
+    ]
   },
   "listening": {
-    "totalSections": 2,
-    "averageBand": 4.0,
-    "accuracy": "7/20",
-    "topErrors": [
-      {"category": "distraction", "count": 6},
-      {"category": "map_orientation", "count": 4},
-      {"category": "spelling", "count": 1},
-      {"category": "number", "count": 1}
-    ],
-    "recentSessions": [
-      {"sec": "S1 Hinchingbrooke Park", "score": "4/10", "date": "2026-06-11"},
-      {"sec": "S2 Stanthorpe Twinning", "score": "3/10", "date": "2026-06-11"}
-    ],
-    "detail": [
+    "totalSessions": 1,
+    "averageCorrect": 7,
+    "averageTotal": 20,
+    "records": [
       {
-        "section": 1,
-        "title": "Hinchingbrooke Country Park",
-        "type": "填空 (ONE WORD AND/OR A NUMBER)",
-        "score": "4/10",
-        "answers": [
-          {"q": 1, "user": "69", "correct": "69", "result": "correct"},
-          {"q": 2, "user": "strin", "correct": "stream", "result": "wrong", "type": "spelling", "note": "ea组合长音/striːm/"},
-          {"q": 3, "user": "study", "correct": "data", "result": "wrong", "type": "distraction", "note": "被上下文提前出现的词干扰"},
-          {"q": 4, "user": "map", "correct": "map", "result": "correct"},
-          {"q": 5, "user": "store", "correct": "visitors", "result": "wrong", "type": "distraction"},
-          {"q": 6, "user": "temper", "correct": "sounds", "result": "wrong", "type": "distraction", "note": "被后文rhythm/speed干扰"},
-          {"q": 7, "user": "creative", "correct": "freedom", "result": "wrong", "type": "distraction", "note": "自己替换了原文词"},
-          {"q": 8, "user": "skills", "correct": "skills", "result": "correct"},
-          {"q": 9, "user": "4", "correct": "4.95", "result": "wrong", "type": "number", "note": "价格数字不完整"},
-          {"q": 10, "user": "leaders", "correct": "leaders", "result": "correct"}
-        ]
-      },
+        "date": "2026-06-11",
+        "sections": "1+2",
+        "score": "7/20",
+        "errorFrequency": {
+          "distraction": 6,
+          "map_orientation": 4,
+          "spelling": 1,
+          "number": 1
+        }
+      }
+    ],
+    "sessions": [
       {
-        "section": 2,
-        "title": "Stanthorpe Twinning Association",
-        "type": "单选 + 地图匹配",
-        "score": "3/10",
-        "answers": [
-          {"q": 11, "user": "B", "correct": "B", "result": "correct"},
-          {"q": 12, "user": "C", "correct": "A", "result": "wrong", "type": "distraction"},
-          {"q": 13, "user": "B", "correct": "B", "result": "correct"},
-          {"q": 14, "user": "C", "correct": "C", "result": "correct"},
-          {"q": 15, "user": "C", "correct": "A", "result": "wrong", "type": "distraction"},
-          {"q": 16, "user": "E", "correct": "G", "result": "wrong", "type": "map_orientation"},
-          {"q": 17, "user": "C", "correct": "C", "result": "correct"},
-          {"q": 18, "user": "D", "correct": "B", "result": "wrong", "type": "map_orientation"},
-          {"q": 19, "user": "B", "correct": "D", "result": "wrong", "type": "map_orientation"},
-          {"q": 20, "user": "G", "correct": "A", "result": "wrong", "type": "map_orientation"}
+        "date": "2026-06-11",
+        "type": "listening",
+        "book": "\"cambridge-19\"",
+        "test": 1,
+        "totalQuestions": 20,
+        "correctCount": 7,
+        "sections": "[1, 2]",
+        "sectionScores": {
+          "s1": "\"4/10\"",
+          "s2": "\"3/10\""
+        },
+        "questions": [
+          {
+            "q": "11",
+            "text": "During the visit to Malatte, in France, members especially enjoyed",
+            "options": "A: theme park | B: river trip | C: cheese factory",
+            "user": "B",
+            "correct": "B"
+          },
+          {
+            "q": "12",
+            "text": "What will happen in Stanthorpe to mark the 25th anniversary?",
+            "options": "A: tree planted | B: garden seat | C: footbridge",
+            "user": "C",
+            "correct": "A"
+          },
+          {
+            "q": "13",
+            "text": "Which event raised most funds this year?",
+            "options": "A: film show | B: pancake evening | C: cookery demo",
+            "user": "B",
+            "correct": "B"
+          },
+          {
+            "q": "14",
+            "text": "First evening with French visitors: host families advised to",
+            "options": "A: walk round town | B: local restaurant | C: meal at home",
+            "user": "C",
+            "correct": "C"
+          },
+          {
+            "q": "15",
+            "text": "On Saturday evening there will be the chance to",
+            "options": "A: concert | B: match | C: competition",
+            "user": "C",
+            "correct": "A"
+          },
+          {
+            "q": "16",
+            "text": "Farm shop",
+            "options": "map location A-H",
+            "user": "E",
+            "correct": "G"
+          },
+          {
+            "q": "17",
+            "text": "Disabled entry",
+            "options": "map location A-H",
+            "user": "C",
+            "correct": "C"
+          },
+          {
+            "q": "18",
+            "text": "Adventure playground",
+            "options": "map location A-H",
+            "user": "D",
+            "correct": "B"
+          },
+          {
+            "q": "19",
+            "text": "Kitchen gardens",
+            "options": "map location A-H",
+            "user": "B",
+            "correct": "D"
+          },
+          {
+            "q": "20",
+            "text": "The Temple of the Four Winds",
+            "options": "map location A-H",
+            "user": "G",
+            "correct": "A"
+          }
+        ],
+        "errors": [
+          {
+            "q": "2",
+            "type": "spelling",
+            "userAnswer": "strin",
+            "correctAnswer": "stream",
+            "section": "1",
+            "detail": "发音 /striːm/，ea 组合长音，拼写误作 strin"
+          },
+          {
+            "q": "3",
+            "type": "distraction",
+            "userAnswer": "study",
+            "correctAnswer": "data",
+            "section": "1",
+            "detail": "被上下文提前出现的词干扰"
+          },
+          {
+            "q": "5",
+            "type": "distraction",
+            "userAnswer": "store",
+            "correctAnswer": "visitors",
+            "section": "1",
+            "detail": "没听到定位词后的答案词"
+          },
+          {
+            "q": "6",
+            "type": "distraction",
+            "userAnswer": "temper",
+            "correctAnswer": "sounds",
+            "section": "1",
+            "detail": "被后方远距离词干扰"
+          },
+          {
+            "q": "7",
+            "type": "distraction",
+            "userAnswer": "creative",
+            "correctAnswer": "freedom",
+            "section": "1",
+            "detail": "自己替换了原文词汇"
+          },
+          {
+            "q": "9",
+            "type": "number",
+            "userAnswer": "4",
+            "correctAnswer": "4.95",
+            "section": "1",
+            "detail": "价格数字不完整，漏了 .95"
+          },
+          {
+            "q": "12",
+            "type": "distraction",
+            "userAnswer": "C",
+            "correctAnswer": "A",
+            "section": "2",
+            "detail": "单选干扰选项"
+          },
+          {
+            "q": "15",
+            "type": "distraction",
+            "userAnswer": "C",
+            "correctAnswer": "A",
+            "section": "2",
+            "detail": "单选干扰选项"
+          },
+          {
+            "q": "16",
+            "type": "map_orientation",
+            "userAnswer": "E",
+            "correctAnswer": "G",
+            "section": "2",
+            "detail": "地图定位错误"
+          },
+          {
+            "q": "18",
+            "type": "map_orientation",
+            "userAnswer": "D",
+            "correctAnswer": "B",
+            "section": "2",
+            "detail": "地图定位错误"
+          },
+          {
+            "q": "19",
+            "type": "map_orientation",
+            "userAnswer": "B",
+            "correctAnswer": "D",
+            "section": "2",
+            "detail": "地图定位错误"
+          },
+          {
+            "q": "20",
+            "type": "map_orientation",
+            "userAnswer": "G",
+            "correctAnswer": "A",
+            "section": "2",
+            "detail": "地图定位错误"
+          }
         ]
       }
     ]
@@ -145,38 +1253,108 @@
   "vocab": {
     "wordsReviewed": 8,
     "newWords": 3,
-    "accuracy": "4/8",
-    "retention": "50%",
-    "weakWords": ["curriculum", "bias", "be attributed to"],
-    "detail": [
-      {"word": "curriculum", "status": "weak", "meaning": "课程设置"},
-      {"word": "bias", "status": "weak", "meaning": "偏见"},
-      {"word": "be attributed to", "status": "weak", "meaning": "归因于"},
-      {"word": "significant", "status": "strong", "meaning": "重要的"},
-      {"word": "evidence", "status": "strong", "meaning": "证据"},
-      {"word": "sustainable", "status": "strong", "meaning": "可持续的"},
-      {"word": "climatic conditions", "status": "strong", "meaning": "天气(同义替换)"},
-      {"word": "equal in significance to", "status": "strong", "meaning": "和...一样重要"}
+    "accuracy": "50%",
+    "reviewHistory": [
+      {
+        "day": 0,
+        "date": "",
+        "reviewed": 8,
+        "correct": 4,
+        "accuracy": "50%",
+        "source": "Band 6 wordlist + reading synonyms"
+      }
+    ],
+    "totalWords": 150,
+    "sampleWords": [
+      "curriculum",
+      "tuition",
+      "grant",
+      "compulsory",
+      "elective",
+      "faculty",
+      "undergraduate",
+      "postgraduate",
+      "semester",
+      "assessment",
+      "pollutant",
+      "conservation",
+      "emission",
+      "renewable",
+      "deforestation",
+      "biodiversity",
+      "contaminate",
+      "ecology",
+      "sustainable",
+      "extinct"
     ]
   },
   "speaking": {
-    "storiesPrepared": 1,
-    "status": "pending",
-    "nextTopic": "Describe a time when you felt proud of a family member",
-    "storyTitle": "我爸自己装修了整套房子",
-    "coverableTopics": 8
+    "storiesPrepared": 0,
+    "status": "pending"
   },
   "todaySession": {
-    "date": "2026-06-11",
-    "duration": "~3h",
-    "tasksCompleted": 4,
-    "tasksPending": 1,
+    "tasksCompleted": 0,
+    "tasksPending": 5,
     "tasks": [
-      {"name": "Reading C19 T1 P1", "status": "done", "result": "9/13"},
-      {"name": "Writing C19 T1 Task 2", "status": "done", "result": "5.0"},
-      {"name": "Listening C19 T1 S1+S2", "status": "done", "result": "7/20"},
-      {"name": "Vocab review 8 words", "status": "done", "result": "4/8"},
-      {"name": "Speaking Part 2", "status": "skipped", "result": "tomorrow"}
+      {
+        "id": "task-r1",
+        "module": "reading",
+        "book": "cambridge-19",
+        "test": 1,
+        "passage": 1,
+        "title": "How Tennis Rackets Have Changed",
+        "task_type": "T/F/NG + 填空",
+        "time": "20min 限时 + 10min 错题分析 + 5组同义替换提取",
+        "status": "todo"
+      },
+      {
+        "id": "task-l1",
+        "module": "listening",
+        "book": "cambridge-19",
+        "test": 1,
+        "section": 2,
+        "title": "Stanthorpe Twinning Association",
+        "task_type": "单选 + 地图",
+        "time": "限时做完 → 精听错题句",
+        "status": "todo"
+      },
+      {
+        "id": "task-w1",
+        "module": "writing",
+        "book": "cambridge-19",
+        "test": 1,
+        "task": 2,
+        "title": "Competition vs Cooperation",
+        "task_type": "大作文",
+        "time": "限时 40min → 发 /ielts-writing 批改",
+        "status": "todo"
+      },
+      {
+        "id": "task-s1",
+        "module": "speaking",
+        "batch": "2026-01-04",
+        "topic": "Describe a time when you felt proud of a family member",
+        "task_type": "Part 2",
+        "time": "准备素材 → 发 /ielts-speaking",
+        "status": "todo"
+      },
+      {
+        "id": "task-v1",
+        "module": "vocab",
+        "source": "listening-words.pdf + 阅读同义替换",
+        "count": 10,
+        "task_type": "词汇复习 /ielts-vocab",
+        "time": "10min",
+        "status": "todo"
+      }
+    ]
+  },
+  "profile": {
+    "targetBand": 7.5,
+    "examDates": [
+      "2026-06",
+      "2026-07",
+      "2026-08"
     ]
   }
 }

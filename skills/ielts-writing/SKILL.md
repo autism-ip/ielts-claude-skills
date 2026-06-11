@@ -240,37 +240,47 @@ metadata:
 
 ---
 
-## v3.0 存档输出
+## v3.0 存档输出（Dashboard 兼容）
 
 批改完成后，将结果以 YAML frontmatter + Markdown 格式写入本地存档。
+
+**所有数据必须写入 YAML frontmatter**（不要只写在 Markdown 正文里），
+因为 `scripts/sync-dashboard.mjs` 只读取 YAML frontmatter，
+Dashboard 从生成的 stats.json 读取渲染。
 
 ### 写入路径
 
 `~/.ielts/writing/{YYYY-MM-DD}-{task1|task2|letter}.md`
 
-### 存档格式
+### 存档格式（必须包含以下全部字段）
 
 ```yaml
 ---
 type: "writing"
-taskType: "task1" | "task2" | "letter"
-topic: "作文题目"
-wordCount: 285
+taskType: "task2"
+topic: "作文题目的完整原文"     # 必须包含，Dashboard 会显示
+wordCount: 280
 bandScore:
-  tr: 6.5
-  cc: 6.0
-  lr: 6.5
-  gra: 6.0
-  overall: 6.5
-errors:
-  - category: "task_response" | "coherence" | "lexical" | "grammar" | "spelling"
-    severity: "major" | "minor"
-    location: "paragraph 2"
-    description: "论点不够充分，未完全展开"
+  tr: 5.5                       # 四个维度的分数必须都有
+  cc: 5.0
+  lr: 5.0
+  gra: 4.0
+  overall: 5.0
+errors:                         # 每类错误的详细列表
   - category: "grammar"
+    severity: "major" | "minor"
+    location: "paragraph 1 sentence 1"
+    description: "具体的错误描述"
+  - category: "spelling"
     severity: "major"
-    location: "paragraph 1 sentence 3"
-    description: "主谓不一致"
+    location: "paragraph 2 sentence 3"
+    description: "acknowledge → knowledge"
+rewriteHighlights:              # 改写对比对，Dashboard 会渲染为 Before → After 表
+  - from: "keep competition"; to: "maintain a competitive environment"
+  - from: "play a positive effect"; to: "play a positive role"
+upgradePriorities:              # 提分优先级列表
+  - "GRA: 复习主谓一致"
+  - "LR: 写完后检查拼写"
 rewritten: true
 createdAt: "2026-06-01T10:00:00.000Z"
 ---

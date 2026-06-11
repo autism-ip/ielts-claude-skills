@@ -101,29 +101,43 @@ metadata:
 
 ---
 
-## v3.0 存档输出
+## v3.0 存档输出（Dashboard 兼容）
+
+**所有数据必须写入 YAML frontmatter**，因为 `scripts/sync-dashboard.mjs`
+只读取 YAML frontmatter，Dashboard 从生成的 stats.json 读取渲染。
 
 ### 写入路径
 
 `~/.ielts/listening/{YYYY-MM-DD}-section-{n}.md`
 
-### 存档格式
+### 存档格式（必须包含以下全部字段）
 
 ```yaml
 ---
 type: "listening"
-section: 2
-totalQuestions: 10
+book: "cambridge-19"
+test: 1
+sectionsCompleted: [1, 2]
+totalQuestions: 20
 correctCount: 7
-bandEstimate: 6.5
+scores:
+  section1: "4/10"
+  section2: "3/10"
 errors:
-  - questionNumber: 3
-    userAnswer: "librarian"
-    correctAnswer: "library"
+  - questionNumber: 2
+    section: 1
+    userAnswer: "strin"
+    correctAnswer: "stream"
     errorCategory: "spelling"
+    detail: "具体的错因分析"
 createdAt: "2026-06-01T10:00:00.000Z"
+questions:                            # 完整题目列表（必须！Dashboard 渲染题目表用）
+  - q: 11;  text: "题目完整原文";  options: "A: opt1 | B: opt2 | C: opt3";  user: "B";  correct: "B"
+  - q: 12;  text: "题目完整原文";  options: "A: opt1 | B: opt2";  user: "C";  correct: "A"
+archivedFiles:                        # 关联的录音/答案文件
+  - "cambridge-19-test-1-audio-1.mp3"
+  - "2026-06-11-answers.pdf"
 ---
-```
 
 ### 存档时机
 
