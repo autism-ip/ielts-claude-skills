@@ -1,1 +1,182 @@
-{}
+{
+  "version": "3.0.0-alpha",
+  "lastSnapshot": "2026-06-11T23:55:00.000Z",
+  "combined": {
+    "overallBand": 5.0,
+    "daysUntilExam": 19,
+    "targetBand": 7.5,
+    "examDates": ["2026-06-30", "2026-07-31", "2026-08-31"]
+  },
+  "writing": {
+    "totalEssays": 1,
+    "averageBand": 5.0,
+    "dimensions": { "tr": 5.5, "cc": 5.0, "lr": 5.0, "gra": 4.0 },
+    "topErrors": [
+      {"category": "grammar/spelling", "count": 18},
+      {"category": "lexical", "count": 4},
+      {"category": "coherence", "count": 2},
+      {"category": "task_response", "count": 1}
+    ],
+    "recentTopics": ["Competition vs Cooperation"],
+    "detail": {
+      "topic": "Some people think that competition at work, at school and in daily life is a good thing. Others believe that we should try to cooperate more, rather than competing against each other.",
+      "wordCount": 280,
+      "rewritten": true,
+      "errors": [
+        {"q": "P1S1", "type": "grammar", "detail": "主谓不一致: Competition and Cooperation is → are"},
+        {"q": "P1S2", "type": "grammar", "detail": "词性混淆: we should be competition → we should compete"},
+        {"q": "P2S2", "type": "lexical", "detail": "搭配错误: play a effect → play a role / have an effect"},
+        {"q": "P4S2", "type": "grammar", "detail": "冠词错误: a important → an important"},
+        {"q": "P1-P3", "type": "spelling", "detail": "10+ 拼写错误: necessery, remarkble, clobrators, studens..."},
+        {"q": "P2-P3", "type": "task_response", "detail": "未覆盖 daily life 的示例"}
+      ],
+      "rewriteHighlights": [
+        {"from": "keep competition", "to": "maintain a competitive environment"},
+        {"from": "play a positive effect", "to": "play a positive role / have a beneficial impact"},
+        {"from": "staffs", "to": "employees"},
+        {"from": "all of they", "to": "they can all"},
+        {"from": "acknowledge", "to": "knowledge"},
+        {"from": "clobrators", "to": "collaborators"},
+        {"from": "in a statue help", "to": "in a mutually supportive manner"},
+        {"from": "temperate competition", "to": "moderate competition"}
+      ],
+      "upgradePriorities": [
+        "1. GRA: 复习主谓一致 + 词性区分",
+        "2. LR: 写完后花2分钟检查拼写",
+        "3. TR: 确保题目每个限定词都在正文出现"
+      ]
+    }
+  },
+  "reading": {
+    "totalPassages": 1,
+    "averageBand": 6.0,
+    "accuracy": "9/13",
+    "topErrors": [
+      {"category": "tfng_logic", "count": 3},
+      {"category": "gap_fill", "count": 1}
+    ],
+    "recentPassages": [
+      {"title": "How tennis rackets have changed", "score": "9/13", "date": "2026-06-11"}
+    ],
+    "detail": {
+      "title": "How tennis rackets have changed",
+      "questionTypes": "T/F/NG (Q1-7) + Note Completion (Q8-13)",
+      "timeSpent": "20:00",
+      "answers": [
+        {"q": 1, "user": "FALSE", "correct": "FALSE", "result": "correct"},
+        {"q": 2, "user": "FALSE", "correct": "FALSE", "result": "correct"},
+        {"q": 3, "user": "NOT GIVEN", "correct": "NOT GIVEN", "result": "correct"},
+        {"q": 4, "user": "TRUE", "correct": "FALSE", "result": "wrong", "type": "tfng_logic", "note": "原文说更重, 题目说更轻, 明确相反"},
+        {"q": 5, "user": "FALSE", "correct": "NOT GIVEN", "result": "wrong", "type": "tfng_logic", "note": "混淆FALSE和NG, 原文没提是否自设计"},
+        {"q": 6, "user": "NOT GIVEN", "correct": "TRUE", "result": "wrong", "type": "tfng_logic", "note": "climatic conditions=weather 同义替换没识别"},
+        {"q": 7, "user": "TRUE", "correct": "TRUE", "result": "correct"},
+        {"q": 8, "user": "paint", "correct": "paint", "result": "correct"},
+        {"q": 9, "user": "topspin", "correct": "topspin", "result": "correct"},
+        {"q": 10, "user": "training", "correct": "training", "result": "correct"},
+        {"q": 11, "user": "intestines", "correct": "intestines", "result": "correct"},
+        {"q": 12, "user": "weight", "correct": "weights", "result": "wrong", "type": "gap_fill", "note": "原文是复数weights, 注意单复数"},
+        {"q": 13, "user": "grips", "correct": "grips", "result": "correct"}
+      ],
+      "synonyms": [
+        {"from": "five years previously", "to": "for at least five years before"},
+        {"from": "so subtle as to pass unnoticed", "to": "attracted a lot of attention"},
+        {"from": "weigh more than average", "to": "light in comparison"},
+        {"from": "climatic conditions", "to": "weather"},
+        {"from": "was attributed to", "to": "was believed contributed to"},
+        {"from": "serving power", "to": "strong serve"},
+        {"from": "was quickly banned", "to": "was not allowed to use"},
+        {"from": "equal in significance to", "to": "as important as"}
+      ]
+    }
+  },
+  "listening": {
+    "totalSections": 2,
+    "averageBand": 4.0,
+    "accuracy": "7/20",
+    "topErrors": [
+      {"category": "distraction", "count": 6},
+      {"category": "map_orientation", "count": 4},
+      {"category": "spelling", "count": 1},
+      {"category": "number", "count": 1}
+    ],
+    "recentSessions": [
+      {"sec": "S1 Hinchingbrooke Park", "score": "4/10", "date": "2026-06-11"},
+      {"sec": "S2 Stanthorpe Twinning", "score": "3/10", "date": "2026-06-11"}
+    ],
+    "detail": [
+      {
+        "section": 1,
+        "title": "Hinchingbrooke Country Park",
+        "type": "填空 (ONE WORD AND/OR A NUMBER)",
+        "score": "4/10",
+        "answers": [
+          {"q": 1, "user": "69", "correct": "69", "result": "correct"},
+          {"q": 2, "user": "strin", "correct": "stream", "result": "wrong", "type": "spelling", "note": "ea组合长音/striːm/"},
+          {"q": 3, "user": "study", "correct": "data", "result": "wrong", "type": "distraction", "note": "被上下文提前出现的词干扰"},
+          {"q": 4, "user": "map", "correct": "map", "result": "correct"},
+          {"q": 5, "user": "store", "correct": "visitors", "result": "wrong", "type": "distraction"},
+          {"q": 6, "user": "temper", "correct": "sounds", "result": "wrong", "type": "distraction", "note": "被后文rhythm/speed干扰"},
+          {"q": 7, "user": "creative", "correct": "freedom", "result": "wrong", "type": "distraction", "note": "自己替换了原文词"},
+          {"q": 8, "user": "skills", "correct": "skills", "result": "correct"},
+          {"q": 9, "user": "4", "correct": "4.95", "result": "wrong", "type": "number", "note": "价格数字不完整"},
+          {"q": 10, "user": "leaders", "correct": "leaders", "result": "correct"}
+        ]
+      },
+      {
+        "section": 2,
+        "title": "Stanthorpe Twinning Association",
+        "type": "单选 + 地图匹配",
+        "score": "3/10",
+        "answers": [
+          {"q": 11, "user": "B", "correct": "B", "result": "correct"},
+          {"q": 12, "user": "C", "correct": "A", "result": "wrong", "type": "distraction"},
+          {"q": 13, "user": "B", "correct": "B", "result": "correct"},
+          {"q": 14, "user": "C", "correct": "C", "result": "correct"},
+          {"q": 15, "user": "C", "correct": "A", "result": "wrong", "type": "distraction"},
+          {"q": 16, "user": "E", "correct": "G", "result": "wrong", "type": "map_orientation"},
+          {"q": 17, "user": "C", "correct": "C", "result": "correct"},
+          {"q": 18, "user": "D", "correct": "B", "result": "wrong", "type": "map_orientation"},
+          {"q": 19, "user": "B", "correct": "D", "result": "wrong", "type": "map_orientation"},
+          {"q": 20, "user": "G", "correct": "A", "result": "wrong", "type": "map_orientation"}
+        ]
+      }
+    ]
+  },
+  "vocab": {
+    "wordsReviewed": 8,
+    "newWords": 3,
+    "accuracy": "4/8",
+    "retention": "50%",
+    "weakWords": ["curriculum", "bias", "be attributed to"],
+    "detail": [
+      {"word": "curriculum", "status": "weak", "meaning": "课程设置"},
+      {"word": "bias", "status": "weak", "meaning": "偏见"},
+      {"word": "be attributed to", "status": "weak", "meaning": "归因于"},
+      {"word": "significant", "status": "strong", "meaning": "重要的"},
+      {"word": "evidence", "status": "strong", "meaning": "证据"},
+      {"word": "sustainable", "status": "strong", "meaning": "可持续的"},
+      {"word": "climatic conditions", "status": "strong", "meaning": "天气(同义替换)"},
+      {"word": "equal in significance to", "status": "strong", "meaning": "和...一样重要"}
+    ]
+  },
+  "speaking": {
+    "storiesPrepared": 1,
+    "status": "pending",
+    "nextTopic": "Describe a time when you felt proud of a family member",
+    "storyTitle": "我爸自己装修了整套房子",
+    "coverableTopics": 8
+  },
+  "todaySession": {
+    "date": "2026-06-11",
+    "duration": "~3h",
+    "tasksCompleted": 4,
+    "tasksPending": 1,
+    "tasks": [
+      {"name": "Reading C19 T1 P1", "status": "done", "result": "9/13"},
+      {"name": "Writing C19 T1 Task 2", "status": "done", "result": "5.0"},
+      {"name": "Listening C19 T1 S1+S2", "status": "done", "result": "7/20"},
+      {"name": "Vocab review 8 words", "status": "done", "result": "4/8"},
+      {"name": "Speaking Part 2", "status": "skipped", "result": "tomorrow"}
+    ]
+  }
+}
