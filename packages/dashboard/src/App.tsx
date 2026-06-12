@@ -1,3 +1,11 @@
+/**
+ * [INPUT]: 依赖 react 的 useEffect/useState，依赖 recharts 的 RadarChart/BarChart/PieChart/LineChart
+ *           数据来源于 /stats.json 的 fetch 结果，在运行时异步加载
+ * [OUTPUT]: 对外提供 App 默认导出（SPA 入口）、Loading 组件
+ * [POS]: packages/dashboard/src 的核心渲染器，被 main.tsx 消费
+ *         内部包含 date nav、scoreboard、charts、阅读/写作/听力/vocab 四个详情页
+ * [PROTOCOL]: 变更时更新此头部，然后检查 CLAUDE.md
+ */
 import React, { useEffect, useState } from 'react';
 import {
   RadarChart, PolarGrid, PolarAngleAxis, Radar,
@@ -38,7 +46,10 @@ function Nav({ active, setActive }: { active: string; setActive: (k: string) => 
 
 function TabPane({ tab, children }: { tab: string; children: React.ReactNode }) {
   const [pt, setPt] = useState(tab); const [f, setF] = useState(false); const [cont, setCont] = useState(children);
-  useEffect(() => { if (tab !== pt) { setF(true); setTimeout(() => { setCont(children); setPt(tab); setF(false); }, 140); } }, [tab, pt, children]);
+  useEffect(() => {
+    if (tab !== pt) { setF(true); setTimeout(() => { setCont(children); setPt(tab); setF(false); }, 140); }
+    else { setCont(children); }
+  }, [tab, pt, children]);
   return <div style={{ opacity: f ? 0 : 1, transform: f ? 'translateY(4px)' : 'translateY(0)', transition: `opacity .2s ${E}, transform .2s ${E}` }}>{cont}</div>;
 }
 
@@ -47,6 +58,7 @@ function App() {
   const [err, setErr] = useState<string | null>(null);
   const [tab, setTab] = useState('overview');
   const [selDay, setSelDay] = useState('');
+  const [synExp, setSynExp] = useState<string[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -181,6 +193,42 @@ function App() {
                   padding: '1px 8px', borderRadius: 3,
                 }}>
                   {t.status === 'done' ? '✓ Done' : t.status === 'skipped' ? '⏭ Skipped' : '○ Pending'}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
+      {/* Extra training sessions */}
+      {s.todaySession?.extraSessions && s.todaySession.extraSessions.length > 0 && (
+        <div style={{ background: c.card, border: `1px solid ${c.line}`, borderRadius: 3, padding: 14, ...sg(5) }}>
+          <div style={{ fontSize: 11, color: c.muted, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 8 }}>
+            Extra Training · {s.todaySession.extraSessions.length}{' '}
+            {s.todaySession.extraSessions.filter(e => e.status === 'done').length} completed
+          </div>
+          {s.todaySession.extraSessions.map((e, i) => {
+            const icon = { reading: '📖', writing: '✏️', listening: '🎧', speaking: '🗣️', vocab: '📝' }[e.module] || '•';
+            return (
+              <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 0', borderBottom: i < s.todaySession.extraSessions.length - 1 ? `1px dashed ${c.line}` : 'none', fontSize: 13, transition: 'padding-left .15s' }}
+                onMouseEnter={e2 => e2.currentTarget.style.paddingLeft = '6px'}
+                onMouseLeave={e2 => e2.currentTarget.style.paddingLeft = '0'}
+              >
+                <span style={{ color: c.ink }}>
+                  {icon} {e.title}
+                  {'correctCount' in e && e.totalQuestions > 0 && (
+                    <span style={{ color: c.muted, fontSize: 11, marginLeft: 6 }}>
+                      {e.correctCount}/{e.totalQuestions}
+                    </span>
+                  )}
+                  {e.source && <span style={{ color: c.muted, fontSize: 11, marginLeft: 6 }}>· {e.source}</span>}
+                </span>
+                <span style={{
+                  fontWeight: 600, fontSize: 12,
+                  background: e.status === 'done' ? c.green + '18' : c.gold + '18',
+                  color: e.status === 'done' ? c.green : c.gold,
+                  padding: '1px 8px', borderRadius: 3,
+                }}>
+                  {e.status === 'done' ? '✓ Done' : '○ Pending'}
                 </span>
               </div>
             );
@@ -486,6 +534,60 @@ function App() {
           {s.speaking.nextTopic && <div style={{ fontSize: 12, color: c.muted, marginTop: 4 }}>Next: {s.speaking.nextTopic}</div>}
         </div>
       )}
+      {/* Synonyms Bank */}
+      {(() => {
+        const grps = s.history?.filter(h => h.synonyms?.length) || [];
+        if (!grps.length) return null;
+        const total = grps.reduce((a, g) => a + g.synonyms!.length, 0);
+        return (
+          <div style={{ borderTop: `2px solid ${c.line}`, marginTop: 20, paddingTop: 16, ...sg(5) }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 14 }}>
+              <div>
+                <div style={{ fontSize: 11, color: c.muted, textTransform: 'uppercase', letterSpacing: 1.5, marginBottom: 2 }}>Synonyms Bank</div>
+                <div style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
+                  <span style={{ fontSize: 28, fontWeight: 600, color: c.blue, fontFamily: "'Fraunces',Georgia,serif", letterSpacing: -1, lineHeight: 1.1 }}>{total}</span>
+                  <span style={{ fontSize: 12, color: c.muted }}>pairs · {grps.length} sessions</span>
+                </div>
+              </div>
+              <span style={{ fontSize: 11, color: c.muted, background: c.blue + '0a', padding: '3px 10px', borderRadius: 3, whiteSpace: 'nowrap' }}>{total} ← {total} →</span>
+            </div>
+            {grps.map((g, i) => {
+              const k = g.date + '|' + (g.title || '');
+              const open = synExp.includes(k);
+              return (
+                <div key={k} style={{ borderBottom: i < grps.length - 1 ? `1px dashed ${c.line}` : 'none' }}>
+                  <div onClick={() => setSynExp(p => open ? p.filter(x => x !== k) : [...p, k])}
+                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer', padding: '7px 0 7px 0', transition: 'opacity .15s' }}
+                    onMouseEnter={e => e.currentTarget.style.opacity = '.65'}
+                    onMouseLeave={e => e.currentTarget.style.opacity = '1'}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, minWidth: 0 }}>
+                      <span style={{ width: 3, height: 14, borderRadius: 2, flexShrink: 0, transition: 'background .2s', background: open ? c.accent : c.line }} />
+                      <span style={{ fontSize: 13, fontWeight: 500, color: c.ink, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{g.title}</span>
+                      <span style={{ fontSize: 11, color: c.muted, flexShrink: 0 }}>· {g.date}</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
+                      <span style={{ fontSize: 11, color: c.muted, background: c.accent + '08', padding: '1px 7px', borderRadius: 3 }}>{g.synonyms!.length}</span>
+                      <span style={{ display: 'inline-block', transform: open ? 'rotate(180deg)' : 'rotate(0)', transition: 'transform .25s', color: c.muted, fontSize: 10, lineHeight: 1 }}>▼</span>
+                    </div>
+                  </div>
+                  {open && (
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: '3px 12px', padding: '2px 0 8px 11px', fontSize: 12 }}>
+                      {g.synonyms!.map((sp, j) => (
+                        <React.Fragment key={j}>
+                          <span style={{ color: c.accent, fontStyle: 'italic', overflow: 'hidden', textOverflow: 'ellipsis' }}>{sp.from}</span>
+                          <span style={{ color: c.gold }}>→</span>
+                          <span style={{ color: c.green }}>{sp.to}</span>
+                        </React.Fragment>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })()}
     </div>
   );
 

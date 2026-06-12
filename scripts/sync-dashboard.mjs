@@ -248,6 +248,7 @@ function main() {
       tasksCompleted: plan.tasks.filter(t => t.status === 'done').length,
       tasksPending: plan.tasks.filter(t => t.status === 'todo').length,
       tasks: plan.tasks,
+      extraSessions: plan.extraSessions || [],
     } : null,
     profile: { targetBand: profile.target_band, examDates: profile.exam_dates },
   };

@@ -1,19 +1,27 @@
 {
   "version": "3.1.0",
-  "lastSnapshot": "2026-06-11T17:36:09.032Z",
+  "lastSnapshot": "2026-06-12T11:39:53.734Z",
   "combined": {
     "overallBand": 5,
-    "daysUntilExam": 19,
+    "daysUntilExam": 18,
     "targetBand": 7.5,
     "examDates": [
       "2026-06",
       "2026-07",
       "2026-08"
     ],
-    "totalStudyDays": 1,
-    "totalSessions": 3
+    "totalStudyDays": 2,
+    "totalSessions": 6
   },
   "days": [
+    {
+      "date": "2026-06-12",
+      "sessions": 3,
+      "subjects": [
+        "reading",
+        "listening"
+      ]
+    },
     {
       "date": "2026-06-11",
       "sessions": 3,
@@ -30,6 +38,16 @@
         "date": "2026-06-11",
         "band": 6.2,
         "score": "9/13"
+      },
+      {
+        "date": "2026-06-12",
+        "band": 5,
+        "score": "22/40"
+      },
+      {
+        "date": "2026-06-12",
+        "band": 2.8,
+        "score": "4/13"
       }
     ],
     "writing": [
@@ -47,10 +65,895 @@
         "date": "2026-06-11",
         "band": 3.1,
         "score": "7/20"
+      },
+      {
+        "date": "2026-06-12",
+        "band": 1.8,
+        "score": "2/10"
       }
     ]
   },
   "history": [
+    {
+      "date": "2026-06-12",
+      "type": "reading",
+      "title": "\"Cambridge IELTS 16 Academic Reading Test 3 — Roman shipbuilding / Climate change artefacts / Plant thermometer\"",
+      "totalQuestions": 40,
+      "correctCount": 22,
+      "questionTypes": [
+        "tfng",
+        " matching",
+        " gap_fill",
+        " multiple_choice"
+      ],
+      "errors": [
+        {
+          "q": "2",
+          "type": "tfng_logic",
+          "detail": "原文只说 mortise and tenon 是一种技术，没提是否需要 skilled craftsmen。脑补信息导致把 NOT GIVEN 选成了 TRUE。"
+        },
+        {
+          "q": "3",
+          "type": "tfng_logic",
+          "detail": "题干说 building hull before frame，原文说 building frame first then hull，直接矛盾。"
+        },
+        {
+          "q": "11",
+          "type": "gap_fill",
+          "detail": "题目问什么被用来确保同步，原文说 music，用户填了 oarsmen（人不是工具）。"
+        },
+        {
+          "q": "12",
+          "type": "gap_fill",
+          "detail": "题目问 agricultural goods 的例子，原文 grain from Egypt's Nile valley，用户填了地点 Nile 而非农产品 grain。"
+        },
+        {
+          "q": "14",
+          "type": "matching",
+          "detail": "D段明确说 hunters discarded broken bows，对应 weapons left behind。"
+        },
+        {
+          "q": "15",
+          "type": "matching",
+          "detail": "C段引用说 fieldwork is hard work，对应 physical difficulties。"
+        },
+        {
+          "q": "16",
+          "type": "matching",
+          "detail": "F段说 colder climate → crop failures → less food，对应 less food available。"
+        },
+        {
+          "q": "18",
+          "type": "matching",
+          "detail": "G段说 hides 和 antlers 的需求，对应 items that would have been traded。"
+        },
+        {
+          "q": "19",
+          "type": "matching",
+          "detail": "B段说 race the clock，对应 pressure to work quickly。"
+        },
+        {
+          "q": "20",
+          "type": "gap_fill",
+          "detail": "原文用词是 microorganisms，用户填了语义合理但非原文的 decay。Gap Fill 必须用原文原词。"
+        },
+        {
+          "q": "21",
+          "type": "gap_fill",
+          "detail": "空格是主语（什么聚集在那里），原文说 reindeer congregated，用户填了地点 patches。"
+        },
+        {
+          "q": "24",
+          "type": "matching",
+          "detail": "双选题选了 B，漏了另一个正确选项 C（某些时期文物很少）。"
+        },
+        {
+          "q": "30",
+          "type": "tfng_logic",
+          "detail": "原文说 tougher crops（抗逆作物），没提 require less water（需要更少水），属于 NOT GIVEN。"
+        },
+        {
+          "q": "31",
+          "type": "tfng_logic",
+          "detail": "原文说 shade 下植物长得更快（to find sunlight），题干说阳光下更快，直接矛盾 FALSE。"
+        },
+        {
+          "q": "32",
+          "type": "tfng_logic",
+          "detail": "白天变化 <1秒（rapid），夜晚逐渐变化（gradual），题干说 same speed 与原文矛盾。"
+        },
+        {
+          "q": "33",
+          "type": "matching",
+          "detail": "H段说 outstanding collaborators 能 help transfer knowledge into the field，对应 specialists who can make use of findings。E段讲光暗竞争机制，无关。"
+        },
+        {
+          "q": "39",
+          "type": "gap_fill",
+          "detail": "原文说 cold spring → colder summer → rain-soaked。NO MORE THAN TWO WORDS。"
+        },
+        {
+          "q": "40",
+          "type": "gap_fill",
+          "detail": "原文说 using a mustard plant called Arabidopsis，空格前是 species of。"
+        }
+      ],
+      "answers": [
+        {
+          "q": "1",
+          "user": "FALSE",
+          "correct": "FALSE",
+          "result": "correct",
+          "type": "tfng",
+          "text": "The Romans' shipbuilding skills were passed on to the Greeks and the Egyptians."
+        },
+        {
+          "q": "2",
+          "user": "TRUE",
+          "correct": "NOT GIVEN",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "Skilled craftsmen were needed for the mortise and tenon method of fixing planks."
+        },
+        {
+          "q": "3",
+          "user": "TRUE",
+          "correct": "FALSE",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "The later practice used by Mediterranean shipbuilders involved building the hull before the frame."
+        },
+        {
+          "q": "4",
+          "user": "TRUE",
+          "correct": "TRUE",
+          "result": "correct",
+          "type": "tfng",
+          "text": "The Romans called the Mediterranean Sea Mare Nostrum because they dominated its use."
+        },
+        {
+          "q": "5",
+          "user": "TRUE",
+          "correct": "TRUE",
+          "result": "correct",
+          "type": "tfng",
+          "text": "Most rowers on ships were people from the Roman army."
+        },
+        {
+          "q": "6",
+          "user": "lightweight",
+          "correct": "lightweight",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "Warships were designed so that they were ____ and moved quickly."
+        },
+        {
+          "q": "7",
+          "user": "bronze",
+          "correct": "bronze",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "A battering ram made of ____ was included in the design."
+        },
+        {
+          "q": "8",
+          "user": "levels",
+          "correct": "levels",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "Warships, such as the 'trireme', had rowers on three different ____."
+        },
+        {
+          "q": "9",
+          "user": "hull",
+          "correct": "hull",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "Unlike warships, merchant ships had a broad ____ that lay far below the surface."
+        },
+        {
+          "q": "10",
+          "user": "triangular",
+          "correct": "triangular",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "They had both square and ____ sails."
+        },
+        {
+          "q": "11",
+          "user": "oarsmen",
+          "correct": "music",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "On merchant ships and warships, ____ was used to ensure rowers moved their oars in and out of the water at the same time."
+        },
+        {
+          "q": "12",
+          "user": "Nile",
+          "correct": "grain",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "Quantities of agricultural goods such as ____ were transported by merchant ships to two main ports in Italy."
+        },
+        {
+          "q": "13",
+          "user": "towboats",
+          "correct": "towboats",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "The ships were pulled to the shore by ____."
+        },
+        {
+          "q": "14",
+          "correct": "D",
+          "result": "wrong",
+          "type": "matching",
+          "text": "an explanation for weapons being left behind in the mountains"
+        },
+        {
+          "q": "15",
+          "correct": "C",
+          "result": "wrong",
+          "type": "matching",
+          "text": "a reference to the physical difficulties involved in an archaeological expedition"
+        },
+        {
+          "q": "16",
+          "correct": "F",
+          "result": "wrong",
+          "type": "matching",
+          "text": "an explanation of why less food may have been available"
+        },
+        {
+          "q": "17",
+          "user": "H",
+          "correct": "H",
+          "result": "correct",
+          "type": "matching",
+          "text": "a reference to the possibility of future archaeological discoveries"
+        },
+        {
+          "q": "18",
+          "correct": "G",
+          "result": "wrong",
+          "type": "matching",
+          "text": "examples of items that would have been traded"
+        },
+        {
+          "q": "19",
+          "correct": "B",
+          "result": "wrong",
+          "type": "matching",
+          "text": "a reference to the pressure archaeologists are under to work quickly"
+        },
+        {
+          "q": "20",
+          "user": "decay",
+          "correct": "microorganisms",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "Organic materials such as animal skins and textiles have little protection against ____."
+        },
+        {
+          "q": "21",
+          "user": "patches",
+          "correct": "reindeer",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "____ gathered there in the summer months to avoid being attacked."
+        },
+        {
+          "q": "22",
+          "user": "insects",
+          "correct": "insects",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "...to avoid being attacked by ____ on lower ground."
+        },
+        {
+          "q": "23",
+          "user": "B",
+          "correct": "B",
+          "result": "correct",
+          "type": "multiple_choice",
+          "text": "Hunters went into the mountains even during periods of extreme cold."
+        },
+        {
+          "q": "24",
+          "correct": "C",
+          "result": "wrong",
+          "type": "multiple_choice",
+          "text": "The number of artefacts from certain time periods was relatively low."
+        },
+        {
+          "q": "25",
+          "user": "A",
+          "correct": "A",
+          "result": "correct",
+          "type": "multiple_choice",
+          "text": "Hunters at this time benefited from an increased demand for goods."
+        },
+        {
+          "q": "26",
+          "user": "C",
+          "correct": "C",
+          "result": "correct",
+          "type": "multiple_choice",
+          "text": "Vikings did not rely on ships alone to transport goods."
+        },
+        {
+          "q": "27",
+          "user": "NOT GIVEN",
+          "correct": "NOT GIVEN",
+          "result": "correct",
+          "type": "tfng",
+          "text": "The Cambridge scientists' discovery caused surprise among other scientists."
+        },
+        {
+          "q": "28",
+          "user": "TRUE",
+          "correct": "TRUE",
+          "result": "correct",
+          "type": "tfng",
+          "text": "The target for agricultural production by 2050 could be missed."
+        },
+        {
+          "q": "29",
+          "user": "TRUE",
+          "correct": "TRUE",
+          "result": "correct",
+          "type": "tfng",
+          "text": "Wheat and rice suffer from a rise in temperatures."
+        },
+        {
+          "q": "30",
+          "correct": "NOT GIVEN",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "It may be possible to develop crops that require less water."
+        },
+        {
+          "q": "31",
+          "correct": "FALSE",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "Plants grow faster in sunlight than in shade."
+        },
+        {
+          "q": "32",
+          "correct": "FALSE",
+          "result": "wrong",
+          "type": "tfng",
+          "text": "Phytochromes change their state at the same speed day and night."
+        },
+        {
+          "q": "33",
+          "user": "E",
+          "correct": "H",
+          "result": "wrong",
+          "type": "matching",
+          "text": "mention of specialists who can make use of the research findings"
+        },
+        {
+          "q": "34",
+          "user": "D",
+          "correct": "D",
+          "result": "correct",
+          "type": "matching",
+          "text": "a reference to a potential benefit of the research findings"
+        },
+        {
+          "q": "35",
+          "user": "G",
+          "correct": "G",
+          "result": "correct",
+          "type": "matching",
+          "text": "scientific support for a traditional saying"
+        },
+        {
+          "q": "36",
+          "user": "C",
+          "correct": "C",
+          "result": "correct",
+          "type": "matching",
+          "text": "a reference to people traditionally making plans based on plant behaviour"
+        },
+        {
+          "q": "37",
+          "user": "A",
+          "correct": "A",
+          "result": "correct",
+          "type": "matching",
+          "text": "a reference to where the research has been reported"
+        },
+        {
+          "q": "38",
+          "user": "warm winter",
+          "correct": "warm winter",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "Daffodils are likely to flower early in response to ____."
+        },
+        {
+          "q": "39",
+          "correct": "summer",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "If ash trees come into leaf before oak trees, the weather in ____ will probably be wet."
+        },
+        {
+          "q": "40",
+          "correct": "mustard plant",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "The research was carried out using a particular species of ____."
+        }
+      ],
+      "synonyms": [
+        {
+          "from": "shipbuilding skills were passed on",
+          "to": "learned to build ships from the people they conquered"
+        },
+        {
+          "from": "fix planks",
+          "to": "locked into another"
+        },
+        {
+          "from": "hull before the frame",
+          "to": "building the frame first and then the hull"
+        },
+        {
+          "from": "dominated its use",
+          "to": "had control over"
+        },
+        {
+          "from": "Roman army",
+          "to": "enrolled in the military"
+        },
+        {
+          "from": "lack any additional weight",
+          "to": "no ballast or excess load"
+        },
+        {
+          "from": "three different levels",
+          "to": "top, middle and lower levels"
+        },
+        {
+          "from": "pulled to shore",
+          "to": "dragged to the quay"
+        },
+        {
+          "from": "weapons left behind",
+          "to": "discarded broken bows"
+        },
+        {
+          "from": "physical difficulties",
+          "to": "fieldwork is hard work"
+        },
+        {
+          "from": "race the clock",
+          "to": "pressure to work quickly"
+        },
+        {
+          "from": "gathered",
+          "to": "congregated"
+        },
+        {
+          "from": "avoid being attacked",
+          "to": "escape biting insects"
+        },
+        {
+          "from": "no activity during other periods",
+          "to": "few or no signs of activity"
+        },
+        {
+          "from": "overland routes",
+          "to": "mountain passes"
+        },
+        {
+          "from": "demand for goods",
+          "to": "booming demand for hides"
+        },
+        {
+          "from": "tougher crops",
+          "to": "crops resilient to thermal stress"
+        },
+        {
+          "from": "grow faster in sunlight",
+          "to": "plants grow faster in shade"
+        },
+        {
+          "from": "rapid deactivation",
+          "to": "very fast, less than a second"
+        },
+        {
+          "from": "gradually change",
+          "to": "instead of rapid deactivation"
+        },
+        {
+          "from": "specialists who can make use of",
+          "to": "outstanding collaborators... transfer into the field"
+        },
+        {
+          "from": "measure temperature",
+          "to": "temperature gauges"
+        },
+        {
+          "from": "agricultural yields",
+          "to": "crop yields"
+        },
+        {
+          "from": "traditional saying",
+          "to": "well-known rhyme"
+        },
+        {
+          "from": "predict weather",
+          "to": "predict weather and harvest times"
+        },
+        {
+          "from": "flower early",
+          "to": "flower months in advance"
+        },
+        {
+          "from": "rain-soaked",
+          "to": "wet"
+        },
+        {
+          "from": "model system",
+          "to": "Arabidopsis"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "type": "reading",
+      "title": "\"Cambridge IELTS 19 Academic Reading Test 1 — Passage 2: The pirates of the ancient Mediterranean\"",
+      "totalQuestions": 13,
+      "correctCount": 4,
+      "questionTypes": [
+        "matching",
+        " multiple_choice",
+        " gap_fill"
+      ],
+      "errors": [
+        {
+          "q": "14",
+          "type": "matching",
+          "detail": "原文 D 段 king of Alashiya rejected claims，题干 denial of involvement。rejected = denial 的同义替换没识别。"
+        },
+        {
+          "q": "15",
+          "type": "matching",
+          "detail": "G 段整段讲 Pompey 分13区→舰队清扫→安置务农的完整操作流程。"
+        },
+        {
+          "q": "16",
+          "type": "matching",
+          "detail": "C 段明确说 governments resort to pirates during wartime，题干 circumstances = during wartime。"
+        },
+        {
+          "q": "17",
+          "type": "matching",
+          "detail": "A 段首句 image springs to most people's minds。首段首句忽略。"
+        },
+        {
+          "q": "18",
+          "type": "matching",
+          "detail": "G 段末 offered land far from the sea。注意同段可重复使用。"
+        },
+        {
+          "q": "19",
+          "type": "matching",
+          "detail": "B 段 ships could not cross open water → restricted to coastal routes。"
+        },
+        {
+          "q": "21",
+          "type": "matching",
+          "detail": "双选题只选了 B 漏了 D。D 证据: inhabitants relied heavily on marine resources。"
+        },
+        {
+          "q": "22",
+          "type": "matching",
+          "detail": "双选题只选了 E 漏了 C。C 证据: high-ranking members engaged in piracy。"
+        },
+        {
+          "q": "25",
+          "type": "gap_fill",
+          "detail": "原文 demanding punishment。被中间 in the Senate 干扰，空格填被呼吁的对象。"
+        }
+      ],
+      "answers": [
+        {
+          "q": "14",
+          "correct": "D",
+          "result": "wrong",
+          "type": "matching",
+          "text": "a reference to a denial of involvement in piracy"
+        },
+        {
+          "q": "15",
+          "correct": "G",
+          "result": "wrong",
+          "type": "matching",
+          "text": "details of how a campaign to eradicate piracy was carried out"
+        },
+        {
+          "q": "16",
+          "correct": "C",
+          "result": "wrong",
+          "type": "matching",
+          "text": "circumstances in which states would make use of pirates"
+        },
+        {
+          "q": "17",
+          "correct": "A",
+          "result": "wrong",
+          "type": "matching",
+          "text": "how people today commonly view pirates"
+        },
+        {
+          "q": "18",
+          "correct": "G",
+          "result": "wrong",
+          "type": "matching",
+          "text": "how some people were encouraged not to return to piracy"
+        },
+        {
+          "q": "19",
+          "correct": "B",
+          "result": "wrong",
+          "type": "matching",
+          "text": "need for sailing vessels to stay close to land"
+        },
+        {
+          "q": "20",
+          "user": "B",
+          "correct": "B",
+          "result": "correct",
+          "type": "multiple_choice",
+          "text": "They escaped capture because they knew the local area well."
+        },
+        {
+          "q": "21",
+          "correct": "D",
+          "result": "wrong",
+          "type": "multiple_choice",
+          "text": "They depended more on the sea than on farming for survival."
+        },
+        {
+          "q": "22",
+          "correct": "C",
+          "result": "wrong",
+          "type": "multiple_choice",
+          "text": "Important officials were known to take part in piracy."
+        },
+        {
+          "q": "23",
+          "user": "E",
+          "correct": "E",
+          "result": "correct",
+          "type": "multiple_choice",
+          "text": "A favourable view of piracy is evident in ancient Greek texts."
+        },
+        {
+          "q": "24",
+          "user": "grain",
+          "correct": "grain",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "attacks on vessels transporting ____ to Rome"
+        },
+        {
+          "q": "25",
+          "user": "Senate",
+          "correct": "punishment",
+          "result": "wrong",
+          "type": "gap_fill",
+          "text": "resulted in calls for ____ for the pirates responsible"
+        },
+        {
+          "q": "26",
+          "user": "ransom",
+          "correct": "ransom",
+          "result": "correct",
+          "type": "gap_fill",
+          "text": "pirates demanding a ____"
+        }
+      ],
+      "synonyms": [
+        {
+          "from": "denial of involvement",
+          "to": "rejected claims of a connection"
+        },
+        {
+          "from": "campaign to eradicate piracy",
+          "to": "combat the Mediterranean menace"
+        },
+        {
+          "from": "make use of pirates",
+          "to": "resort to pirates' services"
+        },
+        {
+          "from": "especially during wartime",
+          "to": "especially during wartime"
+        },
+        {
+          "from": "how people today commonly view",
+          "to": "image springs to most people's minds"
+        },
+        {
+          "from": "encouraged not to return",
+          "to": "offered land far from the sea"
+        },
+        {
+          "from": "sailing vessels stay close to land",
+          "to": "restricted to coastal routes"
+        },
+        {
+          "from": "knew the local area well",
+          "to": "knowledge of the local area"
+        },
+        {
+          "from": "depended on sea more than farming",
+          "to": "relied heavily on marine resources"
+        },
+        {
+          "from": "high-ranking officials took part",
+          "to": "high-ranking members engaged in such activities"
+        },
+        {
+          "from": "favourable view in texts",
+          "to": "condones, praises, glorified"
+        },
+        {
+          "from": "demanding a ransom",
+          "to": "asking for a large ransom"
+        },
+        {
+          "from": "calls for punishment",
+          "to": "demanding punishment"
+        }
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "type": "listening",
+      "book": "\"cambridge-19\"",
+      "test": 1,
+      "totalQuestions": 10,
+      "correctCount": 2,
+      "sections": "[\"3\"]",
+      "sectionScores": {
+        "s1": null,
+        "s2": null
+      },
+      "questions": [
+        {
+          "q": "21",
+          "text": "Which TWO things did Colin find most satisfying about his bread reuse project?",
+          "options": "A: support from restaurants | B: preventing waste | C: overcoming problems | D: experimenting designs | E: learning 3D printing",
+          "correct": "B"
+        },
+        {
+          "q": "22",
+          "text": "Which TWO things did Colin find most satisfying?",
+          "options": "同上",
+          "correct": "D"
+        },
+        {
+          "q": "23",
+          "text": "Which TWO ways could touch-sensitive sensors be developed in future?",
+          "options": "A: medical products | B: food fit to eat | C: drinks | D: blind people | E: indicate weight",
+          "correct": "A"
+        },
+        {
+          "q": "24",
+          "text": "Which TWO ways could touch-sensitive sensors be developed in future?",
+          "options": "同上",
+          "correct": "E"
+        },
+        {
+          "q": "25",
+          "text": "Opinion about use of local products",
+          "options": "A-H matching",
+          "user": "B",
+          "correct": "D"
+        },
+        {
+          "q": "26",
+          "text": "Opinion about reduction in unnecessary packaging",
+          "options": "A-H matching",
+          "user": "D",
+          "correct": "G"
+        },
+        {
+          "q": "27",
+          "text": "Opinion about gluten-free and lactose-free food",
+          "options": "A-H matching",
+          "user": "C",
+          "correct": "C"
+        },
+        {
+          "q": "28",
+          "text": "Opinion about branded products related to celebrity chefs",
+          "options": "A-H matching",
+          "user": "G",
+          "correct": "B"
+        },
+        {
+          "q": "29",
+          "text": "Opinion about development of ghost kitchens",
+          "options": "A-H matching",
+          "user": "F",
+          "correct": "F"
+        },
+        {
+          "q": "30",
+          "text": "Opinion about use of mushrooms for common health concerns",
+          "options": "A-H matching",
+          "user": "E",
+          "correct": "H"
+        }
+      ],
+      "errors": [
+        {
+          "q": "21",
+          "type": "distraction",
+          "section": "3",
+          "detail": "双选题。Colin 最满意的是防止浪费（B）和尝试图案颜色（D）。他表达满意度比较含蓄，B 是用 It was 回应别人的夸奖，D 是直接说 really pleased。"
+        },
+        {
+          "q": "22",
+          "type": "distraction",
+          "section": "3",
+          "detail": "同一双选题，漏了第二个正确答案 D。"
+        },
+        {
+          "q": "23",
+          "type": "distraction",
+          "section": "3",
+          "detail": "触感传感器未来方向是药品存储（A）和指示重量（E）。B 食物可吃是现有功能，D 助盲是原始设计目的，都不是未来发展。被当前用途干扰。"
+        },
+        {
+          "q": "24",
+          "type": "distraction",
+          "section": "3",
+          "detail": "同一双选题，漏了第二个正确答案 E。"
+        },
+        {
+          "q": "25",
+          "type": "distraction",
+          "userAnswer": "B",
+          "correctAnswer": "D",
+          "section": "3",
+          "detail": "本地食材趋势。Colin 说 shops still full of imported foods + they need to be more proactive，答案是 D（零售商应更主动）。你选了 B，听到负面评价但没抓住主体是 retailers。"
+        },
+        {
+          "q": "26",
+          "type": "distraction",
+          "userAnswer": "D",
+          "correctAnswer": "G",
+          "section": "3",
+          "detail": "减少包装。Colin 明确说 The government needs to do something，所以是 G（应有更严法规）。你选了 D（零售商应更主动），把 Q25 的 retailer 串到了 Q26。"
+        },
+        {
+          "q": "28",
+          "type": "distraction",
+          "userAnswer": "G",
+          "correctAnswer": "B",
+          "section": "3",
+          "detail": "明星厨师品牌。Colin 说 bought a spice mix and it didn't actually taste of anything → 导致失望（B）。你选了 G（更严法规），原文没提法规。"
+        },
+        {
+          "q": "30",
+          "type": "distraction",
+          "userAnswer": "E",
+          "correctAnswer": "H",
+          "section": "3",
+          "detail": "蘑菇保健品。正确答案 H（可能有危险），你选了 E（需要更多资金支持）。可能听到 financial/support 相关词但配错对象。"
+        }
+      ]
+    },
     {
       "date": "2026-06-11",
       "type": "reading",
@@ -863,6 +1766,747 @@
     },
     "sessions": [
       {
+        "date": "2026-06-12",
+        "type": "reading",
+        "title": "\"Cambridge IELTS 16 Academic Reading Test 3 — Roman shipbuilding / Climate change artefacts / Plant thermometer\"",
+        "totalQuestions": 40,
+        "correctCount": 22,
+        "questionTypes": [
+          "tfng",
+          " matching",
+          " gap_fill",
+          " multiple_choice"
+        ],
+        "errors": [
+          {
+            "q": "2",
+            "type": "tfng_logic",
+            "detail": "原文只说 mortise and tenon 是一种技术，没提是否需要 skilled craftsmen。脑补信息导致把 NOT GIVEN 选成了 TRUE。"
+          },
+          {
+            "q": "3",
+            "type": "tfng_logic",
+            "detail": "题干说 building hull before frame，原文说 building frame first then hull，直接矛盾。"
+          },
+          {
+            "q": "11",
+            "type": "gap_fill",
+            "detail": "题目问什么被用来确保同步，原文说 music，用户填了 oarsmen（人不是工具）。"
+          },
+          {
+            "q": "12",
+            "type": "gap_fill",
+            "detail": "题目问 agricultural goods 的例子，原文 grain from Egypt's Nile valley，用户填了地点 Nile 而非农产品 grain。"
+          },
+          {
+            "q": "14",
+            "type": "matching",
+            "detail": "D段明确说 hunters discarded broken bows，对应 weapons left behind。"
+          },
+          {
+            "q": "15",
+            "type": "matching",
+            "detail": "C段引用说 fieldwork is hard work，对应 physical difficulties。"
+          },
+          {
+            "q": "16",
+            "type": "matching",
+            "detail": "F段说 colder climate → crop failures → less food，对应 less food available。"
+          },
+          {
+            "q": "18",
+            "type": "matching",
+            "detail": "G段说 hides 和 antlers 的需求，对应 items that would have been traded。"
+          },
+          {
+            "q": "19",
+            "type": "matching",
+            "detail": "B段说 race the clock，对应 pressure to work quickly。"
+          },
+          {
+            "q": "20",
+            "type": "gap_fill",
+            "detail": "原文用词是 microorganisms，用户填了语义合理但非原文的 decay。Gap Fill 必须用原文原词。"
+          },
+          {
+            "q": "21",
+            "type": "gap_fill",
+            "detail": "空格是主语（什么聚集在那里），原文说 reindeer congregated，用户填了地点 patches。"
+          },
+          {
+            "q": "24",
+            "type": "matching",
+            "detail": "双选题选了 B，漏了另一个正确选项 C（某些时期文物很少）。"
+          },
+          {
+            "q": "30",
+            "type": "tfng_logic",
+            "detail": "原文说 tougher crops（抗逆作物），没提 require less water（需要更少水），属于 NOT GIVEN。"
+          },
+          {
+            "q": "31",
+            "type": "tfng_logic",
+            "detail": "原文说 shade 下植物长得更快（to find sunlight），题干说阳光下更快，直接矛盾 FALSE。"
+          },
+          {
+            "q": "32",
+            "type": "tfng_logic",
+            "detail": "白天变化 <1秒（rapid），夜晚逐渐变化（gradual），题干说 same speed 与原文矛盾。"
+          },
+          {
+            "q": "33",
+            "type": "matching",
+            "detail": "H段说 outstanding collaborators 能 help transfer knowledge into the field，对应 specialists who can make use of findings。E段讲光暗竞争机制，无关。"
+          },
+          {
+            "q": "39",
+            "type": "gap_fill",
+            "detail": "原文说 cold spring → colder summer → rain-soaked。NO MORE THAN TWO WORDS。"
+          },
+          {
+            "q": "40",
+            "type": "gap_fill",
+            "detail": "原文说 using a mustard plant called Arabidopsis，空格前是 species of。"
+          }
+        ],
+        "answers": [
+          {
+            "q": "1",
+            "user": "FALSE",
+            "correct": "FALSE",
+            "result": "correct",
+            "type": "tfng",
+            "text": "The Romans' shipbuilding skills were passed on to the Greeks and the Egyptians."
+          },
+          {
+            "q": "2",
+            "user": "TRUE",
+            "correct": "NOT GIVEN",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "Skilled craftsmen were needed for the mortise and tenon method of fixing planks."
+          },
+          {
+            "q": "3",
+            "user": "TRUE",
+            "correct": "FALSE",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "The later practice used by Mediterranean shipbuilders involved building the hull before the frame."
+          },
+          {
+            "q": "4",
+            "user": "TRUE",
+            "correct": "TRUE",
+            "result": "correct",
+            "type": "tfng",
+            "text": "The Romans called the Mediterranean Sea Mare Nostrum because they dominated its use."
+          },
+          {
+            "q": "5",
+            "user": "TRUE",
+            "correct": "TRUE",
+            "result": "correct",
+            "type": "tfng",
+            "text": "Most rowers on ships were people from the Roman army."
+          },
+          {
+            "q": "6",
+            "user": "lightweight",
+            "correct": "lightweight",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "Warships were designed so that they were ____ and moved quickly."
+          },
+          {
+            "q": "7",
+            "user": "bronze",
+            "correct": "bronze",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "A battering ram made of ____ was included in the design."
+          },
+          {
+            "q": "8",
+            "user": "levels",
+            "correct": "levels",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "Warships, such as the 'trireme', had rowers on three different ____."
+          },
+          {
+            "q": "9",
+            "user": "hull",
+            "correct": "hull",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "Unlike warships, merchant ships had a broad ____ that lay far below the surface."
+          },
+          {
+            "q": "10",
+            "user": "triangular",
+            "correct": "triangular",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "They had both square and ____ sails."
+          },
+          {
+            "q": "11",
+            "user": "oarsmen",
+            "correct": "music",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "On merchant ships and warships, ____ was used to ensure rowers moved their oars in and out of the water at the same time."
+          },
+          {
+            "q": "12",
+            "user": "Nile",
+            "correct": "grain",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "Quantities of agricultural goods such as ____ were transported by merchant ships to two main ports in Italy."
+          },
+          {
+            "q": "13",
+            "user": "towboats",
+            "correct": "towboats",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "The ships were pulled to the shore by ____."
+          },
+          {
+            "q": "14",
+            "correct": "D",
+            "result": "wrong",
+            "type": "matching",
+            "text": "an explanation for weapons being left behind in the mountains"
+          },
+          {
+            "q": "15",
+            "correct": "C",
+            "result": "wrong",
+            "type": "matching",
+            "text": "a reference to the physical difficulties involved in an archaeological expedition"
+          },
+          {
+            "q": "16",
+            "correct": "F",
+            "result": "wrong",
+            "type": "matching",
+            "text": "an explanation of why less food may have been available"
+          },
+          {
+            "q": "17",
+            "user": "H",
+            "correct": "H",
+            "result": "correct",
+            "type": "matching",
+            "text": "a reference to the possibility of future archaeological discoveries"
+          },
+          {
+            "q": "18",
+            "correct": "G",
+            "result": "wrong",
+            "type": "matching",
+            "text": "examples of items that would have been traded"
+          },
+          {
+            "q": "19",
+            "correct": "B",
+            "result": "wrong",
+            "type": "matching",
+            "text": "a reference to the pressure archaeologists are under to work quickly"
+          },
+          {
+            "q": "20",
+            "user": "decay",
+            "correct": "microorganisms",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "Organic materials such as animal skins and textiles have little protection against ____."
+          },
+          {
+            "q": "21",
+            "user": "patches",
+            "correct": "reindeer",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "____ gathered there in the summer months to avoid being attacked."
+          },
+          {
+            "q": "22",
+            "user": "insects",
+            "correct": "insects",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "...to avoid being attacked by ____ on lower ground."
+          },
+          {
+            "q": "23",
+            "user": "B",
+            "correct": "B",
+            "result": "correct",
+            "type": "multiple_choice",
+            "text": "Hunters went into the mountains even during periods of extreme cold."
+          },
+          {
+            "q": "24",
+            "correct": "C",
+            "result": "wrong",
+            "type": "multiple_choice",
+            "text": "The number of artefacts from certain time periods was relatively low."
+          },
+          {
+            "q": "25",
+            "user": "A",
+            "correct": "A",
+            "result": "correct",
+            "type": "multiple_choice",
+            "text": "Hunters at this time benefited from an increased demand for goods."
+          },
+          {
+            "q": "26",
+            "user": "C",
+            "correct": "C",
+            "result": "correct",
+            "type": "multiple_choice",
+            "text": "Vikings did not rely on ships alone to transport goods."
+          },
+          {
+            "q": "27",
+            "user": "NOT GIVEN",
+            "correct": "NOT GIVEN",
+            "result": "correct",
+            "type": "tfng",
+            "text": "The Cambridge scientists' discovery caused surprise among other scientists."
+          },
+          {
+            "q": "28",
+            "user": "TRUE",
+            "correct": "TRUE",
+            "result": "correct",
+            "type": "tfng",
+            "text": "The target for agricultural production by 2050 could be missed."
+          },
+          {
+            "q": "29",
+            "user": "TRUE",
+            "correct": "TRUE",
+            "result": "correct",
+            "type": "tfng",
+            "text": "Wheat and rice suffer from a rise in temperatures."
+          },
+          {
+            "q": "30",
+            "correct": "NOT GIVEN",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "It may be possible to develop crops that require less water."
+          },
+          {
+            "q": "31",
+            "correct": "FALSE",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "Plants grow faster in sunlight than in shade."
+          },
+          {
+            "q": "32",
+            "correct": "FALSE",
+            "result": "wrong",
+            "type": "tfng",
+            "text": "Phytochromes change their state at the same speed day and night."
+          },
+          {
+            "q": "33",
+            "user": "E",
+            "correct": "H",
+            "result": "wrong",
+            "type": "matching",
+            "text": "mention of specialists who can make use of the research findings"
+          },
+          {
+            "q": "34",
+            "user": "D",
+            "correct": "D",
+            "result": "correct",
+            "type": "matching",
+            "text": "a reference to a potential benefit of the research findings"
+          },
+          {
+            "q": "35",
+            "user": "G",
+            "correct": "G",
+            "result": "correct",
+            "type": "matching",
+            "text": "scientific support for a traditional saying"
+          },
+          {
+            "q": "36",
+            "user": "C",
+            "correct": "C",
+            "result": "correct",
+            "type": "matching",
+            "text": "a reference to people traditionally making plans based on plant behaviour"
+          },
+          {
+            "q": "37",
+            "user": "A",
+            "correct": "A",
+            "result": "correct",
+            "type": "matching",
+            "text": "a reference to where the research has been reported"
+          },
+          {
+            "q": "38",
+            "user": "warm winter",
+            "correct": "warm winter",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "Daffodils are likely to flower early in response to ____."
+          },
+          {
+            "q": "39",
+            "correct": "summer",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "If ash trees come into leaf before oak trees, the weather in ____ will probably be wet."
+          },
+          {
+            "q": "40",
+            "correct": "mustard plant",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "The research was carried out using a particular species of ____."
+          }
+        ],
+        "synonyms": [
+          {
+            "from": "shipbuilding skills were passed on",
+            "to": "learned to build ships from the people they conquered"
+          },
+          {
+            "from": "fix planks",
+            "to": "locked into another"
+          },
+          {
+            "from": "hull before the frame",
+            "to": "building the frame first and then the hull"
+          },
+          {
+            "from": "dominated its use",
+            "to": "had control over"
+          },
+          {
+            "from": "Roman army",
+            "to": "enrolled in the military"
+          },
+          {
+            "from": "lack any additional weight",
+            "to": "no ballast or excess load"
+          },
+          {
+            "from": "three different levels",
+            "to": "top, middle and lower levels"
+          },
+          {
+            "from": "pulled to shore",
+            "to": "dragged to the quay"
+          },
+          {
+            "from": "weapons left behind",
+            "to": "discarded broken bows"
+          },
+          {
+            "from": "physical difficulties",
+            "to": "fieldwork is hard work"
+          },
+          {
+            "from": "race the clock",
+            "to": "pressure to work quickly"
+          },
+          {
+            "from": "gathered",
+            "to": "congregated"
+          },
+          {
+            "from": "avoid being attacked",
+            "to": "escape biting insects"
+          },
+          {
+            "from": "no activity during other periods",
+            "to": "few or no signs of activity"
+          },
+          {
+            "from": "overland routes",
+            "to": "mountain passes"
+          },
+          {
+            "from": "demand for goods",
+            "to": "booming demand for hides"
+          },
+          {
+            "from": "tougher crops",
+            "to": "crops resilient to thermal stress"
+          },
+          {
+            "from": "grow faster in sunlight",
+            "to": "plants grow faster in shade"
+          },
+          {
+            "from": "rapid deactivation",
+            "to": "very fast, less than a second"
+          },
+          {
+            "from": "gradually change",
+            "to": "instead of rapid deactivation"
+          },
+          {
+            "from": "specialists who can make use of",
+            "to": "outstanding collaborators... transfer into the field"
+          },
+          {
+            "from": "measure temperature",
+            "to": "temperature gauges"
+          },
+          {
+            "from": "agricultural yields",
+            "to": "crop yields"
+          },
+          {
+            "from": "traditional saying",
+            "to": "well-known rhyme"
+          },
+          {
+            "from": "predict weather",
+            "to": "predict weather and harvest times"
+          },
+          {
+            "from": "flower early",
+            "to": "flower months in advance"
+          },
+          {
+            "from": "rain-soaked",
+            "to": "wet"
+          },
+          {
+            "from": "model system",
+            "to": "Arabidopsis"
+          }
+        ]
+      },
+      {
+        "date": "2026-06-12",
+        "type": "reading",
+        "title": "\"Cambridge IELTS 19 Academic Reading Test 1 — Passage 2: The pirates of the ancient Mediterranean\"",
+        "totalQuestions": 13,
+        "correctCount": 4,
+        "questionTypes": [
+          "matching",
+          " multiple_choice",
+          " gap_fill"
+        ],
+        "errors": [
+          {
+            "q": "14",
+            "type": "matching",
+            "detail": "原文 D 段 king of Alashiya rejected claims，题干 denial of involvement。rejected = denial 的同义替换没识别。"
+          },
+          {
+            "q": "15",
+            "type": "matching",
+            "detail": "G 段整段讲 Pompey 分13区→舰队清扫→安置务农的完整操作流程。"
+          },
+          {
+            "q": "16",
+            "type": "matching",
+            "detail": "C 段明确说 governments resort to pirates during wartime，题干 circumstances = during wartime。"
+          },
+          {
+            "q": "17",
+            "type": "matching",
+            "detail": "A 段首句 image springs to most people's minds。首段首句忽略。"
+          },
+          {
+            "q": "18",
+            "type": "matching",
+            "detail": "G 段末 offered land far from the sea。注意同段可重复使用。"
+          },
+          {
+            "q": "19",
+            "type": "matching",
+            "detail": "B 段 ships could not cross open water → restricted to coastal routes。"
+          },
+          {
+            "q": "21",
+            "type": "matching",
+            "detail": "双选题只选了 B 漏了 D。D 证据: inhabitants relied heavily on marine resources。"
+          },
+          {
+            "q": "22",
+            "type": "matching",
+            "detail": "双选题只选了 E 漏了 C。C 证据: high-ranking members engaged in piracy。"
+          },
+          {
+            "q": "25",
+            "type": "gap_fill",
+            "detail": "原文 demanding punishment。被中间 in the Senate 干扰，空格填被呼吁的对象。"
+          }
+        ],
+        "answers": [
+          {
+            "q": "14",
+            "correct": "D",
+            "result": "wrong",
+            "type": "matching",
+            "text": "a reference to a denial of involvement in piracy"
+          },
+          {
+            "q": "15",
+            "correct": "G",
+            "result": "wrong",
+            "type": "matching",
+            "text": "details of how a campaign to eradicate piracy was carried out"
+          },
+          {
+            "q": "16",
+            "correct": "C",
+            "result": "wrong",
+            "type": "matching",
+            "text": "circumstances in which states would make use of pirates"
+          },
+          {
+            "q": "17",
+            "correct": "A",
+            "result": "wrong",
+            "type": "matching",
+            "text": "how people today commonly view pirates"
+          },
+          {
+            "q": "18",
+            "correct": "G",
+            "result": "wrong",
+            "type": "matching",
+            "text": "how some people were encouraged not to return to piracy"
+          },
+          {
+            "q": "19",
+            "correct": "B",
+            "result": "wrong",
+            "type": "matching",
+            "text": "need for sailing vessels to stay close to land"
+          },
+          {
+            "q": "20",
+            "user": "B",
+            "correct": "B",
+            "result": "correct",
+            "type": "multiple_choice",
+            "text": "They escaped capture because they knew the local area well."
+          },
+          {
+            "q": "21",
+            "correct": "D",
+            "result": "wrong",
+            "type": "multiple_choice",
+            "text": "They depended more on the sea than on farming for survival."
+          },
+          {
+            "q": "22",
+            "correct": "C",
+            "result": "wrong",
+            "type": "multiple_choice",
+            "text": "Important officials were known to take part in piracy."
+          },
+          {
+            "q": "23",
+            "user": "E",
+            "correct": "E",
+            "result": "correct",
+            "type": "multiple_choice",
+            "text": "A favourable view of piracy is evident in ancient Greek texts."
+          },
+          {
+            "q": "24",
+            "user": "grain",
+            "correct": "grain",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "attacks on vessels transporting ____ to Rome"
+          },
+          {
+            "q": "25",
+            "user": "Senate",
+            "correct": "punishment",
+            "result": "wrong",
+            "type": "gap_fill",
+            "text": "resulted in calls for ____ for the pirates responsible"
+          },
+          {
+            "q": "26",
+            "user": "ransom",
+            "correct": "ransom",
+            "result": "correct",
+            "type": "gap_fill",
+            "text": "pirates demanding a ____"
+          }
+        ],
+        "synonyms": [
+          {
+            "from": "denial of involvement",
+            "to": "rejected claims of a connection"
+          },
+          {
+            "from": "campaign to eradicate piracy",
+            "to": "combat the Mediterranean menace"
+          },
+          {
+            "from": "make use of pirates",
+            "to": "resort to pirates' services"
+          },
+          {
+            "from": "especially during wartime",
+            "to": "especially during wartime"
+          },
+          {
+            "from": "how people today commonly view",
+            "to": "image springs to most people's minds"
+          },
+          {
+            "from": "encouraged not to return",
+            "to": "offered land far from the sea"
+          },
+          {
+            "from": "sailing vessels stay close to land",
+            "to": "restricted to coastal routes"
+          },
+          {
+            "from": "knew the local area well",
+            "to": "knowledge of the local area"
+          },
+          {
+            "from": "depended on sea more than farming",
+            "to": "relied heavily on marine resources"
+          },
+          {
+            "from": "high-ranking officials took part",
+            "to": "high-ranking members engaged in such activities"
+          },
+          {
+            "from": "favourable view in texts",
+            "to": "condones, praises, glorified"
+          },
+          {
+            "from": "demanding a ransom",
+            "to": "asking for a large ransom"
+          },
+          {
+            "from": "calls for punishment",
+            "to": "demanding punishment"
+          }
+        ]
+      },
+      {
         "date": "2026-06-11",
         "type": "reading",
         "title": "\"How tennis rackets have changed\"",
@@ -1066,6 +2710,145 @@
     ],
     "sessions": [
       {
+        "date": "2026-06-12",
+        "type": "listening",
+        "book": "\"cambridge-19\"",
+        "test": 1,
+        "totalQuestions": 10,
+        "correctCount": 2,
+        "sections": "[\"3\"]",
+        "sectionScores": {
+          "s1": null,
+          "s2": null
+        },
+        "questions": [
+          {
+            "q": "21",
+            "text": "Which TWO things did Colin find most satisfying about his bread reuse project?",
+            "options": "A: support from restaurants | B: preventing waste | C: overcoming problems | D: experimenting designs | E: learning 3D printing",
+            "correct": "B"
+          },
+          {
+            "q": "22",
+            "text": "Which TWO things did Colin find most satisfying?",
+            "options": "同上",
+            "correct": "D"
+          },
+          {
+            "q": "23",
+            "text": "Which TWO ways could touch-sensitive sensors be developed in future?",
+            "options": "A: medical products | B: food fit to eat | C: drinks | D: blind people | E: indicate weight",
+            "correct": "A"
+          },
+          {
+            "q": "24",
+            "text": "Which TWO ways could touch-sensitive sensors be developed in future?",
+            "options": "同上",
+            "correct": "E"
+          },
+          {
+            "q": "25",
+            "text": "Opinion about use of local products",
+            "options": "A-H matching",
+            "user": "B",
+            "correct": "D"
+          },
+          {
+            "q": "26",
+            "text": "Opinion about reduction in unnecessary packaging",
+            "options": "A-H matching",
+            "user": "D",
+            "correct": "G"
+          },
+          {
+            "q": "27",
+            "text": "Opinion about gluten-free and lactose-free food",
+            "options": "A-H matching",
+            "user": "C",
+            "correct": "C"
+          },
+          {
+            "q": "28",
+            "text": "Opinion about branded products related to celebrity chefs",
+            "options": "A-H matching",
+            "user": "G",
+            "correct": "B"
+          },
+          {
+            "q": "29",
+            "text": "Opinion about development of ghost kitchens",
+            "options": "A-H matching",
+            "user": "F",
+            "correct": "F"
+          },
+          {
+            "q": "30",
+            "text": "Opinion about use of mushrooms for common health concerns",
+            "options": "A-H matching",
+            "user": "E",
+            "correct": "H"
+          }
+        ],
+        "errors": [
+          {
+            "q": "21",
+            "type": "distraction",
+            "section": "3",
+            "detail": "双选题。Colin 最满意的是防止浪费（B）和尝试图案颜色（D）。他表达满意度比较含蓄，B 是用 It was 回应别人的夸奖，D 是直接说 really pleased。"
+          },
+          {
+            "q": "22",
+            "type": "distraction",
+            "section": "3",
+            "detail": "同一双选题，漏了第二个正确答案 D。"
+          },
+          {
+            "q": "23",
+            "type": "distraction",
+            "section": "3",
+            "detail": "触感传感器未来方向是药品存储（A）和指示重量（E）。B 食物可吃是现有功能，D 助盲是原始设计目的，都不是未来发展。被当前用途干扰。"
+          },
+          {
+            "q": "24",
+            "type": "distraction",
+            "section": "3",
+            "detail": "同一双选题，漏了第二个正确答案 E。"
+          },
+          {
+            "q": "25",
+            "type": "distraction",
+            "userAnswer": "B",
+            "correctAnswer": "D",
+            "section": "3",
+            "detail": "本地食材趋势。Colin 说 shops still full of imported foods + they need to be more proactive，答案是 D（零售商应更主动）。你选了 B，听到负面评价但没抓住主体是 retailers。"
+          },
+          {
+            "q": "26",
+            "type": "distraction",
+            "userAnswer": "D",
+            "correctAnswer": "G",
+            "section": "3",
+            "detail": "减少包装。Colin 明确说 The government needs to do something，所以是 G（应有更严法规）。你选了 D（零售商应更主动），把 Q25 的 retailer 串到了 Q26。"
+          },
+          {
+            "q": "28",
+            "type": "distraction",
+            "userAnswer": "G",
+            "correctAnswer": "B",
+            "section": "3",
+            "detail": "明星厨师品牌。Colin 说 bought a spice mix and it didn't actually taste of anything → 导致失望（B）。你选了 G（更严法规），原文没提法规。"
+          },
+          {
+            "q": "30",
+            "type": "distraction",
+            "userAnswer": "E",
+            "correctAnswer": "H",
+            "section": "3",
+            "detail": "蘑菇保健品。正确答案 H（可能有危险），你选了 E（需要更多资金支持）。可能听到 financial/support 相关词但配错对象。"
+          }
+        ]
+      },
+      {
         "date": "2026-06-11",
         "type": "listening",
         "book": "\"cambridge-19\"",
@@ -1251,9 +3034,9 @@
     ]
   },
   "vocab": {
-    "wordsReviewed": 8,
-    "newWords": 3,
-    "accuracy": "50%",
+    "wordsReviewed": 10,
+    "newWords": 9,
+    "accuracy": "60%",
     "reviewHistory": [
       {
         "day": 0,
@@ -1262,6 +3045,14 @@
         "correct": 4,
         "accuracy": "50%",
         "source": "Band 6 wordlist + reading synonyms"
+      },
+      {
+        "day": 0,
+        "date": "",
+        "reviewed": 10,
+        "correct": 6,
+        "accuracy": "60%",
+        "source": "阅读同义替换 + 听力 Section 3 词汇"
       }
     ],
     "totalWords": 150,
@@ -1294,60 +3085,46 @@
   },
   "todaySession": {
     "tasksCompleted": 0,
-    "tasksPending": 5,
+    "tasksPending": 4,
     "tasks": [
       {
-        "id": "task-r1",
+        "id": "task-r3",
         "module": "reading",
-        "book": "cambridge-19",
-        "test": 1,
-        "passage": 1,
-        "title": "How Tennis Rackets Have Changed",
-        "task_type": "T/F/NG + 填空",
-        "time": "20min 限时 + 10min 错题分析 + 5组同义替换提取",
+        "title": "Matching Information 专项速度训练",
+        "task_type": "段落匹配专项",
+        "time": "限时 15min（每道题最多 60 秒，到点跳）→ 10min 错因分析",
         "status": "todo"
       },
       {
-        "id": "task-l1",
-        "module": "listening",
-        "book": "cambridge-19",
-        "test": 1,
-        "section": 2,
-        "title": "Stanthorpe Twinning Association",
-        "task_type": "单选 + 地图",
-        "time": "限时做完 → 精听错题句",
-        "status": "todo"
-      },
-      {
-        "id": "task-w1",
+        "id": "task-w2",
         "module": "writing",
         "book": "cambridge-19",
-        "test": 1,
+        "test": 2,
         "task": 2,
-        "title": "Competition vs Cooperation",
+        "title": "Cambridge 19 Test 2 Task 2",
         "task_type": "大作文",
         "time": "限时 40min → 发 /ielts-writing 批改",
         "status": "todo"
       },
       {
-        "id": "task-s1",
-        "module": "speaking",
-        "batch": "2026-01-04",
-        "topic": "Describe a time when you felt proud of a family member",
-        "task_type": "Part 2",
-        "time": "准备素材 → 发 /ielts-speaking",
+        "id": "task-l3",
+        "module": "listening",
+        "title": "听力配对·主语追踪训练",
+        "task_type": "Section 3 配对题专项（练谁说了什么）",
+        "time": "20min 做题 + 10min 对答案看原文",
         "status": "todo"
       },
       {
-        "id": "task-v1",
+        "id": "task-v3",
         "module": "vocab",
-        "source": "listening-words.pdf + 阅读同义替换",
+        "source": "vocab 复习 + 明天新词",
         "count": 10,
-        "task_type": "词汇复习 /ielts-vocab",
+        "task_type": "SRS 词汇复习",
         "time": "10min",
         "status": "todo"
       }
-    ]
+    ],
+    "extraSessions": []
   },
   "profile": {
     "targetBand": 7.5,
